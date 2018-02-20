@@ -3,14 +3,17 @@
 # Vaadin Kotlin PWA Demo
 
 A very simple Vaadin-based PWA demo with no JavaScript code whatsoever. Tailored towards Android developers who want to
-use familiar strongly-typed language and don't feel at home with all that JavaScript stuff. Don't worry -
-we will avoid the browser as much as we can.
+use familiar strongly-typed language and don't feel at home with all that JavaScript browser stuff. Don't worry -
+we will avoid JavaScript as much as we can.
 
 ### What's PWA
 
 Progressive Web App is a web page that the mobile phone browser can download and it can then work offline, to a certain degree.
+PWA also allows the user to save an app shortcut as an icon to his/her home screen; when launched from that icon,
+the app launches completely full-screen, without any URL bar; now it completely mimics a native app.
+
 Since we're going to implement the logic server-side
-to avoid JavaScript, offline mode obviously won't work. So we'll make the app progressive enough - we'll
+to avoid JavaScript, offline mode obviously won't work. So we'll make the app progressive just enough - we'll
 include all necessary things like the `manifest.json` and service workers, but they'll just show
 the "You're offline" page when offline.
 
@@ -19,9 +22,9 @@ You can check out what PWAs are, at [Vaadin Progressive Web Apps](https://vaadin
 
 The PWA-related files are registered in the [CustomBootstrapListener](src/main/kotlin/com/vaadin/pwademo/Bootstrap.kt).
 
-### The UI Components
+### Comparison with Android development
 
-Now that the PWA thing is sorted out, let's construct the app UI. Vaadin framework is component-oriented,
+We'll use the Vaadin framework. Vaadin framework is component-oriented,
 which makes it feel familiar to Android developers (since Views are also components). Generally you nest your Buttons into a
 lot of Vertical/HorizontalLayouts, but without the pain Android development typically brings.
 
@@ -33,8 +36,21 @@ lot of Vertical/HorizontalLayouts, but without the pain Android development typi
 * You don't need Emulator nor a device - the browser can render the page as if in a mobile phone; you can switch
   between various resolutions in an instant.
 * No DEX compilation. The compilation is fast.
+* No install necessary - your users can simply browse your site; if they like the app, they can use their browser to easily create a
+  shortcut to your app on their home screen.
+* You will support both Android and iPhone with one code base.
+* Avoid the trouble of publishing your app on the app stores; you don't need to pay $100 yearly to Apple; you don't need
+  to share 30% of your income with Google and Apple.
 
-The [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) hosts the main view of the app. It uses the Karibu-DSL library to define UIs;
+Disadvantages:
+
+* No access to native APIs - only the browser-provided APIs are available.
+* No offline mode unless you develop your app in JavaScript, as a part of the service worker.
+* You won't be able to achieve the same performance as with the native app; so no games.
+
+### The UI Components
+
+Now that the PWA thing is sorted out, let's construct the app UI. The [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) hosts the main view of the app. It uses the Karibu-DSL library to define UIs;
 you can read more about the [Karibu-DSL](https://github.com/mvysny/karibu-dsl). 
 
 To quickly run the app, just run the following from your terminal:
@@ -47,7 +63,9 @@ Your app will be running on [http://localhost:8080](http://localhost:8080).
 
 ### Live Demo
 
-[Vaadin Kotlin PWA](https://vaadin-kotlin-pwa.herokuapp.com/) running on Heroku.
+[Vaadin Kotlin PWA](https://vaadin-kotlin-pwa.herokuapp.com/) running on Heroku. Please try it out with your mobile phone:
+since the app is a PWA, the browser will allow you to add the link to the app to your home screen.
+When you launch the app, a full-screen browser is launched which resembles an actual Android app.
 
 ### Develop with pleasure
 
@@ -60,9 +78,9 @@ the app will start soon in a Jetty server. Just open your browser and hit [http:
 The main meat of the UI is located in the [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) - feel free to edit that file
 and experiment for yourself. There are lots of pre-existing Vaadin components; you can check out the
 [Beverage Buddy](https://github.com/mvysny/karibu-dsl#gradle-quickstart-application-vaadin-10flow) example app for more
-examples of component usage.
+examples of component usage. You should also read the [full Vaadin 10 (Flow) documentation](https://vaadin.com/docs/v10/flow/Overview.html). 
 
-The browser is a very powerful IDE. Take your time and read slowly through the following tutorials, to get acquinted with the browser
+The browser is a very powerful IDE which can help you debug CSS- and layout-related issue. Take your time and read slowly through the following tutorials, to get acquinted with the browser
 developer tools:
 
 * [Chrome Developer Tools tutorial](https://developers.google.com/web/tools/chrome-devtools/)
