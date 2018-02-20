@@ -14,6 +14,7 @@ repositories {
     maven { url "https://repo.vaadin.com/nexus/content/repositories/flow" }
     maven { url 'https://maven.vaadin.com/vaadin-addons' }
     maven { url 'https://maven.vaadin.com/vaadin-prereleases' }
+    maven { url "https://dl.bintray.com/mvysny/vaadin-on-kotlin" }
     maven { url "https://dl.bintray.com/mvysny/github" }
     maven { url 'https://dl.bintray.com/webjars/maven' }
 }
@@ -33,6 +34,7 @@ test {
 dependencies {
     // Karibu-DSL dependency, includes Vaadin
     compile("com.github.vok.karibudsl:karibu-dsl-v10:0.2.22")
+    compile 'com.github.vok:vok-framework-v10-sql2o:0.3.2'
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
     // logging
@@ -41,6 +43,10 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.25'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.21"
+
+    // db
+    compile 'org.flywaydb:flyway-core:4.2.0'
+    compile 'com.h2database:h2:1.4.196'
 
     // test support
     testCompile "com.github.vok.karibudsl:karibu-testing-v10:0.2.22"

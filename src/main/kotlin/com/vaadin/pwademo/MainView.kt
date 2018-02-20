@@ -15,6 +15,7 @@
  */
 package com.vaadin.pwademo
 
+import com.github.vok.framework.sql2o.findAll
 import com.github.vok.karibudsl.flow.*
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.component.dependency.HtmlImport

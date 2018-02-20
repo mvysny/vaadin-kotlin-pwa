@@ -1,10 +1,15 @@
 package com.vaadin.pwademo
 
-import com.vaadin.flow.server.BootstrapPageResponse
-import com.vaadin.flow.server.BootstrapListener
+import com.github.vok.framework.VaadinOnKotlin
+import com.github.vok.framework.sql2o.dataSource
+import com.github.vok.framework.sql2o.dataSourceConfig
+import com.vaadin.flow.server.*
+import org.flywaydb.core.Flyway
+import org.h2.Driver
 import org.jsoup.nodes.Element
-import com.vaadin.flow.server.ServiceInitEvent
-import com.vaadin.flow.server.VaadinServiceInitListener
+import org.slf4j.LoggerFactory
+import javax.servlet.ServletConfig
+import javax.servlet.annotation.WebServlet
 
 /**
  * Modifies the Vaadin bootstrap page (the HTTP response) in order to
@@ -45,5 +50,41 @@ class CustomVaadinServiceInitListener : VaadinServiceInitListener {
 
     override fun serviceInit(event: ServiceInitEvent) {
         event.addBootstrapListener(CustomBootstrapListener())
+    }
+}
+
+@WebServlet(urlPatterns = ["/*"], name = "UIServlet", asyncSupported = true)
+@VaadinServletConfiguration(usingNewRouting = true, productionMode = false)
+class Servlet : VaadinServlet() {
+    override fun init(servletConfig: ServletConfig?) {
+        log.info("Starting up")
+        VaadinOnKotlin.dataSourceConfig.apply {
+            driverClassName = Driver::class.java.name
+            jdbcUrl = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
+            username = "sa"
+            password = ""
+        }
+        log.info("Initializing VaadinOnKotlin")
+        VaadinOnKotlin.init()
+        log.info("Running DB migrations")
+        val flyway = Flyway()
+        flyway.dataSource = VaadinOnKotlin.dataSource
+        flyway.migrate()
+        log.info("Initializing Vaadin")
+        super.init(servletConfig)
+        log.info("Initialization complete")
+    }
+
+    override fun destroy() {
+        log.info("Shutting down Vaadin");
+        super.destroy()
+        log.info("Destroying VaadinOnKotlin")
+        VaadinOnKotlin.destroy()
+        log.info("Shutdown complete")
+    }
+
+    companion object {
+        @JvmStatic
+        private val log = LoggerFactory.getLogger(Servlet::class.java)
     }
 }
