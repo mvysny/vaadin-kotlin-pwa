@@ -29,7 +29,7 @@ import com.vaadin.flow.theme.lumo.Lumo
 @BodySize(width = "100vw", height = "100vh")
 @HtmlImport("frontend://styles.html")
 @Route("")
-@Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
+@Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
 class MainView : VerticalLayout() {
     private lateinit var label: Label
