@@ -30,8 +30,9 @@ The PWA-related files are registered in the [CustomBootstrapListener](src/main/k
 
 ### Comparison with Android development
 
-We'll use the Vaadin framework. Vaadin framework is component-oriented,
-which makes it feel familiar to Android developers (since Views are also components). Generally you nest your Buttons into a
+We'll use the Vaadin framework. Vaadin framework is a Java-based, component-oriented web framework,
+which makes it feel familiar to Android developers (since Android UIs are composed of Views which are Components in Vaadin terminology).
+Generally you nest your Buttons into a
 lot of Vertical/HorizontalLayouts, but without the pain Android development typically brings.
 
 * No Fragments - no crazy lifecycle of create/start/resume/whatever. The app simply always runs; the components attach and detach
