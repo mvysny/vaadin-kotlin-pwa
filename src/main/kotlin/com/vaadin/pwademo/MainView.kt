@@ -16,13 +16,17 @@
 package com.vaadin.pwademo
 
 import com.github.vok.framework.sql2o.findAll
+import com.github.vok.framework.sql2o.vaadin.dataProvider
 import com.github.vok.karibudsl.flow.*
+import com.vaadin.flow.component.checkbox.Checkbox
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.component.dependency.HtmlImport
+import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
+import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
 
@@ -33,12 +37,30 @@ import com.vaadin.flow.theme.lumo.Lumo
 @Theme(Lumo::class)
 class MainView : VerticalLayout() {
     private lateinit var label: Label
+//    private val grid: Grid<Task>
     init {
+        setSizeFull()
+
         button("Click me") {
             onLeftClick {
                 label.text = "Clicked!"
             }
         }
         label = label("Not Clicked")
+
+    // uncomment when https://github.com/vaadin/vaadin-grid-flow/issues/4 is fixed
+/*
+        grid = grid<Task> {
+            setSizeFull()
+
+            dataProvider = Task.dataProvider
+            addColumn(ComponentRenderer<Checkbox, Task> { it -> Checkbox(it.completed )})
+            addColumn(Task::title).apply {
+                flexGrow = 1
+            }
+        }
+
+        setFlexGrow(1.0, grid)
+*/
     }
 }

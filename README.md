@@ -91,3 +91,8 @@ developer tools:
 It is very easy to test Vaadin-based apps - all you need to look up the components by selectors, for example a Button with the caption
 of "Click Me". The [MainViewTest.kt](src/test/kotlin/com/vaadin/pwademo/MainViewTest.kt) sample test file shows a simple test which tests the
 main screen. Read the [Serverless Testing](http://mavi.logdown.com/posts/3147601) article regarding the technical background on testing.
+
+### Database
+
+Without the database, we could store the task list into session only, which would then be gone when the server rebooted.
+We will use the [Vaadin-on-Kotlin](http://vaadinonkotlin.eu/)'s Sql2o database support.
