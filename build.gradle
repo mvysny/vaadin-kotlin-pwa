@@ -45,7 +45,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.21"
 
     // db
-    compile 'org.flywaydb:flyway-core:4.2.0'
+    compile 'org.flywaydb:flyway-core:5.0.7'
     compile 'com.h2database:h2:1.4.196'
 
     // test support

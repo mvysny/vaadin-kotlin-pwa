@@ -73,6 +73,9 @@ class Servlet : VaadinServlet() {
         log.info("Initializing Vaadin")
         super.init(servletConfig)
         log.info("Initialization complete")
+
+        // prepare sample data
+        Task(title = "do chores around the house", completed = false)
     }
 
     override fun destroy() {
