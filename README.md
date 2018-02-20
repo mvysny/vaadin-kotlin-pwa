@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/mvysny/vaadin-kotlin-pwa.svg?branch=master)](https://travis-ci.org/mvysny/vaadin-kotlin-pwa)
 
-# Vaadin PWA Demo
+# Vaadin Kotlin PWA Demo
 
 A very simple Vaadin-based PWA demo with no JavaScript code whatsoever. Tailored towards Android developers.
 
@@ -30,3 +30,8 @@ $ ./gradlew appRun
 ```
 
 Your app will be running on [http://localhost:8080](http://localhost:8080).
+
+### Live Demo
+
+[Vaadin Kotlin PWA](https://vaadin-kotlin-pwa.herokuapp.com/) running on Heroku.
+
