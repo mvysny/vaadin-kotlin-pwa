@@ -6,6 +6,12 @@ A very simple Vaadin-based PWA demo with no JavaScript code whatsoever. Tailored
 use familiar strongly-typed language and don't feel at home with all that JavaScript browser stuff. Don't worry -
 we will avoid JavaScript as much as we can.
 
+The app is a very simple task list app, designed to showcase the following features:
+
+* accessing the database
+* validation in forms
+* a web page masquerading as a native app
+
 ### What's a PWA
 
 Progressive Web App is a web page that the mobile phone browser can download and it can then work offline, to a certain degree.
