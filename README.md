@@ -6,7 +6,7 @@ A very simple Vaadin-based PWA demo with no JavaScript code whatsoever. Tailored
 use familiar strongly-typed language and don't feel at home with all that JavaScript browser stuff. Don't worry -
 we will avoid JavaScript as much as we can.
 
-### What's PWA
+### What's a PWA
 
 Progressive Web App is a web page that the mobile phone browser can download and it can then work offline, to a certain degree.
 PWA also allows the user to save an app shortcut as an icon to his/her home screen; when launched from that icon,
@@ -29,9 +29,9 @@ which makes it feel familiar to Android developers (since Views are also compone
 lot of Vertical/HorizontalLayouts, but without the pain Android development typically brings.
 
 * No Fragments - no crazy lifecycle of create/start/resume/whatever. The app simply always runs; the components attach and detach
-  as you use the app. All UI components are Serializable and automatically saved to a http session when there are no requests ongoing.
+  as you use the app. All UI components are Serializable; if needed they are automatically saved to a http session when there are no requests ongoing.
 * Components are the unit of reuse - you compose components into more powerful components, or into views.
-* You use Kotlin DSL to build your UIs. You structure the code as you see fit, no need to have 123213 layout XMLs for 45 screen sizes.
+* You use Kotlin code to build your UIs in a DSL fashion. You structure the code as you see fit, no need to have 123213 layout XMLs for 45 screen sizes.
 * You use CSS to style your app - you don't have to analyze Android Theme split into 3214132 XML files.
 * You don't need Emulator nor a device - the browser can render the page as if in a mobile phone; you can switch
   between various resolutions in an instant.
@@ -69,10 +69,10 @@ When you launch the app, a full-screen browser is launched which resembles an ac
 
 ### Develop with pleasure
 
-You can download and install the Intellij IDEA Community Edition, then import this project into it. Android Studio is based on Intellij IDEA Community,
+You can download and install the [Intellij IDEA Community Edition](https://www.jetbrains.com/idea/download), then import this project into it. Android Studio is based on Intellij IDEA Community,
 so you should feel immediately at home.
 
-To launch this app, just click on the right Gradle tab, then select `Tasks / gretty / appRun`. Right-click on appRun and select Debug:
+To launch your app, in Intellij just click on the rightmost Gradle tab, then select `Tasks / gretty / appRun`. Right-click on appRun and select Debug:
 the app will start soon in a Jetty server. Just open your browser and hit [http://localhost:8080](http://localhost:8080).
 
 The main meat of the UI is located in the [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) - feel free to edit that file
