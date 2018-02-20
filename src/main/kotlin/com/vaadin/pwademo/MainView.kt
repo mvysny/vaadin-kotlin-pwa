@@ -13,12 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.vaadin.flow.demo.helloworld
+package com.vaadin.pwademo
 
 import com.github.vok.karibudsl.flow.*
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.component.dependency.HtmlImport
-import com.vaadin.flow.component.dialog.Dialog
 import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.page.BodySize

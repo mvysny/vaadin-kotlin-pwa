@@ -1,1 +1,1 @@
-com.vaadin.flow.demo.helloworld.CustomVaadinServiceInitListener
+com.vaadin.pwademo.CustomVaadinServiceInitListener

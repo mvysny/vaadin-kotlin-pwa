@@ -1,4 +1,4 @@
-package com.vaadin.flow.demo.helloworld
+package com.vaadin.pwademo
 
 import com.vaadin.flow.server.BootstrapPageResponse
 import com.vaadin.flow.server.BootstrapListener
@@ -7,7 +7,7 @@ import com.vaadin.flow.server.ServiceInitEvent
 import com.vaadin.flow.server.VaadinServiceInitListener
 
 /**
- * Modifies the Vaadin bootstrap page (the HTTP repoponse) in order to
+ * Modifies the Vaadin bootstrap page (the HTTP response) in order to
  *
  *  * add links to favicons
  *  * add a link to the web app manifest
