@@ -1,6 +1,6 @@
 {
-  "name": "Vaadin PWA Demo",
-  "short_name": "Vaadin PWA Demo",
+  "name": "Vaadin Kotlin PWA Demo",
+  "short_name": "Vaadin Kotlin PWA Demo",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#227aef",
