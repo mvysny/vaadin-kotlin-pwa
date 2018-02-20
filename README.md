@@ -96,3 +96,12 @@ main screen. Read the [Serverless Testing](http://mavi.logdown.com/posts/3147601
 
 Without the database, we could store the task list into session only, which would then be gone when the server rebooted.
 We will use the [Vaadin-on-Kotlin](http://vaadinonkotlin.eu/)'s Sql2o database support.
+
+### Running in cloud
+
+This app is nothing more but a plain war project. It can be run in any servlet container; you can run it inside Tomcat's docker image etc.
+See [Running your app in cloud](http://mavi.logdown.com/posts/2870868) for more details.
+
+This git repo also contains all files necessary for a seamless deployment onto Heroku. Just clone this git repo,
+create a Heroku app, select github as the deployment method and press the `Deploy branch` button - your app should be
+up and running in no time.
