@@ -15,11 +15,9 @@
  */
 package com.vaadin.pwademo
 
-import com.github.vok.framework.sql2o.findAll
 import com.github.vok.framework.sql2o.vaadin.dataProvider
 import com.github.vok.karibudsl.flow.*
 import com.vaadin.flow.component.checkbox.Checkbox
-import com.vaadin.flow.router.Route
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Label
@@ -27,6 +25,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.data.renderer.ComponentRenderer
+import com.vaadin.flow.router.Route
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
 
@@ -54,11 +53,15 @@ class MainView : VerticalLayout() {
             // the Grid fills its parent height-wise.
             // See https://github.com/vaadin/flow/issues/3582 for more details.
 
-            dataProvider = Task.dataProvider
+            dataProvider = Task.dataProvider.sortedBy(Task::completed.asc)
             addColumn(ComponentRenderer<Checkbox, Task> { it -> Checkbox(it.completed )}).apply {
                 flexGrow = 0
+                setHeader("Done")
+                sortProperty = Task::completed
             }
-            addColumn(Task::title)
+            addColumnFor(Task::title) {
+                setHeader("Title")
+            }
         }
     }
 }
