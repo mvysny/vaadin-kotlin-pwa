@@ -33,7 +33,7 @@ test {
 
 dependencies {
     // Karibu-DSL dependency, includes Vaadin
-    compile("com.github.vok.karibudsl:karibu-dsl-v10:0.2.22")
+    compile("com.github.vok.karibudsl:karibu-dsl-v10:0.2.23")
     compile 'com.github.vok:vok-framework-v10-sql2o:0.3.2'
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
@@ -49,7 +49,7 @@ dependencies {
     compile 'com.h2database:h2:1.4.196'
 
     // test support
-    testCompile "com.github.vok.karibudsl:karibu-testing-v10:0.2.22"
+    testCompile "com.github.vok.karibudsl:karibu-testing-v10:0.2.23"
     testCompile "com.github.mvysny.dynatest:dynatest:0.5"
 
     // heroku app runner

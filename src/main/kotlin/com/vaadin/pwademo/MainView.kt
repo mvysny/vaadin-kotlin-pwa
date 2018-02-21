@@ -49,18 +49,16 @@ class MainView : VerticalLayout() {
         label = label("Not Clicked")
 
         grid = grid {
-            width = "100%"
+            width = "100%"; isExpand = true
             // don't set the height to 100% - this will behave differently than you would expect. flexGrow sets the height automatically so that
             // the Grid fills its parent height-wise.
             // See https://github.com/vaadin/flow/issues/3582 for more details.
+
             dataProvider = Task.dataProvider
             addColumn(ComponentRenderer<Checkbox, Task> { it -> Checkbox(it.completed )}).apply {
                 flexGrow = 0
             }
             addColumn(Task::title)
         }
-
-        // todo move into the grid when Karibu-DSL is fixed
-        setFlexGrow(1.0, grid)
     }
 }
