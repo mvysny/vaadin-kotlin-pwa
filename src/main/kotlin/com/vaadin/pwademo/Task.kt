@@ -3,7 +3,9 @@ package com.vaadin.pwademo
 import com.github.vok.framework.sql2o.Dao
 import com.github.vok.framework.sql2o.Entity
 import com.github.vok.framework.sql2o.db
+import org.hibernate.validator.constraints.Length
 import java.util.*
+import javax.validation.constraints.NotNull
 
 private val sampleData = listOf(
     "Evian",
@@ -63,7 +65,12 @@ private val sampleData = listOf(
     "Soma"
 )
 
-open class Task(override var id: Long? = null, open var title: String = "", open var completed: Boolean = false) : Entity<Long> {
+open class Task(override var id: Long? = null,
+                @field:NotNull
+                @field:Length(min = 2)
+                open var title: String = "",
+                @field:NotNull
+                open var completed: Boolean = false) : Entity<Long> {
     companion object : Dao<Task> {
         fun generateSampleData() {
             db {

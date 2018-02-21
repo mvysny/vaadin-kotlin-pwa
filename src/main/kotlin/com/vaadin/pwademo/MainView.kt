@@ -35,11 +35,13 @@ import com.vaadin.flow.theme.lumo.Lumo
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
 class MainView : VerticalLayout() {
+    private val form: AddTaskForm
     private lateinit var label: Label
     private val grid: Grid<Task>
     init {
         setSizeFull()
 
+        form = addTaskForm {  }
         button("Click me") {
             onLeftClick {
                 label.text = "Clicked!"
