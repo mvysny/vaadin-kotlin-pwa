@@ -48,9 +48,7 @@ class MainView : VerticalLayout() {
         }
         label = label("Not Clicked")
 
-        grid = grid<Task> {
-            setSizeFull()
-
+        grid = grid {
             dataProvider = Task.dataProvider
             addColumn(ComponentRenderer<Checkbox, Task> { it -> Checkbox(it.completed )}).apply {
                 flexGrow = 0
@@ -58,6 +56,7 @@ class MainView : VerticalLayout() {
             addColumn(Task::title)
         }
 
+        // todo move into the grid when Karibu-DSL is fixed
         setFlexGrow(1.0, grid)
     }
 }
