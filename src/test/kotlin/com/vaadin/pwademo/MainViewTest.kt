@@ -10,6 +10,8 @@ import com.vaadin.flow.component.html.Label
 import kotlin.test.expect
 
 class MainViewTest: DynaTest({
+    beforeGroup { Bootstrap().contextInitialized(null) }
+    afterGroup { Bootstrap().contextDestroyed(null) }
     beforeEach { MockVaadin.setup(autoDiscoverViews("com.vaadin.pwademo")) }
 
     test("test greeting") {

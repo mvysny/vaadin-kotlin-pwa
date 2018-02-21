@@ -9,6 +9,9 @@ import org.h2.Driver
 import org.jsoup.nodes.Element
 import org.slf4j.LoggerFactory
 import javax.servlet.ServletConfig
+import javax.servlet.ServletContextEvent
+import javax.servlet.ServletContextListener
+import javax.servlet.annotation.WebListener
 import javax.servlet.annotation.WebServlet
 
 /**
@@ -53,10 +56,9 @@ class CustomVaadinServiceInitListener : VaadinServiceInitListener {
     }
 }
 
-@WebServlet(urlPatterns = ["/*"], name = "UIServlet", asyncSupported = true)
-@VaadinServletConfiguration(usingNewRouting = true, productionMode = false)
-class Servlet : VaadinServlet() {
-    override fun init(servletConfig: ServletConfig?) {
+@WebListener
+class Bootstrap: ServletContextListener {
+    override fun contextInitialized(sce: ServletContextEvent?) {
         log.info("Starting up")
         VaadinOnKotlin.dataSourceConfig.apply {
             driverClassName = Driver::class.java.name
@@ -70,17 +72,14 @@ class Servlet : VaadinServlet() {
         val flyway = Flyway()
         flyway.dataSource = VaadinOnKotlin.dataSource
         flyway.migrate()
-        log.info("Initializing Vaadin")
-        super.init(servletConfig)
         log.info("Initialization complete")
 
         // prepare some sample data
         Task.generateSampleData()
     }
 
-    override fun destroy() {
-        log.info("Shutting down Vaadin");
-        super.destroy()
+    override fun contextDestroyed(sce: ServletContextEvent?) {
+        log.info("Shutting down");
         log.info("Destroying VaadinOnKotlin")
         VaadinOnKotlin.destroy()
         log.info("Shutdown complete")
@@ -88,6 +87,6 @@ class Servlet : VaadinServlet() {
 
     companion object {
         @JvmStatic
-        private val log = LoggerFactory.getLogger(Servlet::class.java)
+        private val log = LoggerFactory.getLogger(Bootstrap::class.java)
     }
 }

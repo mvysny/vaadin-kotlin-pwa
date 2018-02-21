@@ -50,7 +50,7 @@ dependencies {
 
     // test support
     testCompile "com.github.vok.karibudsl:karibu-testing-v10:0.2.23"
-    testCompile "com.github.mvysny.dynatest:dynatest:0.5"
+    testCompile "com.github.mvysny.dynatest:dynatest:0.6"
 
     // heroku app runner
     testRuntime 'com.github.jsimone:webapp-runner:8.5.11.3'
