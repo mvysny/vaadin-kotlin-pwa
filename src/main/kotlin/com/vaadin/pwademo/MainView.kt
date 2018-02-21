@@ -37,7 +37,7 @@ import com.vaadin.flow.theme.lumo.Lumo
 @Theme(Lumo::class)
 class MainView : VerticalLayout() {
     private lateinit var label: Label
-//    private val grid: Grid<Task>
+    private val grid: Grid<Task>
     init {
         setSizeFull()
 
@@ -48,19 +48,16 @@ class MainView : VerticalLayout() {
         }
         label = label("Not Clicked")
 
-    // uncomment when https://github.com/vaadin/vaadin-grid-flow/issues/4 is fixed
-/*
         grid = grid<Task> {
             setSizeFull()
 
             dataProvider = Task.dataProvider
-            addColumn(ComponentRenderer<Checkbox, Task> { it -> Checkbox(it.completed )})
-            addColumn(Task::title).apply {
-                flexGrow = 1
+            addColumn(ComponentRenderer<Checkbox, Task> { it -> Checkbox(it.completed )}).apply {
+                flexGrow = 0
             }
+            addColumn(Task::title)
         }
 
         setFlexGrow(1.0, grid)
-*/
     }
 }

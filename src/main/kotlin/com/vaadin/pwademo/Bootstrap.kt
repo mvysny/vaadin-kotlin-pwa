@@ -74,8 +74,8 @@ class Servlet : VaadinServlet() {
         super.init(servletConfig)
         log.info("Initialization complete")
 
-        // prepare sample data
-        Task(title = "do chores around the house", completed = false)
+        // prepare some sample data
+        Task.generateSampleData()
     }
 
     override fun destroy() {
