@@ -113,6 +113,9 @@ will make it inherit bunch of useful methods such as `findAll()` and `save()`. I
 providing all of its instances via a `DataProvider`. See the [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt)
 Grid configuration for details.
 
+See the [Back to Base](http://mavi.logdown.com/posts/5771422) article on how the finder methods are attached to the entity,
+and how the lookup and save works.
+
 ### Running in cloud
 
 This app is nothing more but a plain war project. It can be run in any servlet container; you can run it inside Tomcat's docker image etc.
