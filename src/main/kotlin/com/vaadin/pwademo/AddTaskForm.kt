@@ -13,9 +13,10 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout
  */
 class AddTaskForm : Div() {
     /**
-     * Invoked when the task should be added.
+     * Invoked when a new task should be added.
      */
     var onAddTask: (Task)->Unit = {}
+
     private val binder = beanValidationBinder<Task>()
     init {
         textField("Title:") {
@@ -23,7 +24,7 @@ class AddTaskForm : Div() {
                 .trimmingConverter()
                 .bindN(Task::title)
         }
-        val btn = button("Add") {
+        button("Add") {
             setSizeUndefined()
 
             onLeftClick {
@@ -31,8 +32,6 @@ class AddTaskForm : Div() {
                 if (binder.writeBeanIfValid(newTask)) {
                     onAddTask(newTask)
                     binder.readBean(Task())
-                } else {
-                    binder.validate()
                 }
             }
         }

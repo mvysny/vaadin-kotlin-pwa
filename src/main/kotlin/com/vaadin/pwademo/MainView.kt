@@ -37,17 +37,16 @@ import com.vaadin.flow.theme.lumo.Lumo
 class MainView : VerticalLayout() {
     private val form: AddTaskForm
     private lateinit var label: Label
-    private val grid: Grid<Task>
+    private lateinit var grid: Grid<Task>
     init {
         setSizeFull()
 
-        form = addTaskForm {  }
-        button("Click me") {
-            onLeftClick {
-                label.text = "Clicked!"
+        form = addTaskForm {
+            onAddTask = {
+                it.save()
+                grid.dataProvider.refreshAll()
             }
         }
-        label = label("Not Clicked")
 
         grid = grid {
             width = "100%"; isExpand = true
@@ -56,7 +55,14 @@ class MainView : VerticalLayout() {
             // See https://github.com/vaadin/flow/issues/3582 for more details.
 
             dataProvider = Task.dataProvider.sortedBy(Task::completed.asc)
-            addColumn(ComponentRenderer<Checkbox, Task> { it -> Checkbox(it.completed )}).apply {
+            addColumn(ComponentRenderer<Checkbox, Task> { task -> Checkbox(task.completed).apply {
+                // when the check box is changed, update the task and reload the grid
+                addValueChangeListener {
+                    task.completed = it.value
+                    task.save()
+                    grid.dataProvider.refreshAll()
+                }
+            } }).apply {
                 flexGrow = 0
                 setHeader("Done")
                 sortProperty = Task::completed
