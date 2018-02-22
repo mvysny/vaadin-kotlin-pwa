@@ -12,7 +12,7 @@ The app is a very simple task list app, designed to showcase the following featu
 * validation in forms
 * a web page masquerading as a native app
 
-### What's a PWA
+## What's a PWA
 
 Progressive Web App is a web page that the mobile phone browser can download and it can then work offline, to a certain degree.
 PWA also allows the user to save an app shortcut as an icon to his/her home screen; when launched from that icon,
@@ -40,41 +40,47 @@ lot of Vertical/HorizontalLayouts, but without the pain Android development typi
 * Components are the unit of reuse - you compose components into more powerful components, or into views.
 * You use Kotlin code to build your UIs in a DSL fashion. You structure the code as you see fit, no need to have 123213 layout XMLs for 45 screen sizes.
 * You use CSS to style your app - you don't have to analyze Android Theme split into 3214132 XML files.
-* You don't need Emulator nor a device - the browser can render the page as if in a mobile phone; you can switch
+* You don't need an Emulator nor a device - the browser can render the page as if in a mobile phone; you can switch
   between various resolutions in an instant.
 * No DEX compilation. The compilation is fast.
 * No install necessary - your users can simply browse your site; if they like the app, they can use their browser to easily create a
   shortcut to your app on their home screen.
 * You will support both Android and iPhone with one code base.
-* Avoid the trouble of publishing your app on the app stores; you don't need to pay $100 yearly to Apple; you don't need
+* Avoid the trouble of publishing your app on the app stores: the app does not need to be reviewed by anybody; you will not need to pay $100 yearly to Apple; you don't need
   to share 30% of your income with Google and Apple.
+* No data syncing necessary since the data will reside on the server.
 
 Disadvantages:
 
 * No access to native APIs - only the browser-provided APIs are available.
 * No offline mode unless you develop your app in JavaScript, as a part of the service worker.
 * You won't be able to achieve the same performance as with the native app; so no games.
+* You will need to pay for cloud hosting, SSL certificate and DNS domain yourself. The most easy way to set up all that is with Heroku;
+  you can also pay for a virtual server, get the SSL certificate for free from Let's Encrypt and setup Tomcat to host your app.
+* You are responsible for your app's security; when your app is hacked, all of your user data may be compromised.
 
-### The UI Components
+## Running The App
 
 Now that the PWA thing is sorted out, let's construct the app UI. The [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) hosts the main view of the app. It uses the Karibu-DSL library to define UIs;
 you can read more about the [Karibu-DSL](https://github.com/mvysny/karibu-dsl). 
 
-To quickly run the app, just run the following from your terminal:
+To quickly run the app on your machine, just run the following from your terminal:
 
 ```bash
 $ ./gradlew appRun
 ```
 
-Your app will be running on [http://localhost:8080](http://localhost:8080).
+Gradle will download an embedded servlet container (Jetty) and will run your app in it. Your app will be running on [http://localhost:8080](http://localhost:8080).
 
 ### Live Demo
 
-[Vaadin Kotlin PWA](https://vaadin-kotlin-pwa.herokuapp.com/) running on Heroku. Please try it out with your mobile phone:
+Find the [Vaadin Kotlin PWA](https://vaadin-kotlin-pwa.herokuapp.com/) running on Heroku. Try it out also with your mobile phone:
 since the app is a PWA, the browser will allow you to add the link to the app to your home screen.
 When you launch the app, a full-screen browser is launched which resembles an actual Android app.
 
-### Dissection of project files
+**Note**: PWAs require service workers which only works over https.
+
+## Dissection of project files
 
 Let's look at all files that this PWA project is composed of, and what are the points where you'll add functionality:
 
@@ -103,7 +109,7 @@ Let's look at all files that this PWA project is composed of, and what are the p
 | [Task.kt](src/main/kotlin/com/vaadin/pwademo/Task.kt) | An entity which represents a row in the `Task` database table. We're using Vaadin-on-Kotlin `vok-db` library to access the database.
 
 
-### Develop with pleasure
+## Develop with pleasure
 
 You can download and install the [Intellij IDEA Community Edition](https://www.jetbrains.com/idea/download), then import this project into it. Android Studio is based on Intellij IDEA Community,
 so you should feel immediately at home.
@@ -145,7 +151,7 @@ Grid configuration for details.
 See the [Back to Base](http://mavi.logdown.com/posts/5771422) article on how the finder methods are attached to the entity,
 and how the lookup and save works.
 
-### Running in cloud
+## Running in cloud
 
 This app is nothing more but a plain war project. It can be run in any servlet container; you can run it inside Tomcat's docker image etc.
 See [Running your app in cloud](http://mavi.logdown.com/posts/2870868) for more details.
@@ -153,3 +159,4 @@ See [Running your app in cloud](http://mavi.logdown.com/posts/2870868) for more 
 This git repo also contains all files necessary for a seamless deployment onto Heroku. Just clone this git repo,
 create a Heroku app, select github as the deployment method and press the `Deploy branch` button - your app should be
 up and running in no time.
+
