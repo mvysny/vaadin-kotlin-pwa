@@ -8,11 +8,9 @@ import org.flywaydb.core.Flyway
 import org.h2.Driver
 import org.jsoup.nodes.Element
 import org.slf4j.LoggerFactory
-import javax.servlet.ServletConfig
 import javax.servlet.ServletContextEvent
 import javax.servlet.ServletContextListener
 import javax.servlet.annotation.WebListener
-import javax.servlet.annotation.WebServlet
 
 /**
  * Modifies the Vaadin bootstrap page (the HTTP response) in order to
@@ -49,13 +47,20 @@ class CustomBootstrapListener : BootstrapListener {
     }
 }
 
+/**
+ * Called by the Vaadin Servlet; we will use it to hook into the initialization process, in order to be able to modify the html page a bit.
+ */
 class CustomVaadinServiceInitListener : VaadinServiceInitListener {
-
     override fun serviceInit(event: ServiceInitEvent) {
         event.addBootstrapListener(CustomBootstrapListener())
     }
 }
 
+/**
+ * Called by the Servlet Container to bootstrap your app. We need to bootstrap the Vaadin-on-Kotlin framework,
+ * in order to have support for the database; then we'll run Flyway migration scripts, to make sure that the database is up-to-date.
+ * After that's done, your app is ready to be serving client browsers.
+ */
 @WebListener
 class Bootstrap: ServletContextListener {
     override fun contextInitialized(sce: ServletContextEvent?) = try {

@@ -74,6 +74,30 @@ Your app will be running on [http://localhost:8080](http://localhost:8080).
 since the app is a PWA, the browser will allow you to add the link to the app to your home screen.
 When you launch the app, a full-screen browser is launched which resembles an actual Android app.
 
+### Dissection of project files
+
+Let's look at all files that this PWA project is composed of, and what are the points where you'll add functionality:
+
+| Files | Meaning
+| ----- | -------
+| [settings.gradle](settings.gradle), [build.gradle](build.gradle) | [Gradle](https://gradle.org/) build tool configuration files. Gradle is used to compile your app, download all dependency jars and build a war file
+| [gradlew](gradlew), [gradlew.bat](gradlew.bat), [gradle/](gradle) | Gradle runtime files, so that you can build your app from command-line simply by running `./gradlew`, without having to download and install Gradle distribution yourself 
+| [.travis.yml](.travis.yml) | [Travis-CI](http://travis-ci.org/) which automatically builds your app and runs all the tests after every commit 
+| [Procfile](Procfile) | Tells [Heroku](https://www.heroku.com/) hosting service how to run your app in a cloud 
+| [.gitignore](.gitignore) | Tells [Git](https://git-scm.com/) to ignore files that can be produced from your app's sources 
+| [src/main/resources/](src/main/resources) | A bunch of static files not compiled by Kotlin in any way; see below for explanation
+| [logback.xml](src/main/resources/logback.xml) | We're using [Slf4j](https://www.slf4j.org/) for logging and this is the configuration file for that 
+| [VaadinServiceInitListener](src/main/resources/META-INF/services/com.vaadin.flow.server.VaadinServiceInitListener) | A Java Service registration for the [CustomVaadinServiceInitListener](src/main/kotlin/com/vaadin/pwademo/Bootstrap.kt) class which will allow us to modify the html page a bit, to include icons, the PWA manifest file etc.
+| [db/migration/](src/main/resources/db/migration) | Database upgrade instructions for the [Flyway](https://flywaydb.org/) framework. Database is upgraded on every server boot, to ensure it's always up-to-date. See the [Migration Naming Guide](https://flywaydb.org/documentation/migrations#naming) for more details.
+| [webapp/](src/main/webapp) | static files provided as-is to the browser. See below for explanation
+| [manifest.json](src/main/webapp/manifest.json) | the PWA app descriptor file. The file is linked to in the `index.html` file `head` element, by the `CustomVaadinServiceInitListener`
+| [sw.js](src/main/webapp/sw.js) | The service worker which will continue running even when you navigate away from the web page. Allows for notification and other stuff. In this app we're using it only to show a nice "You're offline" page when the phone is offline.
+| [sw-register.js](src/main/webapp/sw-register.js) | Registers the service worker into the browser. This script is run by linking onto it from the `index.html` file `head` element, by the `CustomVaadinServiceInitListener`
+| [images/](src/main/webapp/images), [icons/](src/main/webapp/icons) | Images used when offline; icons are used when the user stores a link to your web app into his phone's home screen.
+| [frontend/styles.html](src/main/webapp/frontend/styles.html) | The CSS styles applied to your web app. It uses [Vaadin Lumo Theme](https://vaadin.com/themes/lumo)
+| [src/main/kotlin/](src/main/kotlin) | The main Kotlin sources of your web app. You'll be mostly editing this folder
+| [Bootstrap.kt](src/main/kotlin/com/vaadin/pwademo/Bootstrap.kt) | When Servlet Container (such as Tomcat) starts your app, it will run the `Bootstrap.contextInitialized()` function before any calls to your app are made. We need to bootstrap the Vaadin-on-Kotlin framework, in order to have support for the database; then we'll run Flyway migration scripts, to make sure that the database is up-to-date. After that's done, your app is ready to be serving client browsers.
+
 ### Develop with pleasure
 
 You can download and install the [Intellij IDEA Community Edition](https://www.jetbrains.com/idea/download), then import this project into it. Android Studio is based on Intellij IDEA Community,
