@@ -14,6 +14,15 @@ import com.vaadin.flow.router.Route
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
 
+/**
+ * The main view of the app. It is itself a vertical layout which lays out the child components vertically. There are only two components:
+ *
+ * * a custom component named [AddTaskForm] which is a form used to add new items to the task list;
+ * * a Vaadin Grid which lists all current tasks
+ *
+ * The UI is defined by the means of so-called DSL; see [Karibu-DSL examples](https://github.com/mvysny/karibu-dsl#how-to-write-dsls-for-vaadin-8-and-vaadin8-v7-compat)
+ * for more examples.
+ */
 @BodySize(width = "100vw", height = "100vh")
 @HtmlImport("frontend://styles.html")
 @Route("")
