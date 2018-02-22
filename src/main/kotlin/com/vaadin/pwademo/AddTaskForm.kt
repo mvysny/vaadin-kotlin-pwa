@@ -40,4 +40,7 @@ class AddTaskForm : Div() {
     }
 }
 
+/**
+ * A DSL function which allows your component to be placed in the DSL component tree.
+ */
 fun (@VaadinDsl HasComponents).addTaskForm(block: (@VaadinDsl AddTaskForm).() -> Unit = {}) = init(AddTaskForm(), block)
