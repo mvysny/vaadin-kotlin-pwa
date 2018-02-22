@@ -81,24 +81,25 @@ Let's look at all files that this PWA project is composed of, and what are the p
 | Files | Meaning
 | ----- | -------
 | [settings.gradle](settings.gradle), [build.gradle](build.gradle) | [Gradle](https://gradle.org/) build tool configuration files. Gradle is used to compile your app, download all dependency jars and build a war file
-| [gradlew](gradlew), [gradlew.bat](gradlew.bat), [gradle/](gradle) | Gradle runtime files, so that you can build your app from command-line simply by running `./gradlew`, without having to download and install Gradle distribution yourself 
-| [.travis.yml](.travis.yml) | [Travis-CI](http://travis-ci.org/) which automatically builds your app and runs all the tests after every commit 
-| [Procfile](Procfile) | Tells [Heroku](https://www.heroku.com/) hosting service how to run your app in a cloud 
-| [.gitignore](.gitignore) | Tells [Git](https://git-scm.com/) to ignore files that can be produced from your app's sources 
-| [src/main/resources/](src/main/resources) | A bunch of static files not compiled by Kotlin in any way; see below for explanation
-| [logback.xml](src/main/resources/logback.xml) | We're using [Slf4j](https://www.slf4j.org/) for logging and this is the configuration file for that 
+| [gradlew](gradlew), [gradlew.bat](gradlew.bat), [gradle/](gradle) | Gradle runtime files, so that you can build your app from command-line simply by running `./gradlew`, without having to download and install Gradle distribution yourself .
+| [.travis.yml](.travis.yml) | Configuration file for [Travis-CI](http://travis-ci.org/) which tells Travis how to build the app. Travis watches your repo; it automatically builds your app and runs all the tests after every commit.
+| [Procfile](Procfile) | Tells [Heroku](https://www.heroku.com/) hosting service how to run your app in a cloud. See below on how to deploy your app on Heroku for free.
+| [.gitignore](.gitignore) | Tells [Git](https://git-scm.com/) to ignore files that can be produced from your app's sources - be it files produced by Gradle, Intellij project files etc.
+| [src/main/resources/](src/main/resources) | A bunch of static files not compiled by Kotlin in any way; see below for explanation.
+| [logback.xml](src/main/resources/logback.xml) | We're using [Slf4j](https://www.slf4j.org/) for logging and this is the configuration file for Slf4j
 | [VaadinServiceInitListener](src/main/resources/META-INF/services/com.vaadin.flow.server.VaadinServiceInitListener) | A Java Service registration for the [CustomVaadinServiceInitListener](src/main/kotlin/com/vaadin/pwademo/Bootstrap.kt) class which will allow us to modify the html page a bit, to include icons, the PWA manifest file etc.
 | [db/migration/](src/main/resources/db/migration) | Database upgrade instructions for the [Flyway](https://flywaydb.org/) framework. Database is upgraded on every server boot, to ensure it's always up-to-date. See the [Migration Naming Guide](https://flywaydb.org/documentation/migrations#naming) for more details.
 | [webapp/](src/main/webapp) | static files provided as-is to the browser. See below for explanation
 | [manifest.json](src/main/webapp/manifest.json) | the PWA app descriptor file. The file is linked to in the `index.html` file `head` element, by the `CustomVaadinServiceInitListener`
 | [sw.js](src/main/webapp/sw.js) | The service worker which will continue running even when you navigate away from the web page. Allows for notification and other stuff. In this app we're using it only to show a nice "You're offline" page when the phone is offline.
 | [sw-register.js](src/main/webapp/sw-register.js) | Registers the service worker into the browser. This script is run by linking onto it from the `index.html` file `head` element, by the `CustomVaadinServiceInitListener`
-| [images/](src/main/webapp/images), [icons/](src/main/webapp/icons) | Images used when offline; icons are used when the user stores a link to your web app into his phone's home screen.
-| [frontend/styles.html](src/main/webapp/frontend/styles.html) | The CSS styles applied to your web app. It uses [Vaadin Lumo Theme](https://vaadin.com/themes/lumo)
-| [src/main/kotlin/](src/main/kotlin) | The main Kotlin sources of your web app. You'll be mostly editing this folder
+| [offline-page.html](src/main/webapp/offline-page.html) | A static web page shown when the phone is offline. Just open this file with your browser straight from the file system and edit it any way you like.
+| [images/](src/main/webapp/images), [icons/](src/main/webapp/icons) | Images used when offline (they are referenced from the `offline-page.html` file); icons are used when the user stores a link to your web app into his phone's home screen (they are referenced from the `manifest.json` file).
+| [frontend/styles.html](src/main/webapp/frontend/styles.html) | The CSS styles applied to your web app. Vaadin by default uses [Vaadin Lumo Theme](https://vaadin.com/themes/lumo); you can tweak the Lumo theme by the means of setting CSS variables.
+| [src/main/kotlin/](src/main/kotlin) | The main Kotlin sources of your web app. You'll be mostly editing files located in this folder.
 | [Bootstrap.kt](src/main/kotlin/com/vaadin/pwademo/Bootstrap.kt) | When Servlet Container (such as Tomcat) starts your app, it will run the `Bootstrap.contextInitialized()` function before any calls to your app are made. We need to bootstrap the Vaadin-on-Kotlin framework, in order to have support for the database; then we'll run Flyway migration scripts, to make sure that the database is up-to-date. After that's done, your app is ready to be serving client browsers.
 | [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) | The main view of the app, it defines how the UI looks like and how the components are nested into one another. The UI is defined by the means of so-called DSL; see [Karibu-DSL examples](https://github.com/mvysny/karibu-dsl#how-to-write-dsls-for-vaadin-8-and-vaadin8-v7-compat) for more examples.
-| [AddTaskForm.kt](src/main/kotlin/com/vaadin/pwademo/AddTaskForm.kt) | An example of a reusable component which can be placed anywhere into your UI. It also contains a bit of custom logic to do stuff.
+| [AddTaskForm.kt](src/main/kotlin/com/vaadin/pwademo/AddTaskForm.kt) | An example of a reusable component which can be placed anywhere into your UI. The component may contain both the UI code and the business logic code which accesses the database.
 | [Task.kt](src/main/kotlin/com/vaadin/pwademo/Task.kt) | An entity which represents a row in the `Task` database table. We're using Vaadin-on-Kotlin `vok-db` library to access the database.
 
 
