@@ -58,7 +58,7 @@ class CustomVaadinServiceInitListener : VaadinServiceInitListener {
 
 @WebListener
 class Bootstrap: ServletContextListener {
-    override fun contextInitialized(sce: ServletContextEvent?) {
+    override fun contextInitialized(sce: ServletContextEvent?) = try {
         log.info("Starting up")
         VaadinOnKotlin.dataSourceConfig.apply {
             driverClassName = Driver::class.java.name
@@ -76,6 +76,9 @@ class Bootstrap: ServletContextListener {
 
         // prepare some sample data
         Task.generateSampleData()
+    } catch (t: Throwable) {
+        log.error("Bootstrap failed!", t)
+        throw t
     }
 
     override fun contextDestroyed(sce: ServletContextEvent?) {

@@ -70,7 +70,9 @@ open class Task(override var id: Long? = null,
                 @field:Length(min = 2)
                 open var title: String = "",
                 @field:NotNull
-                open var completed: Boolean = false) : Entity<Long> {
+                open var completed: Boolean = false,
+                @field:NotNull
+                open var created: Date = Date()) : Entity<Long> {
     companion object : Dao<Task> {
         fun generateSampleData() {
             db {

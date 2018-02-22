@@ -21,7 +21,6 @@ import com.vaadin.flow.theme.lumo.Lumo
 @Theme(Lumo::class)
 class MainView : VerticalLayout() {
     private val form: AddTaskForm
-    private lateinit var label: Label
     private lateinit var grid: Grid<Task>
     init {
         setSizeFull()
@@ -39,7 +38,7 @@ class MainView : VerticalLayout() {
             // the Grid fills its parent height-wise.
             // See https://github.com/vaadin/flow/issues/3582 for more details.
 
-            dataProvider = Task.dataProvider.sortedBy(Task::completed.asc)
+            dataProvider = Task.dataProvider.sortedBy(Task::completed.asc, Task::created.desc)
             addColumn(ComponentRenderer<Checkbox, Task> { task -> Checkbox(task.completed).apply {
                 // when the check box is changed, update the task and reload the grid
                 addValueChangeListener {
