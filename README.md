@@ -30,19 +30,30 @@ The PWA-related files are registered in the [CustomBootstrapListener](src/main/k
 
 ### Comparison with Android development
 
-We'll use the Vaadin framework. Vaadin framework is a Java-based, component-oriented web framework,
-which makes it feel familiar to Android developers (since Android UIs are composed of Views which are Components in Vaadin terminology).
-Generally you nest your Buttons into a
-lot of Vertical/HorizontalLayouts, but without the pain Android development typically brings.
+We'll use the [Vaadin](https://vaadin.com/) framework. The reason behind this is that Vaadin framework is a component-oriented Java-based web framework.
+Because of that, Vaadin's programming model closely
+resembles and feels familiar to Android developers. You just switch your Android Views into Vaadin Components
+and you continue nesting your Buttons into a bunch of Vertical/HorizontalLayouts - exactly as you would do with the Android development. 
 
-* No Fragments - no crazy lifecycle of create/start/resume/whatever. The app simply always runs; the components attach and detach
-  as you use the app. All UI components are Serializable; if needed they are automatically saved to a http session when there are no requests ongoing.
-* Components are the unit of reuse - you compose components into more powerful components, or into views.
-* You use Kotlin code to build your UIs in a DSL fashion. You structure the code as you see fit, no need to have 123213 layout XMLs for 45 screen sizes.
-* You use CSS to style your app - you don't have to analyze Android Theme split into 3214132 XML files.
-* You don't need an Emulator nor a device - the browser can render the page as if in a mobile phone; you can switch
+All that without the pain Android development typically brings:
+
+* No Fragments - no crazy lifecycle of create/start/resume/whatever. The app simply always runs.
+  In Vaadin, components are used for everything; nesting components is perfectly
+  fine as opposed to nesting fragments, which tend to produce weird random crashes (the famous `moveToState()` method).
+* Vaadin components are lightweight - they don't use any native resources, they just produce html for the browser to draw. There is no complex
+  lifecycle - the components simply attach and detach to the screen (represented by the `UI` class) as the user uses the app.
+  Since the components do not use any native resources, they are simply garbage-collected when not needed anymore.
+  All UI components are Serializable; in a rare case when the session passivation is needed, they are automatically saved to a http session when there are no requests ongoing.
+* Components are the unit of reuse - you compose components into more powerful components, into forms, or even into views. The component
+  may be as small as a Button, or as big as a VerticalLayout with a complete form in it.
+* You use Kotlin code to build your UIs in a DSL fashion. You structure the code as you see fit; no need to have 123213 layout XMLs for 45 screen sizes,
+  in one large folder.
+* You use a single file CSS to style your app - you don't have to analyze Android Theme shattered into 3214132 XML files.
+* You don't need Emulator nor a device - the browser can render the page as if in a mobile phone; you can switch
   between various resolutions in an instant.
 * No DEX compilation. The compilation is fast.
+* No need to fetch stuff in background thread - the Vaadin UI thread lives server-side and it is completely separated from browser’s UI thread.
+  It is quite typical for a Vaadin app to block in the UI code until the data is fetched.
 * No install necessary - your users can simply browse your site; if they like the app, they can use their browser to easily create a
   shortcut to your app on their home screen.
 * You will support both Android and iPhone with one code base.
