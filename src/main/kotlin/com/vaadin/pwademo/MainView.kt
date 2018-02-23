@@ -5,7 +5,6 @@ import com.github.vok.karibudsl.flow.*
 import com.vaadin.flow.component.checkbox.Checkbox
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.grid.Grid
-import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport

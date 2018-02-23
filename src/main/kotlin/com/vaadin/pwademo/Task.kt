@@ -1,8 +1,8 @@
 package com.vaadin.pwademo
 
-import com.github.vok.framework.sql2o.Dao
-import com.github.vok.framework.sql2o.Entity
-import com.github.vok.framework.sql2o.db
+import com.github.vokorm.Dao
+import com.github.vokorm.Entity
+import com.github.vokorm.db
 import org.hibernate.validator.constraints.Length
 import java.util.*
 import javax.validation.constraints.NotNull
