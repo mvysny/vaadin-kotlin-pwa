@@ -12,6 +12,12 @@ The app is a very simple task list app, designed to showcase the following featu
 * validation in forms
 * a web page masquerading as a native app
 
+### Live Demo
+
+The app [runs live on Heroku](https://vaadin-kotlin-pwa.herokuapp.com/). Try it out with your mobile phone:
+since the app is a PWA, the browser on your phone will allow you to add the link to the app to your home screen.
+When you launch the app from the home screen launcher, a full-screen browser is launched which resembles an actual Android app.
+
 ## What's a PWA
 
 Progressive Web App is a web page that the mobile phone browser can download and it can then work offline, to a certain degree.
@@ -66,6 +72,7 @@ Disadvantages:
 * No access to native APIs - only the browser-provided APIs are available.
 * No offline mode unless you develop your app in JavaScript, as a part of the service worker.
 * You won't be able to achieve the same performance as with the native app; so no games.
+* You will need a SSL certificate since PWAs only work over https
 * You will need to pay for cloud hosting, SSL certificate and DNS domain yourself. The most easy way to set up all that is with Heroku;
   you can also pay for a virtual server, get the SSL certificate for free from Let's Encrypt and setup Tomcat to host your app.
 * You are responsible for your app's security; when your app is hacked, all of your user data may be compromised.
@@ -82,14 +89,6 @@ $ ./gradlew appRun
 ```
 
 Gradle will download an embedded servlet container (Jetty) and will run your app in it. Your app will be running on [http://localhost:8080](http://localhost:8080).
-
-### Live Demo
-
-Find the [Vaadin Kotlin PWA](https://vaadin-kotlin-pwa.herokuapp.com/) running on Heroku. Try it out also with your mobile phone:
-since the app is a PWA, the browser will allow you to add the link to the app to your home screen.
-When you launch the app, a full-screen browser is launched which resembles an actual Android app.
-
-**Note**: PWAs require service workers which only works over https.
 
 ## Dissection of project files
 
