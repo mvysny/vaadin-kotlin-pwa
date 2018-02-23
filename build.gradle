@@ -1,3 +1,8 @@
+buildscript {
+    ext.karibudsl_version = '0.2.24'
+    ext.vaadin10_version = '10.0.0.alpha21'
+}
+
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.2.21"
     id "org.akhikhl.gretty" version "2.0.0"
@@ -24,7 +29,7 @@ gretty {
 }
 
 dependencyManagement {
-    imports { mavenBom "com.vaadin:vaadin-bom:10.0.0.alpha19" }
+    imports { mavenBom "com.vaadin:vaadin-bom:$vaadin10_version" }
 }
 
 test {
@@ -33,7 +38,7 @@ test {
 
 dependencies {
     // Karibu-DSL dependency, includes Vaadin
-    compile("com.github.vok.karibudsl:karibu-dsl-v10:0.2.24")
+    compile("com.github.vok.karibudsl:karibu-dsl-v10:$karibudsl_version")
     compile 'com.github.vok:vok-framework-v10-sql2o:0.3.2'
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
@@ -49,7 +54,7 @@ dependencies {
     compile 'com.h2database:h2:1.4.196'
 
     // test support
-    testCompile "com.github.vok.karibudsl:karibu-testing-v10:0.2.24"
+    testCompile "com.github.vok.karibudsl:karibu-testing-v10:$karibudsl_version"
     testCompile "com.github.mvysny.dynatest:dynatest:0.6"
 
     // heroku app runner
