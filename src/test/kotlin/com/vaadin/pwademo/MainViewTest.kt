@@ -3,12 +3,11 @@ package com.vaadin.pwademo
 import com.github.karibu.testing.*
 import com.github.mvysny.dynatest.DynaTest
 import com.github.mvysny.dynatest.expectList
-import com.github.vok.framework.sql2o.deleteAll
-import com.github.vok.framework.sql2o.findAll
+import com.github.vokorm.deleteAll
+import com.github.vokorm.findAll
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.grid.Grid
-import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.textfield.TextField
 import kotlin.test.expect
 
