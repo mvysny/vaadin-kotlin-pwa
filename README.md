@@ -59,22 +59,26 @@ All that without the pain Android development typically brings:
 * No DEX compilation. The compilation is fast.
 * No need to fetch stuff in background thread - the Vaadin UI thread lives server-side and it is completely separated from browser’s UI thread.
   It is quite typical for a Vaadin app to block in the UI code until the data is fetched.
-* No install necessary - your users can simply browse your site; if they like the app, they can use their browser to easily create a
+* PWAs do not have to be installed. Your users can simply browse your site; if they like the app, they can use their browser to easily create a
   shortcut to your app on their home screen.
 * You will support both Android and iPhone with one code base.
 * Avoid the trouble of publishing your app on the app stores: the app does not need to be reviewed by anybody; you will not need to pay $100 yearly to Apple; you don't need
   to share 30% of your income with Google and Apple.
 * No data syncing necessary since the data will reside on the server.
+* Android's way of requesting for runtime permissions is *so* horrible: it will call back not your Runnable, but your Activity/Fragment.
+  That forbids you from spliting your code into smaller objects as you'd like; instead you have to keep all of your logic in an Activity/Fragment.
+  And since [runtime permissions will be required for all Android apps at Google Play](https://android-developers.googleblog.com/2017/12/improving-app-security-and-performance.html) at the end of 2018, instead of having to port your app to runtime permissions you can move to another platform.
 
-Disadvantages:
+Of course there is no silver bullet. This approach has the following disadvantages:
 
-* No access to native APIs - only the browser-provided APIs are available.
-* No offline mode unless you develop your app in JavaScript, as a part of the service worker.
+* No access to native APIs - only the browser-provided APIs are available. While you can access GPS, you can't access for example the SD card (with local user photos), can't make calls etc.
+* No offline mode unless you develop your app fully or in partial in JavaScript, as a part of the service worker.
 * You won't be able to achieve the same performance as with the native app; so no games.
 * You will need a SSL certificate since PWAs only work over https
 * You will need to pay for cloud hosting, SSL certificate and DNS domain yourself. The most easy way to set up all that is with Heroku;
-  you can also pay for a virtual server, get the SSL certificate for free from Let's Encrypt and setup Tomcat to host your app.
+  you can also pay for a virtualized Linux server, get the SSL certificate for free from Let's Encrypt and setup Tomcat to host your app.
 * You are responsible for your app's security; when your app is hacked, all of your user data may be compromised.
+* All of your users will use the same VM; 10000+ users can kill your server unless you load-balance. Luckily it's quite easy with most good cloud providers.
 
 ## Running The App
 
