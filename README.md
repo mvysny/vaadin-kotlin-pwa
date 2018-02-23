@@ -49,11 +49,10 @@ All that without the pain Android development typically brings:
 * Vaadin components are lightweight - they don't use any native resources, they just produce html for the browser to draw. There is no complex
   lifecycle - the components simply attach and detach to the screen (represented by the `UI` class) as the user uses the app.
   Since the components do not use any native resources, they are simply garbage-collected when not needed anymore.
-  All UI components are Serializable; in a rare case when the session passivation is needed, they are automatically saved to a http session when there are no requests ongoing.
+  All UI components are Serializable; in a rare case when the session passivation is needed, they are automatically saved along with the http session when there are no requests ongoing.
 * Components are the unit of reuse - you compose components into more powerful components, into forms, or even into views. The component
   may be as small as a Button, or as big as a VerticalLayout with a complete form in it.
-* You use Kotlin code to build your UIs in a DSL fashion. You structure the code as you see fit; no need to have 123213 layout XMLs for 45 screen sizes,
-  in one large folder.
+* You use Kotlin code to build your UIs in a DSL fashion. You structure the code as you see fit; no need to have 123213 layout XMLs for 45 screen sizes in one large folder.
 * You use a single file CSS to style your app - you don't have to analyze Android Theme shattered into 3214132 XML files.
 * You don't need Emulator nor a device - the browser can render the page as if in a mobile phone; you can switch
   between various resolutions in an instant.
