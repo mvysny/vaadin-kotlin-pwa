@@ -10,7 +10,6 @@ plugins {
     id "io.spring.dependency-management" version "1.0.4.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
 }
 
-apply plugin: 'kotlin'
 apply plugin: 'war'
 
 defaultTasks 'clean', 'build'
