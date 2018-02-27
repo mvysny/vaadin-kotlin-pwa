@@ -54,7 +54,7 @@ dependencies {
     compile 'com.h2database:h2:1.4.196'
 
     // test support
-    testCompile "com.github.vok.karibudsl:karibu-testing-v10:$karibudsl_version"
+    testCompile "com.github.kaributesting:karibu-testing-v10:0.4.0"
     testCompile "com.github.mvysny.dynatest:dynatest:0.6"
 
     // heroku app runner
