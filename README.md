@@ -82,7 +82,8 @@ Of course there is no silver bullet. This approach has the following disadvantag
 
 ## Running The App
 
-Now that the PWA thing is sorted out, let's construct the app UI. The [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) hosts the main view of the app. It uses the Karibu-DSL library to define UIs;
+Now that the PWA thing is sorted out, let's construct the app UI. The [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) hosts
+the main view of the app. It uses the Karibu-DSL library to define UIs;
 you can read more about the [Karibu-DSL](https://github.com/mvysny/karibu-dsl). 
 
 To quickly run the app on your machine, just run the following from your terminal:
@@ -91,7 +92,8 @@ To quickly run the app on your machine, just run the following from your termina
 $ ./gradlew appRun
 ```
 
-Gradle will download an embedded servlet container (Jetty) and will run your app in it. Your app will be running on [http://localhost:8080](http://localhost:8080).
+Gradle will download an embedded servlet container (Jetty) and will run your app in it. Your app will be running on
+[http://localhost:8080](http://localhost:8080).
 
 ## Dissection of project files
 
@@ -100,7 +102,7 @@ Let's look at all files that this PWA project is composed of, and what are the p
 | Files | Meaning
 | ----- | -------
 | [settings.gradle](settings.gradle), [build.gradle](build.gradle) | [Gradle](https://gradle.org/) build tool configuration files. Gradle is used to compile your app, download all dependency jars and build a war file
-| [gradlew](gradlew), [gradlew.bat](gradlew.bat), [gradle/](gradle) | Gradle runtime files, so that you can build your app from command-line simply by running `./gradlew`, without having to download and install Gradle distribution yourself .
+| [gradlew](gradlew), [gradlew.bat](gradlew.bat), [gradle/](gradle) | Gradle runtime files, so that you can build your app from command-line simply by running `./gradlew`, without having to download and install Gradle distribution yourself.
 | [.travis.yml](.travis.yml) | Configuration file for [Travis-CI](http://travis-ci.org/) which tells Travis how to build the app. Travis watches your repo; it automatically builds your app and runs all the tests after every commit.
 | [Procfile](Procfile) | Tells [Heroku](https://www.heroku.com/) hosting service how to run your app in a cloud. See below on how to deploy your app on Heroku for free.
 | [.gitignore](.gitignore) | Tells [Git](https://git-scm.com/) to ignore files that can be produced from your app's sources - be it files produced by Gradle, Intellij project files etc.
@@ -132,7 +134,7 @@ the app will start soon in a Jetty server. Just open your browser and hit [http:
 
 The main meat of the UI is located in the [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) - feel free to edit that file
 and experiment for yourself. There are lots of pre-existing Vaadin components; you can check out the
-[Beverage Buddy](https://github.com/mvysny/karibu-dsl#gradle-quickstart-application-vaadin-10flow) example app for more
+[Beverage Buddy](https://github.com/mvysny/beverage-buddy-vok/) example app for more
 examples of component usage. You should also read the [full Vaadin 10 (Flow) documentation](https://vaadin.com/docs/v10/flow/Overview.html). 
 
 The browser is a very powerful IDE which can help you debug CSS- and layout-related issue. Take your time and read slowly through the following tutorials, to get acquinted with the browser
