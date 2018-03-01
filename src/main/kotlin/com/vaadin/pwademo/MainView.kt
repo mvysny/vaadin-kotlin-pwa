@@ -2,10 +2,13 @@ package com.vaadin.pwademo
 
 import com.github.vok.framework.sql2o.vaadin.dataProvider
 import com.github.vok.karibudsl.flow.*
+import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.checkbox.Checkbox
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Div
+import com.vaadin.flow.component.icon.Icon
+import com.vaadin.flow.component.icon.VaadinIcons
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
@@ -58,6 +61,9 @@ class MainView : VerticalLayout() {
                 sortProperty = Task::title
                 setHeader("Title")
             }
+            addColumn(newDeleteButtonRenderer()).apply {
+                flexGrow = 0
+            }
         }
     }
 
@@ -76,7 +82,16 @@ class MainView : VerticalLayout() {
         Div().apply {
             text = task.title
             if (task.completed) {
-                classNames.set("crossedout", true)
+                classNames.add("crossedout")
+            }
+        }
+    }
+
+    private fun newDeleteButtonRenderer(): ComponentRenderer<Button, Task> = ComponentRenderer { task ->
+        Button(Icon(VaadinIcons.TRASH)).apply {
+            onLeftClick {
+                task.delete()
+                grid.dataProvider.refreshAll()
             }
         }
     }
