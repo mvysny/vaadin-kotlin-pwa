@@ -5,6 +5,7 @@ import com.github.vok.karibudsl.flow.*
 import com.vaadin.flow.component.checkbox.Checkbox
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.grid.Grid
+import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
@@ -47,20 +48,35 @@ class MainView : VerticalLayout() {
             // See https://github.com/vaadin/flow/issues/3582 for more details.
 
             dataProvider = Task.dataProvider.sortedBy(Task::completed.asc, Task::created.desc)
-            addColumn(ComponentRenderer<Checkbox, Task> { task -> Checkbox(task.completed).apply {
-                // when the check box is changed, update the task and reload the grid
-                addValueChangeListener {
-                    task.completed = it.value
-                    task.save()
-                    grid.dataProvider.refreshAll()
-                }
-            } }).apply {
+
+            addColumn(createTaskCompletedCheckboxRenderer()).apply {
                 flexGrow = 0
                 setHeader("Done")
                 sortProperty = Task::completed
             }
-            addColumnFor(Task::title) {
+            addColumn(createTaskNameDivRenderer()).apply {
+                sortProperty = Task::title
                 setHeader("Title")
+            }
+        }
+    }
+
+    private fun createTaskCompletedCheckboxRenderer(): ComponentRenderer<Checkbox, Task> = ComponentRenderer { task ->
+        Checkbox(task.completed).apply {
+            // when the check box is changed, update the task and reload the grid
+            addValueChangeListener {
+                task.completed = it.value
+                task.save()
+                grid.dataProvider.refreshAll()
+            }
+        }
+    }
+
+    private fun createTaskNameDivRenderer(): ComponentRenderer<Div, Task> = ComponentRenderer { task ->
+        Div().apply {
+            text = task.title
+            if (task.completed) {
+                classNames.set("crossedout", true)
             }
         }
     }
