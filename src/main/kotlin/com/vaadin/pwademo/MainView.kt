@@ -89,6 +89,7 @@ class MainView : VerticalLayout() {
 
     private fun newDeleteButtonRenderer(): ComponentRenderer<Button, Task> = ComponentRenderer { task ->
         Button(Icon(VaadinIcons.TRASH)).apply {
+            // @todo mavi add "tertiary" and "small" themes when this is fixed: https://github.com/vaadin/vaadin-button/issues/72
             onLeftClick {
                 task.delete()
                 grid.dataProvider.refreshAll()
