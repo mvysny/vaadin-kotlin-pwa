@@ -89,7 +89,7 @@ class MainView : VerticalLayout() {
 
     private fun newDeleteButtonRenderer(): ComponentRenderer<Button, Task> = ComponentRenderer { task ->
         Button(Icon(VaadinIcons.TRASH)).apply {
-            element.themeList.add("tertiary-inline")  // this will remove the button border
+            themes.add("tertiary-inline")  // this will remove the button border
             onLeftClick {
                 task.delete()
                 grid.dataProvider.refreshAll()
