@@ -22,7 +22,7 @@ class MainViewTest: DynaTest({
     afterEach { Task.deleteAll() }
 
     test("add a task") {
-        UI.getCurrent().navigateTo("")
+        UI.getCurrent().navigate("")
         _get<TextField> { caption = "Title:" } .value = "New Task"
         _get<Button> { caption = "Add" } ._click()
         expectList("New Task") { Task.findAll().map { it.title } }
