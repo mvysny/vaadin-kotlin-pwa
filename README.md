@@ -147,7 +147,7 @@ developer tools:
 
 It is very easy to test Vaadin-based apps - all you need to look up the components by selectors, for example a Button with the caption
 of "Click Me". The [MainViewTest.kt](src/test/kotlin/com/vaadin/pwademo/MainViewTest.kt) sample test file shows a simple test which tests the
-main screen. Read the [Serverless Testing](http://mavi.logdown.com/posts/3147601) article regarding the technical background on testing.
+main screen. Read the [Browserless Testing](http://mavi.logdown.com/posts/3147601) article regarding the technical background on testing.
 
 ### Database
 
