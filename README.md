@@ -42,7 +42,7 @@ resembles and feels familiar to Android developers. You just switch your Android
 and you continue nesting your Buttons into a bunch of Vertical/HorizontalLayouts - exactly as you would do with the Android development, but
 without the pains of using the Android development model.
 
-You can read more about the [benefits Vaadin development offer over Android](http://mavi.logdown.com/posts/6848317).
+You can read more about the [benefits of Vaadin development over Android](http://mavi.logdown.com/posts/6848317).
 
 ## Running The App
 
