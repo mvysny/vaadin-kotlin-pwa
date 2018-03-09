@@ -22,12 +22,12 @@ When you launch the app from the home screen launcher, a full-screen browser is 
 
 Progressive Web App is a web page that the mobile phone browser can download and it can then work offline, to a certain degree.
 PWA also allows the user to save an app shortcut as an icon to his/her home screen; when launched from that icon,
-the app launches completely full-screen, without any URL bar; now it completely mimics a native app.
+the app launches completely full-screen, without any URL bar, mimicking a native app completely.
 
 Since we're going to implement the logic server-side
 to avoid JavaScript, offline mode obviously won't work. So we'll make the app progressive just enough - we'll
 include all necessary things like the `manifest.json` and service workers, but they'll just show
-the "You're offline" page when offline.
+the "You're offline" page when offline. However, there is an effort ongoing in this area, so let's wait and see.
 
 The PWAs also tend to adapt to the screen size (so-called Responsiveness), typically with a CSS rules.
 You can check out what PWAs are, at [Vaadin Progressive Web Apps](https://vaadin.com/pwa).
