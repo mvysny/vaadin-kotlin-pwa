@@ -11,7 +11,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout
  * A reusable component demo; the component is completely built server-side.
  * @author mavi
  */
-class AddTaskForm : Div() {
+class AddTaskForm : HorizontalLayout() {
     /**
      * Invoked when a new task should be added.
      */
@@ -19,10 +19,12 @@ class AddTaskForm : Div() {
 
     private val binder = beanValidationBinder<Task>()
     init {
+        contentAlign { v = vBaseline; h = hStart }
+
         textField("Title:") {
             bind(binder)
                 .trimmingConverter()
-                .bindN(Task::title)
+                .bind(Task::title)
         }
         button("Add") {
             setSizeUndefined()
