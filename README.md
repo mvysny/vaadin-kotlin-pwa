@@ -85,6 +85,15 @@ Let's look at all files that this PWA project is composed of, and what are the p
 | [AddTaskForm.kt](src/main/kotlin/com/vaadin/pwademo/AddTaskForm.kt) | An example of a reusable component which can be placed anywhere into your UI. The component may contain both the UI code and the business logic code which accesses the database.
 | [Task.kt](src/main/kotlin/com/vaadin/pwademo/Task.kt) | An entity which represents a row in the `Task` database table. We're using Vaadin-on-Kotlin `vok-db` library to access the database.
 
+## Layouts
+
+Vaadin 10 of course uses different algorithms than Android to perform the layouting. Luckily,
+Vaadin 10 (or, rather CSS) knows a layout quite similar to Android's `LinearLayout` - the flexbox.
+Please read the
+[Vaadin 10 server-side layouting for Vaadin 8 and Android developers](http://mavi.logdown.com/posts/6855605)
+article on how to use `VerticalLayout` and `HorizontalLayout` which use flexbox under the hood, but
+sports an API which may be familar to Android developers.
+
 ## Develop with pleasure
 
 You can download and install the [Intellij IDEA Community Edition](https://www.jetbrains.com/idea/download), then import this project into it. Android Studio is based on Intellij IDEA Community,
