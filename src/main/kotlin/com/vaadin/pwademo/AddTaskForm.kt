@@ -2,9 +2,6 @@ package com.vaadin.pwademo
 
 import com.github.vok.karibudsl.flow.*
 import com.vaadin.flow.component.HasComponents
-import com.vaadin.flow.component.grid.Grid
-import com.vaadin.flow.component.html.Div
-import com.vaadin.flow.component.orderedlayout.FlexComponent
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout
 
 /**
@@ -19,7 +16,7 @@ class AddTaskForm : HorizontalLayout() {
 
     private val binder = beanValidationBinder<Task>()
     init {
-        contentAlign { v = vBaseline; h = hStart }
+        content { align(left, baseline) }
 
         textField("Title:") {
             bind(binder)
