@@ -38,8 +38,8 @@ class MainView : VerticalLayout() {
         setSizeFull()
 
         form = addTaskForm {
-            onAddTask = {
-                it.save()
+            onAddTask = { task ->
+                task.save()
                 grid.dataProvider.refreshAll()
             }
         }
