@@ -1,6 +1,6 @@
 buildscript {
     ext.karibudsl_version = '0.3.7'
-    ext.vaadinonkotlin_version = '0.4.1'
+    ext.vaadinonkotlin_version = '0.4.2'
     ext.vaadin10_version = '10.0.0.beta2'
 }
 
@@ -54,7 +54,7 @@ dependencies {
     compile 'com.h2database:h2:1.4.196'
 
     // test support
-    testCompile "com.github.kaributesting:karibu-testing-v10:0.4.1"
+    testCompile "com.github.kaributesting:karibu-testing-v10:0.4.2"
     testCompile "com.github.mvysny.dynatest:dynatest:0.6"
 
     // heroku app runner
