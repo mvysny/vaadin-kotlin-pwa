@@ -41,6 +41,9 @@ resembles and feels familiar to Android developers. You just switch your Android
 and you continue nesting your Buttons into a bunch of Vertical/HorizontalLayouts - exactly as you would do with the Android development, but
 without the pains of using the Android development model.
 
+Vaadin packages enormous amount of predefined components so you will do not typically have to develop your own components.
+You will simply orchestrate a pre-made components server-side, with a pure Java/Kotlin code. 
+
 You can read more about the [benefits of Vaadin development over Android](http://mavi.logdown.com/posts/6848317).
 
 ## Running The App
