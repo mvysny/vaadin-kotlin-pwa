@@ -58,7 +58,7 @@ To quickly run the app on your machine, just run the following from your termina
 $ ./gradlew appRun
 ```
 
-Gradle will download an embedded servlet container (Jetty) and will run your app in it. Your app will be running on
+Gradle will automatically download an embedded servlet container (Jetty) and will run your app in it. Your app will be running on
 [http://localhost:8080](http://localhost:8080).
 
 ## Dissection of project files
