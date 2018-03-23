@@ -1,11 +1,11 @@
 buildscript {
     ext.karibudsl_version = '0.3.7'
-    ext.vaadinonkotlin_version = '0.4.3'
+    ext.vaadinonkotlin_version = '0.4.4'
     ext.vaadin10_version = '10.0.0.beta3'
 }
 
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.2.30"
+    id "org.jetbrains.kotlin.jvm" version "1.2.31"
     id "org.akhikhl.gretty" version "2.0.0"
     id "io.spring.dependency-management" version "1.0.4.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
 }
@@ -47,7 +47,7 @@ dependencies {
     compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'org.slf4j:slf4j-api:1.7.25'
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.30"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.31"
 
     // db
     compile 'org.flywaydb:flyway-core:5.0.7'
@@ -55,7 +55,7 @@ dependencies {
 
     // test support
     testCompile "com.github.kaributesting:karibu-testing-v10:0.4.2"
-    testCompile "com.github.mvysny.dynatest:dynatest:0.6"
+    testCompile "com.github.mvysny.dynatest:dynatest:0.7"
 
     // heroku app runner
     testRuntime 'com.github.jsimone:webapp-runner:8.5.11.3'
