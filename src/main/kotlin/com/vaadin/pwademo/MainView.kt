@@ -2,6 +2,7 @@ package com.vaadin.pwademo
 
 import com.github.vok.framework.sql2o.vaadin.dataProvider
 import com.github.vok.framework.sql2o.vaadin.generateFilterComponents
+import com.github.vok.framework.sql2o.vaadin.sortedBy
 import com.github.vok.karibudsl.flow.*
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.checkbox.Checkbox
@@ -51,7 +52,7 @@ class MainView : VerticalLayout() {
             // the Grid fills its parent height-wise.
             // See https://github.com/vaadin/flow/issues/3582 for more details.
 
-            dataProvider = Task.dataProvider.withSort(Task::completed.asc, Task::created.desc)
+            dataProvider = Task.dataProvider.sortedBy(Task::completed.asc, Task::created.desc)
 
             addColumn(createTaskCompletedCheckboxRenderer()).apply {
                 flexGrow = 0
