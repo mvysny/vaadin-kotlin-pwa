@@ -46,13 +46,11 @@ class MainView : VerticalLayout() {
             }
         }
 
-        grid = grid {
+        grid = grid(dataProvider = Task.dataProvider.sortedBy(Task::completed.asc, Task::created.desc)) {
             width = "100%"; isExpand = true
             // don't set the height to 100% - this will behave differently than you would expect. flexGrow sets the height automatically so that
             // the Grid fills its parent height-wise.
             // See https://github.com/vaadin/flow/issues/3582 for more details.
-
-            dataProvider = Task.dataProvider.sortedBy(Task::completed.asc, Task::created.desc)
 
             addColumn(createTaskCompletedCheckboxRenderer()).apply {
                 flexGrow = 0
