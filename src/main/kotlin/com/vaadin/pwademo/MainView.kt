@@ -37,7 +37,7 @@ class MainView : VerticalLayout() {
     private val form: AddTaskForm
     private lateinit var grid: Grid<Task>
     init {
-        setSizeFull()
+        setSizeFull(); isPadding = false
 
         form = addTaskForm {
             onAddTask = { task ->
