@@ -55,14 +55,24 @@
             };
         }
         app-drawer {
-            --app-drawer-scrim-background: rgba(0, 0, 100, 0.8);
+            --app-drawer-scrim-background: rgba(0, 0, 0, 0.8);
             --app-drawer-content-container: {
-                background-color: #B0BEC5;
+                background-color: rgba(34, 34, 34, 0.92);
             };
             z-index: 10000;
         }
         .app-content {
             padding-top: 64px;
+        }
+
+        .navmenuitem {
+            border-radius: 8px;
+            color: white;
+            display: block;
+        }
+
+        .navmenuitem.selected {
+            background: black;
         }
     </style>
 </custom-style>

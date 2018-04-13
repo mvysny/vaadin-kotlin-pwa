@@ -3,9 +3,12 @@ package com.vaadin.pwademo.components
 import com.github.vok.karibudsl.flow.VaadinDsl
 import com.github.vok.karibudsl.flow.div
 import com.github.vok.karibudsl.flow.init
+import com.github.vok.karibudsl.flow.themes
 import com.vaadin.flow.component.*
+import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
+import com.vaadin.flow.component.icon.Icon
 import com.vaadin.flow.component.icon.VaadinIcons
 
 @Tag("app-header")
@@ -57,3 +60,15 @@ open class AppHeaderLayout : Component(), HasComponents, HasSize {
         setSizeFull(); element.setAttribute("fullbleed", "")
     }
 }
+
+class NavMenuItem(icon: VaadinIcons, caption: String) : Button(caption, Icon(icon)) {
+    init {
+        classNames.add("navmenuitem")
+        themes.add("large")
+    }
+    var selected: Boolean
+        get() = classNames.contains("selected")
+        set(value) { classNames.set("selected", value) }
+}
+
+fun (@VaadinDsl HasComponents).navMenuItem(icon: VaadinIcons, caption: String, block: (@VaadinDsl NavMenuItem).() -> Unit = {}) = init(NavMenuItem(icon, caption), block)

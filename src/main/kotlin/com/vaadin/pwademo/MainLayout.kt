@@ -34,7 +34,11 @@ class MainLayout : AppHeaderLayout(), RouterLayout {
                 }
             }
         }
-        appDrawer()
+        appDrawer {
+            navMenuItem(VaadinIcons.LIST, "Task List")
+            navMenuItem(VaadinIcons.COG, "Settings")
+            navMenuItem(VaadinIcons.QUESTION, "About")
+        }
         content = div {
             setSizeFull(); classNames.add("app-content")
         }
