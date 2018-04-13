@@ -1,7 +1,6 @@
 package com.vaadin.pwademo
 
 import com.github.vok.karibudsl.flow.div
-import com.github.vok.karibudsl.flow.icon
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
@@ -12,6 +11,7 @@ import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
+import com.vaadin.pwademo.components.*
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app. See [AppHeaderLayout]

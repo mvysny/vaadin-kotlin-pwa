@@ -1,4 +1,4 @@
-package com.vaadin.pwademo
+package com.vaadin.pwademo.components
 
 import com.github.vok.karibudsl.flow.VaadinDsl
 import com.github.vok.karibudsl.flow.div
@@ -57,22 +57,3 @@ open class AppHeaderLayout : Component(), HasComponents, HasSize {
         setSizeFull(); element.setAttribute("fullbleed", "")
     }
 }
-
-/**
- * Creates an icon component that displays the given `icon` from given `collection`.
- * @param collection the icon collection
- * @param icon the icon name
- */
-@Tag("paper-icon-button")
-@HtmlImport("frontend://bower_components/paper-icon-button/paper-icon-button.html")
-class PaperIconButton(collection: String, icon: String) : Component(), HasClickListeners<PaperIconButton> {
-    /**
-     * Creates an icon component that displays given Vaadin [icon].
-     */
-    constructor(icon: VaadinIcons) : this("vaadin", icon.name.toLowerCase().replace('_', '-'))
-    init {
-        element.setAttribute("icon", "$collection:$icon")
-    }
-}
-
-fun (@VaadinDsl HasComponents).paperIconButton(icon: VaadinIcons, block: (@VaadinDsl PaperIconButton).() -> Unit = {}) = init(PaperIconButton(icon), block)
