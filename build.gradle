@@ -48,6 +48,7 @@ dependencies {
 
     // the app-layout custom component
     compile 'org.webjars.bowergithub.polymerelements:app-layout:2.1.0'
+    compile 'org.webjars.bowergithub.polymerelements:paper-icon-button:2.2.0'
 
     // logging
     // currently we are logging through the SLF4J API to LogBack. See src/main/resources/logback.xml file for the logger configuration

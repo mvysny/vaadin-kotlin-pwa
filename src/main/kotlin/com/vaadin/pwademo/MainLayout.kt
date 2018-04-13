@@ -1,14 +1,12 @@
 package com.vaadin.pwademo
 
-import com.github.vok.karibudsl.flow.button
 import com.github.vok.karibudsl.flow.div
 import com.github.vok.karibudsl.flow.icon
-import com.github.vok.karibudsl.flow.themes
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
-import com.vaadin.flow.component.icon.Icon
 import com.vaadin.flow.component.icon.VaadinIcons
+import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.router.RouterLayout
@@ -29,7 +27,11 @@ class MainLayout : AppHeaderLayout(), RouterLayout {
         appHeader {
             appToolbar {
                 title.text = "Vaadin Kotlin PWA Demo"
-                icon(VaadinIcons.FILE_REMOVE)
+                paperIconButton(VaadinIcons.FILE_REMOVE) {
+                    addClickListener {
+                        Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
+                    }
+                }
             }
         }
         appDrawer()
