@@ -15,7 +15,7 @@ import com.vaadin.flow.component.icon.VaadinIcons
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
 open class AppHeader : Component(), HasComponents, HasSize {
     init {
-        element.setAttribute("reveals", "")
+        element.setAttribute("fixed", "")
     }
 }
 
