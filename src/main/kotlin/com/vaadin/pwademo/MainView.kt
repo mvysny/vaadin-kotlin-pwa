@@ -6,33 +6,27 @@ import com.github.vok.framework.sql2o.vaadin.sortedBy
 import com.github.vok.karibudsl.flow.*
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.checkbox.Checkbox
-import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.Icon
 import com.vaadin.flow.component.icon.VaadinIcons
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
-import com.vaadin.flow.component.page.BodySize
-import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
-import com.vaadin.flow.theme.Theme
-import com.vaadin.flow.theme.lumo.Lumo
 
 /**
- * The main view of the app. It is itself a vertical layout which lays out the child components vertically. There are only two components:
+ * The main view of the app. It is a vertical layout which lays out the child components vertically. There are only two components:
  *
  * * a custom component named [AddTaskForm] which is a form used to add new items to the task list;
  * * a Vaadin Grid which lists all current tasks
  *
  * The UI is defined by the means of so-called DSL; see [Karibu-DSL examples](https://github.com/mvysny/karibu-dsl#how-to-write-dsls-for-vaadin-8-and-vaadin8-v7-compat)
  * for more examples.
+ *
+ * Note that the `@Route` annotation defines the main layout with which this view is wrapped in. See [MainLayout] for details on how to
+ * create an app-wide layout which hosts views.
  */
-@BodySize(width = "100vw", height = "100vh")
-@HtmlImport("frontend://styles.html")
-@Route("")
-@Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
-@Theme(Lumo::class)
+@Route("", layout = MainLayout::class)
 class MainView : VerticalLayout() {
     private val form: AddTaskForm
     private lateinit var grid: Grid<Task>

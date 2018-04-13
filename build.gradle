@@ -46,6 +46,9 @@ dependencies {
     compile "com.github.vok:vok-framework-v10-sql2o:$vaadinonkotlin_version"
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
+    // the app-layout custom component
+    compile 'org.webjars.bowergithub.polymerelements:app-layout:2.1.0'
+
     // logging
     // currently we are logging through the SLF4J API to LogBack. See src/main/resources/logback.xml file for the logger configuration
     compile 'ch.qos.logback:logback-classic:1.2.3'
