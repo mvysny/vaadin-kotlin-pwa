@@ -17,7 +17,7 @@ import kotlin.test.expect
 class MainViewTest: DynaTest({
     beforeGroup { Bootstrap().contextInitialized(null) }
     afterGroup { Bootstrap().contextDestroyed(null) }
-    beforeEach { MockVaadin.setup(autoDiscoverViews("com.vaadin.pwademo")) }
+    beforeEach { MockVaadin.setup(Routes().autoDiscoverViews("com.vaadin.pwademo")) }
     beforeEach { Task.deleteAll() }
     afterEach { Task.deleteAll() }
 

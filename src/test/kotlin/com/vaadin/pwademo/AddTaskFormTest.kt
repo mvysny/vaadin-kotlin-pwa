@@ -1,9 +1,6 @@
 package com.vaadin.pwademo
 
-import com.github.karibu.testing.MockVaadin
-import com.github.karibu.testing._click
-import com.github.karibu.testing._get
-import com.github.karibu.testing.autoDiscoverViews
+import com.github.karibu.testing.*
 import com.github.mvysny.dynatest.DynaTest
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.textfield.TextField
@@ -16,7 +13,7 @@ import kotlin.test.fail
  * @author mavi
  */
 class AddTaskFormTest : DynaTest({
-    beforeEach { MockVaadin.setup(autoDiscoverViews("com.vaadin.pwademo")) }
+    beforeEach { MockVaadin.setup(Routes().autoDiscoverViews("com.vaadin.pwademo")) }
 
     test("the field is initially empty") {
         expect("") { AddTaskForm()._get<TextField>().value }
