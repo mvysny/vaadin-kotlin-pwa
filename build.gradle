@@ -1,11 +1,11 @@
 buildscript {
-    ext.vaadinonkotlin_version = '0.4.7'
+    ext.vaadinonkotlin_version = '0.4.8'
     ext.vaadin10_version = '10.0.0.beta8'
 }
 
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.2.40"
-    id "org.akhikhl.gretty" version "2.0.0"
+    id "org.gretty" version "2.1.0"
     id "io.spring.dependency-management" version "1.0.4.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
 }
 
@@ -15,6 +15,7 @@ defaultTasks 'clean', 'build'
 
 repositories {
     mavenCentral()
+    jcenter()
     maven { url "https://repo.vaadin.com/nexus/content/repositories/flow" }
     maven { url 'https://maven.vaadin.com/vaadin-addons' }
     maven { url 'https://maven.vaadin.com/vaadin-prereleases' }
@@ -33,10 +34,10 @@ dependencyManagement {
 
 test {
     useJUnitPlatform()
-        testLogging {
-            // to see the exceptions of failed tests in Travis-CI console.
-            exceptionFormat 'full'
-        }
+    testLogging {
+        // to see the exceptions of failed tests in Travis-CI console.
+        exceptionFormat 'full'
+    }
 }
 
 dependencies {
@@ -64,7 +65,7 @@ dependencies {
     testCompile "com.github.mvysny.dynatest:dynatest:0.8"
 
     // heroku app runner
-    testRuntime 'com.github.jsimone:webapp-runner:8.5.11.3'
+    testRuntime 'com.github.jsimone:webapp-runner:8.5.30.0'
 }
 
 compileKotlin {
