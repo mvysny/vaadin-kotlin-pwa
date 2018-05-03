@@ -2,10 +2,7 @@ package com.vaadin.pwademo.components
 
 import com.github.vok.karibudsl.flow.VaadinDsl
 import com.github.vok.karibudsl.flow.init
-import com.vaadin.flow.component.Component
-import com.vaadin.flow.component.HasClickListeners
-import com.vaadin.flow.component.HasComponents
-import com.vaadin.flow.component.Tag
+import com.vaadin.flow.component.*
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.icon.VaadinIcons
 
@@ -16,7 +13,7 @@ import com.vaadin.flow.component.icon.VaadinIcons
  */
 @Tag("paper-icon-button")
 @HtmlImport("frontend://bower_components/paper-icon-button/paper-icon-button.html")
-class PaperIconButton(collection: String, icon: String) : Component(), HasClickListeners<PaperIconButton> {
+class PaperIconButton(collection: String, icon: String) : Component(), ClickNotifier<PaperIconButton> {
     /**
      * Creates an icon component that displays given Vaadin [icon].
      */

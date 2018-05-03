@@ -60,7 +60,7 @@ class MainView : VerticalLayout() {
                 flexGrow = 0
             }
 
-            generateFilterComponents(Task::class)
+            appendHeaderRow().generateFilterComponents(this, Task::class)
         }
     }
 
