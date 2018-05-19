@@ -27,7 +27,7 @@ import com.vaadin.flow.router.Route
  * create an app-wide layout which hosts views.
  */
 @Route("", layout = MainLayout::class)
-class MainView : VerticalLayout() {
+class TaskListView : VerticalLayout() {
     private val form: AddTaskForm
     private lateinit var grid: Grid<Task>
     init {

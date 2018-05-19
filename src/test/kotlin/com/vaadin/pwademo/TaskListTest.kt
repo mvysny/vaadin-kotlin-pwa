@@ -14,7 +14,7 @@ import kotlin.test.expect
 /**
  * Tests the main screen.
  */
-class MainViewTest: DynaTest({
+class TaskListTest: DynaTest({
     beforeGroup { Bootstrap().contextInitialized(null) }
     afterGroup { Bootstrap().contextDestroyed(null) }
     beforeEach { MockVaadin.setup(Routes().autoDiscoverViews("com.vaadin.pwademo")) }

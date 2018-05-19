@@ -49,7 +49,7 @@ You can read more about the [benefits of Vaadin development over Android](http:/
 
 ## Running The App
 
-Now that the PWA thing is sorted out, let's construct the app UI. The [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) hosts
+Now that the PWA thing is sorted out, let's construct the app UI. The [TaskList.kt](src/main/kotlin/com/vaadin/pwademo/TaskList.kt) hosts
 the main view of the app. It uses the Karibu-DSL library to define UIs;
 you can read more about the [Karibu-DSL](https://github.com/mvysny/karibu-dsl). 
 
@@ -86,7 +86,7 @@ Let's look at all files that this PWA project is composed of, and what are the p
 | [frontend/styles.html](src/main/webapp/frontend/styles.html) | The CSS styles applied to your web app. Vaadin by default uses [Vaadin Lumo Theme](https://vaadin.com/themes/lumo); you can tweak the Lumo theme by the means of setting CSS variables.
 | [src/main/kotlin/](src/main/kotlin) | The main Kotlin sources of your web app. You'll be mostly editing files located in this folder.
 | [Bootstrap.kt](src/main/kotlin/com/vaadin/pwademo/Bootstrap.kt) | When Servlet Container (such as Tomcat) starts your app, it will run the `Bootstrap.contextInitialized()` function before any calls to your app are made. We need to bootstrap the Vaadin-on-Kotlin framework, in order to have support for the database; then we'll run Flyway migration scripts, to make sure that the database is up-to-date. After that's done, your app is ready to be serving client browsers. The PWA-related files are registered in the [CustomBootstrapListener](src/main/kotlin/com/vaadin/pwademo/Bootstrap.kt).
-| [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) | The main view of the app, it defines how the UI looks like and how the components are nested into one another. The UI is defined by the means of so-called DSL; see [Karibu-DSL examples](https://github.com/mvysny/karibu-dsl#how-to-write-dsls-for-vaadin-8-and-vaadin8-v7-compat) for more examples.
+| [TaskList.kt](src/main/kotlin/com/vaadin/pwademo/TaskList.kt) | The main view of the app, it defines how the UI looks like and how the components are nested into one another. The UI is defined by the means of so-called DSL; see [Karibu-DSL examples](https://github.com/mvysny/karibu-dsl#how-to-write-dsls-for-vaadin-8-and-vaadin8-v7-compat) for more examples.
 | [AddTaskForm.kt](src/main/kotlin/com/vaadin/pwademo/AddTaskForm.kt) | An example of a reusable component which can be placed anywhere into your UI. The component may contain both the UI code and the business logic code which accesses the database.
 | [Task.kt](src/main/kotlin/com/vaadin/pwademo/Task.kt) | An entity which represents a row in the `Task` database table. We're using Vaadin-on-Kotlin `vok-db` library to access the database.
 
@@ -107,7 +107,7 @@ so you should feel immediately at home.
 To launch your app, in Intellij just click on the rightmost Gradle tab, then select `Tasks / gretty / appRun`. Right-click on appRun and select Debug:
 the app will start soon in a Jetty server. Just open your browser and hit [http://localhost:8080](http://localhost:8080).
 
-The main meat of the UI is located in the [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt) - feel free to edit that file
+The main meat of the UI is located in the [TaskList.kt](src/main/kotlin/com/vaadin/pwademo/TaskList.kt) - feel free to edit that file
 and experiment for yourself. There are lots of pre-existing Vaadin components; you can check out the
 [Beverage Buddy](https://github.com/mvysny/beverage-buddy-vok/) example app for more
 examples of component usage. You should also read the [full Vaadin 10 (Flow) documentation](https://vaadin.com/docs/v10/flow/Overview.html). 
@@ -121,8 +121,8 @@ developer tools:
 ### Testing
 
 It is very easy to test Vaadin-based apps - all you need to look up the components by selectors, for example a Button with the caption
-of "Click Me". The [MainViewTest.kt](src/test/kotlin/com/vaadin/pwademo/MainViewTest.kt) sample test file shows a simple test which tests the
-main screen. Read the [Browserless Testing](http://mavi.logdown.com/posts/3147601) article regarding the technical background on testing.
+of "Click Me". The [TaskListTest.kt](src/test/kotlin/com/vaadin/pwademo/TaskListTest.kt) sample test file shows a simple test which tests the
+main screen. Read the [Browserless Testing Project](https://github.com/mvysny/karibu-testing) documentation regarding the background on this testing approach.
 
 ### Database
 
@@ -135,7 +135,7 @@ on how the [migration scripts](src/main/resources/db/migration) are ran when the
 
 The [Task](src/main/kotlin/com/vaadin/pwademo/Task.kt) entity will be mapped to the database; inheriting from Entity and Dao
 will make it inherit bunch of useful methods such as `findAll()` and `save()`. It will also gain means of
-providing all of its instances via a `DataProvider`. See the [MainView.kt](src/main/kotlin/com/vaadin/pwademo/MainView.kt)
+providing all of its instances via a `DataProvider`. See the [TaskList.kt](src/main/kotlin/com/vaadin/pwademo/TaskList.kt)
 Grid configuration for details.
 
 See the [Back to Base](http://mavi.logdown.com/posts/5771422) article on how the finder methods are attached to the entity,
