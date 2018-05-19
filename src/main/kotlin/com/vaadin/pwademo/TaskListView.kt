@@ -47,7 +47,7 @@ class TaskListView : VerticalLayout() {
             // See https://github.com/vaadin/flow/issues/3582 for more details.
 
             addColumn(createTaskCompletedCheckboxRenderer()).apply {
-                flexGrow = 0
+                isExpand = false
                 setHeader("Done")
                 sortProperty = Task::completed
             }
@@ -57,7 +57,7 @@ class TaskListView : VerticalLayout() {
                 setHeader("Title")
             }
             addColumn(newDeleteButtonRenderer()).apply {
-                flexGrow = 0
+                isExpand = false
             }
 
             appendHeaderRow().generateFilterComponents(this, Task::class)
