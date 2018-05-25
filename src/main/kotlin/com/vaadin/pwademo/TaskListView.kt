@@ -46,16 +46,10 @@ class TaskListView : VerticalLayout() {
             // the Grid fills its parent height-wise.
             // See https://github.com/vaadin/flow/issues/3582 for more details.
 
-            addColumn(createTaskCompletedCheckboxRenderer()).apply {
-                isExpand = false
-                setHeader("Done")
-                sortProperty = Task::completed
+            addColumnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
+                isExpand = false; setHeader("Done")
             }
-            addColumn(createTaskNameDivRenderer()).apply {
-                key = "title"
-                sortProperty = Task::title
-                setHeader("Title")
-            }
+            addColumnFor(Task::title, createTaskNameDivRenderer())
             addColumn(newDeleteButtonRenderer()).apply {
                 isExpand = false
             }
