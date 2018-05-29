@@ -9,7 +9,7 @@ import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.Icon
-import com.vaadin.flow.component.icon.VaadinIcons
+import com.vaadin.flow.component.icon.VaadinIcon
 
 @Tag("app-header")
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
@@ -27,7 +27,7 @@ open class AppToolbar : Component(), HasComponents {
     val title: Div
 
     init {
-        paperIconButton(VaadinIcons.MENU) {
+        paperIconButton(VaadinIcon.MENU) {
             element.setAttribute("onclick", "drawer.toggle()")
         }
         title = div {
@@ -61,7 +61,7 @@ open class AppHeaderLayout : Component(), HasComponents, HasSize {
     }
 }
 
-class NavMenuItem(icon: VaadinIcons, caption: String) : Button(caption, Icon(icon)) {
+class NavMenuItem(icon: VaadinIcon, caption: String) : Button(caption, Icon(icon)) {
     init {
         classNames.add("navmenuitem")
         themes.add("large")
@@ -71,4 +71,4 @@ class NavMenuItem(icon: VaadinIcons, caption: String) : Button(caption, Icon(ico
         set(value) { classNames.set("selected", value) }
 }
 
-fun (@VaadinDsl HasComponents).navMenuItem(icon: VaadinIcons, caption: String, block: (@VaadinDsl NavMenuItem).() -> Unit = {}) = init(NavMenuItem(icon, caption), block)
+fun (@VaadinDsl HasComponents).navMenuItem(icon: VaadinIcon, caption: String, block: (@VaadinDsl NavMenuItem).() -> Unit = {}) = init(NavMenuItem(icon, caption), block)

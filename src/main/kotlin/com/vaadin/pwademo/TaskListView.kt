@@ -9,7 +9,7 @@ import com.vaadin.flow.component.checkbox.Checkbox
 import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.Icon
-import com.vaadin.flow.component.icon.VaadinIcons
+import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
@@ -79,7 +79,7 @@ class TaskListView : VerticalLayout() {
     }
 
     private fun newDeleteButtonRenderer(): ComponentRenderer<Button, Task> = ComponentRenderer { task ->
-        Button(Icon(VaadinIcons.TRASH)).apply {
+        Button(Icon(VaadinIcon.TRASH)).apply {
             themes.add("tertiary-inline")  // this will remove the button border
             onLeftClick {
                 task.delete()
