@@ -47,7 +47,7 @@ class TaskListView : VerticalLayout() {
             // See https://github.com/vaadin/flow/issues/3582 for more details.
 
             addColumnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
-                isExpand = false; setHeader("Done"); width = "90px"
+                isExpand = false; setHeader("Done"); width = "130px"
             }
             addColumnFor(Task::title, createTaskNameDivRenderer())
             addColumn(newDeleteButtonRenderer()).apply {
