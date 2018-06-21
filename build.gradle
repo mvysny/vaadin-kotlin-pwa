@@ -1,11 +1,11 @@
 buildscript {
     ext.vaadinonkotlin_version = '0.4.11'
     ext.karibudsl_version = '0.4.5'
-    ext.vaadin10_version = '10.0.0.rc3'
+    ext.vaadin10_version = '10.0.0.rc5'
 }
 
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.2.41"
+    id "org.jetbrains.kotlin.jvm" version "1.2.50"
     id "org.gretty" version "2.1.0"
     id "io.spring.dependency-management" version "1.0.4.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
 }
@@ -54,7 +54,7 @@ dependencies {
     compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'org.slf4j:slf4j-api:1.7.25'
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.41"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.50"
 
     // db
     compile 'org.flywaydb:flyway-core:5.0.7'
