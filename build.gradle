@@ -1,7 +1,7 @@
 buildscript {
-    ext.vaadinonkotlin_version = '0.4.12'
-    ext.karibudsl_version = '0.4.7'
-    ext.vaadin10_version = '10.0.4'
+    ext.vaadinonkotlin_version = '0.4.13'
+    ext.karibudsl_version = '0.4.8'
+    ext.vaadin10_version = '10.0.5'
 }
 
 plugins {
@@ -18,7 +18,6 @@ repositories {
     mavenCentral()
     jcenter()
     maven { url 'https://maven.vaadin.com/vaadin-addons' }
-    maven { url 'https://maven.vaadin.com/vaadin-prereleases' }
     maven { url "https://dl.bintray.com/mvysny/vaadin-on-kotlin" }
     maven { url "https://dl.bintray.com/mvysny/github" }
 }
@@ -61,11 +60,11 @@ dependencies {
     compile 'com.h2database:h2:1.4.197'
 
     // test support
-    testCompile "com.github.kaributesting:karibu-testing-v10:0.4.14"
-    testCompile "com.github.mvysny.dynatest:dynatest:0.8"
+    testCompile "com.github.kaributesting:karibu-testing-v10:0.4.16"
+    testCompile "com.github.mvysny.dynatest:dynatest:0.9"
 
     // heroku app runner
-    testRuntime 'com.github.jsimone:webapp-runner:8.5.30.0'
+    testRuntime 'com.github.jsimone:webapp-runner:9.0.11.0'
 }
 
 compileKotlin {
