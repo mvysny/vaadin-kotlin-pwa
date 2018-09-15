@@ -1,13 +1,13 @@
 buildscript {
     ext.vaadinonkotlin_version = '0.4.15'
     ext.karibudsl_version = '0.4.9'
-    ext.vaadin10_version = '10.0.5'
+    ext.vaadin10_version = '11.0.0'
 }
 
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.2.61"
+    id "org.jetbrains.kotlin.jvm" version "1.2.70"
     id "org.gretty" version "2.1.0"
-    id "io.spring.dependency-management" version "1.0.4.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
 }
 
 apply plugin: 'war'
