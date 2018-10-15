@@ -1,6 +1,5 @@
 buildscript {
-    ext.vaadinonkotlin_version = '0.4.15'
-    ext.karibudsl_version = '0.4.10'
+    ext.vaadinonkotlin_version = '0.5.0'
     ext.vaadin10_version = '11.0.1'
 }
 
@@ -15,11 +14,7 @@ apply plugin: 'war'
 defaultTasks 'clean', 'build'
 
 repositories {
-    mavenCentral()
     jcenter()
-    maven { url 'https://maven.vaadin.com/vaadin-addons' }
-    maven { url "https://dl.bintray.com/mvysny/vaadin-on-kotlin" }
-    maven { url "https://dl.bintray.com/mvysny/github" }
 }
 
 gretty {
@@ -40,8 +35,7 @@ test {
 
 dependencies {
     // Vaadin-on-Kotlin dependency, includes Vaadin
-    compile "com.github.vok:vok-framework-v10-sql2o:$vaadinonkotlin_version"
-    compile "com.github.vok.karibudsl:karibu-dsl-v10:$karibudsl_version"
+    compile "com.github.vaadinonkotlin:vok-framework-v10-sql2o:$vaadinonkotlin_version"
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
     // the app-layout custom component
@@ -56,7 +50,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
     // db
-    compile 'org.flywaydb:flyway-core:5.1.4'
+    compile 'org.flywaydb:flyway-core:5.2.0'
     compile 'com.h2database:h2:1.4.197'
 
     // test support
