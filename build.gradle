@@ -5,7 +5,7 @@ buildscript {
 
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.2.71"
-    id "org.gretty" version "2.1.0"
+    id "org.gretty" version "2.2.0"
     id "io.spring.dependency-management" version "1.0.6.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
 }
 
@@ -18,7 +18,8 @@ repositories {
 }
 
 gretty {
-    contextPath = ''
+    contextPath = '/'
+    servletContainer = 'jetty9.4'
 }
 
 dependencyManagement {
