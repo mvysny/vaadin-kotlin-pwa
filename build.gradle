@@ -15,6 +15,7 @@ defaultTasks 'clean', 'build'
 
 repositories {
     jcenter()
+    maven { url "https://dl.bintray.com/mvysny/github" }
 }
 
 gretty {
@@ -56,7 +57,7 @@ dependencies {
 
     // test support
     testCompile "com.github.kaributesting:karibu-testing-v10:0.4.17"
-    testCompile "com.github.mvysny.dynatest:dynatest:0.9"
+    testCompile "com.github.mvysny.dynatest:dynatest-engine:0.11"
 
     // heroku app runner
     testRuntime 'com.github.jsimone:webapp-runner:9.0.11.0'
