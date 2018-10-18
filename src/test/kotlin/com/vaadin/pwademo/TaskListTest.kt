@@ -18,6 +18,7 @@ class TaskListTest: DynaTest({
     beforeGroup { Bootstrap().contextInitialized(null) }
     afterGroup { Bootstrap().contextDestroyed(null) }
     beforeEach { MockVaadin.setup(Routes().autoDiscoverViews("com.vaadin.pwademo")) }
+    afterEach { MockVaadin.tearDown() }
     beforeEach { Task.deleteAll() }
     afterEach { Task.deleteAll() }
 

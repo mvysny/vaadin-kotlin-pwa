@@ -14,6 +14,7 @@ import kotlin.test.fail
  */
 class AddTaskFormTest : DynaTest({
     beforeEach { MockVaadin.setup(Routes().autoDiscoverViews("com.vaadin.pwademo")) }
+    afterEach { MockVaadin.tearDown() }
 
     test("the field is initially empty") {
         expect("") { AddTaskForm()._get<TextField>().value }
