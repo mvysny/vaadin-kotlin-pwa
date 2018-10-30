@@ -5,7 +5,7 @@ val vaadinonkotlin_version = "0.5.1"
 val vaadin10_version = "11.0.1"
 
 plugins {
-    kotlin("jvm") version "1.2.71"
+    kotlin("jvm") version "1.3.0"
     id("org.gretty") version "2.2.0"
     id("io.spring.dependency-management") version "1.0.6.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
     war
