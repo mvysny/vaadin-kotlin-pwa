@@ -1,7 +1,7 @@
 package com.vaadin.pwademo.components
 
-import com.github.vok.karibudsl.flow.VaadinDsl
-import com.github.vok.karibudsl.flow.init
+import com.github.mvysny.karibudsl.v10.VaadinDsl
+import com.github.mvysny.karibudsl.v10.init
 import com.vaadin.flow.component.*
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.icon.VaadinIcon

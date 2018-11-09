@@ -1,9 +1,9 @@
 package com.vaadin.pwademo.components
 
-import com.github.vok.karibudsl.flow.VaadinDsl
-import com.github.vok.karibudsl.flow.div
-import com.github.vok.karibudsl.flow.init
-import com.github.vok.karibudsl.flow.themes
+import com.github.mvysny.karibudsl.v10.VaadinDsl
+import com.github.mvysny.karibudsl.v10.div
+import com.github.mvysny.karibudsl.v10.init
+import com.github.mvysny.karibudsl.v10.themes
 import com.vaadin.flow.component.*
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.dependency.HtmlImport

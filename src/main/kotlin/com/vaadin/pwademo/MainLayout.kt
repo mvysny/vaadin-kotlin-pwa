@@ -1,6 +1,6 @@
 package com.vaadin.pwademo
 
-import com.github.vok.karibudsl.flow.div
+import com.github.mvysny.karibudsl.v10.div
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
