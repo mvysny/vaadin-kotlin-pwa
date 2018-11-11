@@ -1,9 +1,9 @@
 package com.vaadin.pwademo
 
-import com.github.vok.framework.VaadinOnKotlin
-import com.github.vok.framework.sql2o.dataSource
-import com.github.vok.framework.sql2o.dataSourceConfig
+import eu.vaadinonkotlin.VaadinOnKotlin
 import com.vaadin.flow.server.*
+import eu.vaadinonkotlin.sql2o.dataSource
+import eu.vaadinonkotlin.sql2o.dataSourceConfig
 import org.flywaydb.core.Flyway
 import org.h2.Driver
 import org.jsoup.nodes.Element
@@ -96,7 +96,7 @@ class Bootstrap: ServletContextListener {
     }
 
     override fun contextDestroyed(sce: ServletContextEvent?) {
-        log.info("Shutting down");
+        log.info("Shutting down")
         log.info("Destroying VaadinOnKotlin")
         VaadinOnKotlin.destroy()
         log.info("Shutdown complete")

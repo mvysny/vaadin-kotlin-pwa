@@ -1,8 +1,5 @@
 package com.vaadin.pwademo
 
-import com.github.vok.framework.sql2o.vaadin.dataProvider
-import com.github.vok.framework.sql2o.vaadin.generateFilterComponents
-import com.github.vok.framework.sql2o.vaadin.sortedBy
 import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.checkbox.Checkbox
@@ -13,6 +10,9 @@ import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
+import eu.vaadinonkotlin.vaadin10.sql2o.dataProvider
+import eu.vaadinonkotlin.vaadin10.sql2o.generateFilterComponents
+import eu.vaadinonkotlin.vaadin10.sql2o.sortedBy
 
 /**
  * The main view of the app. It is a vertical layout which lays out the child components vertically. There are only two components:

@@ -1,7 +1,7 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.5.3"
+val vaadinonkotlin_version = "0.6.0"
 val vaadin10_version = "11.0.1"
 
 plugins {
@@ -43,7 +43,7 @@ val staging by configurations.creating
 
 dependencies {
     // Vaadin-on-Kotlin dependency, includes Vaadin
-    compile("com.github.vaadinonkotlin:vok-framework-v10-sql2o:$vaadinonkotlin_version")
+    compile("eu.vaadinonkotlin:vok-framework-v10-sql2o:$vaadinonkotlin_version")
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
 
     // the app-layout custom component
