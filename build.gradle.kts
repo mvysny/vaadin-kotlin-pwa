@@ -7,7 +7,6 @@ val vaadin10_version = "11.0.3"
 plugins {
     kotlin("jvm") version "1.3.10"
     id("org.gretty") version "2.2.0"
-    id("io.spring.dependency-management") version "1.0.6.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
     war
 }
 
@@ -20,10 +19,6 @@ repositories {
 gretty {
     contextPath = "/"
     servletContainer = "jetty9.4"
-}
-
-dependencyManagement {
-    imports { mavenBom("com.vaadin:vaadin-bom:$vaadin10_version") }
 }
 
 tasks.withType<Test> {
@@ -43,6 +38,7 @@ val staging by configurations.creating
 dependencies {
     // Vaadin-on-Kotlin dependency, includes Vaadin
     compile("eu.vaadinonkotlin:vok-framework-v10-sql2o:$vaadinonkotlin_version")
+    compile(enforcedPlatform("com.vaadin:vaadin-bom:$vaadin10_version"))
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
 
     // the app-layout custom component
