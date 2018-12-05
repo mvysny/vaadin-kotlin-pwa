@@ -9,6 +9,7 @@ import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.router.RouterLayout
+import com.vaadin.flow.server.PWA
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
 import com.vaadin.pwademo.components.*
@@ -21,6 +22,7 @@ import com.vaadin.pwademo.components.*
 @HtmlImport("frontend://styles.html")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
+@PWA(name = "Vaadin Kotlin PWA Demo", shortName = "Vaadin Kotlin PWA Demo", iconPath = "icons/icon-512.png", themeColor = "#227aef", backgroundColor = "#227aef")
 class MainLayout : AppHeaderLayout(), RouterLayout {
     private val content: Div
     init {
