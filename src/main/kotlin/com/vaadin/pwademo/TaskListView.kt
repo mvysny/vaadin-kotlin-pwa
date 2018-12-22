@@ -7,7 +7,6 @@ import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.Icon
 import com.vaadin.flow.component.icon.VaadinIcon
-import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
 import eu.vaadinonkotlin.vaadin10.generateFilterComponents
@@ -27,34 +26,36 @@ import eu.vaadinonkotlin.vaadin10.sql2o.dataProvider
  * create an app-wide layout which hosts views.
  */
 @Route("", layout = MainLayout::class)
-class TaskListView : VerticalLayout() {
-    private val form: AddTaskForm
+class TaskListView : KComposite() {
+    private lateinit var form: AddTaskForm
     private lateinit var grid: Grid<Task>
-    init {
-        setSizeFull(); isPadding = false
+    private val root = ui {
+        verticalLayout {
+            setSizeFull(); isPadding = false
 
-        form = addTaskForm {
-            onAddTask = { task ->
-                task.save()
-                grid.refresh()
-            }
-        }
-
-        grid = grid(dataProvider = Task.dataProvider.sortedBy(Task::completed.asc, Task::created.desc)) {
-            width = "100%"; isExpand = true
-            // don't set the height to 100% - this will behave differently than you would expect. flexGrow sets the height automatically so that
-            // the Grid fills its parent height-wise.
-            // See https://github.com/vaadin/flow/issues/3582 for more details.
-
-            addColumnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
-                isExpand = false; setHeader("Done"); width = "130px"
-            }
-            addColumnFor(Task::title, createTaskNameDivRenderer())
-            addColumn(newDeleteButtonRenderer()).apply {
-                isExpand = false; width = "90px"
+            form = addTaskForm {
+                onAddTask = { task ->
+                    task.save()
+                    grid.refresh()
+                }
             }
 
-            appendHeaderRow().generateFilterComponents(this, Task::class)
+            grid = grid(dataProvider = Task.dataProvider.sortedBy(Task::completed.asc, Task::created.desc)) {
+                width = "100%"; isExpand = true
+                // don't set the height to 100% - this will behave differently than you would expect. flexGrow sets the height automatically so that
+                // the Grid fills its parent height-wise.
+                // See https://github.com/vaadin/flow/issues/3582 for more details.
+
+                addColumnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
+                    isExpand = false; setHeader("Done"); width = "130px"
+                }
+                addColumnFor(Task::title, createTaskNameDivRenderer())
+                addColumn(newDeleteButtonRenderer()).apply {
+                    isExpand = false; width = "90px"
+                }
+
+                appendHeaderRow().generateFilterComponents(this, Task::class)
+            }
         }
     }
 
