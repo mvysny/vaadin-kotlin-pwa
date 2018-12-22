@@ -2,6 +2,7 @@ package com.vaadin.pwademo
 
 import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.button.Button
+import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.checkbox.Checkbox
 import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Div
@@ -81,7 +82,7 @@ class TaskListView : KComposite() {
 
     private fun newDeleteButtonRenderer(): ComponentRenderer<Button, Task> = ComponentRenderer { task ->
         Button(Icon(VaadinIcon.TRASH)).apply {
-            themes.add("tertiary-inline")  // this will remove the button border
+            addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE)  // this will remove the button border
             onLeftClick {
                 task.delete()
                 grid.dataProvider.refreshAll()
