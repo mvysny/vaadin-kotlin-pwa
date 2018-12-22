@@ -5,7 +5,8 @@ import com.vaadin.flow.component.HasComponents
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout
 
 /**
- * A reusable component demo; the component is completely built server-side.
+ * A reusable component demo; the component is completely built using server-side code; no Polymer templates nor JavaScript
+ * are used to build the component.
  * @author mavi
  */
 class AddTaskForm : HorizontalLayout() {
