@@ -1,5 +1,6 @@
 package com.vaadin.pwademo
 
+import com.github.mvysny.dynatest.DynaNodeGroup
 import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
 import com.github.mvysny.dynatest.expectList
@@ -15,12 +16,7 @@ import kotlin.test.expect
  * Tests the main screen.
  */
 class TaskListTest: DynaTest({
-    beforeGroup { Bootstrap().contextInitialized(null) }
-    afterGroup { Bootstrap().contextDestroyed(null) }
-    beforeEach { MockVaadin.setup(Routes().autoDiscoverViews("com.vaadin.pwademo")) }
-    afterEach { MockVaadin.tearDown() }
-    beforeEach { Task.deleteAll() }
-    afterEach { Task.deleteAll() }
+    usingApp()
 
     test("add a task") {
         UI.getCurrent().navigate("")
@@ -30,3 +26,22 @@ class TaskListTest: DynaTest({
         expect(1) { _get<Grid<*>>().dataProvider._size() }
     }
 })
+
+/**
+ * Properly configures the app in the test context, so that the app is properly initialized, and the database is emptied before every test.
+ */
+fun DynaNodeGroup.usingApp() {
+    beforeGroup { Bootstrap().contextInitialized(null) }
+    afterGroup { Bootstrap().contextDestroyed(null) }
+
+    // since there is no servlet environment, Flow won't auto-detect the @Routes. We need to auto-discover all @Routes
+    // and populate the RouteRegistry properly.
+    beforeEach { MockVaadin.setup(Routes().autoDiscoverViews("com.vaadin.pwademo")) }
+    afterEach { MockVaadin.tearDown() }
+
+    // it's a good practice to clear up the db before every test, to start every test with a predefined state.
+    fun cleanupDb() { Task.deleteAll() }
+    beforeEach { cleanupDb() }
+    afterEach { cleanupDb() }
+}
+

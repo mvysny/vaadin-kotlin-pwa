@@ -13,8 +13,7 @@ import kotlin.test.fail
  * @author mavi
  */
 class AddTaskFormTest : DynaTest({
-    beforeEach { MockVaadin.setup(Routes().autoDiscoverViews("com.vaadin.pwademo")) }
-    afterEach { MockVaadin.tearDown() }
+    usingApp()
 
     test("the field is initially empty") {
         expect("") { AddTaskForm()._get<TextField>().value }
@@ -30,13 +29,13 @@ class AddTaskFormTest : DynaTest({
 
     test("filling in proper title fires onAddTask") {
         val form = AddTaskForm()
-        val task = AtomicReference<Task>()
-        form.onAddTask = { task.set(it) }
+        lateinit var task: Task
+        form.onAddTask = { task = it }
         form._get<TextField>().value = "My Task"
         form._get<Button>()._click()
-        expect("My Task") { task.get()!!.title }
-        expect(false) { task.get()!!.completed }
-        expect(null) { task.get()!!.id }
+        expect("My Task") { task.title }
+        expect(false) { task.completed }
+        expect(null) { task.id }
         expect("") { form._get<TextField>().value }
     }
 })

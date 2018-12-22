@@ -1,11 +1,11 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.6.2"
-val vaadin10_version = "12.0.0"
+val vaadinonkotlin_version = "0.6.3"
+val vaadin10_version = "12.0.3"
 
 plugins {
-    kotlin("jvm") version "1.3.10"
+    kotlin("jvm") version "1.3.11"
     id("org.gretty") version "2.2.0"
     war
 }
@@ -50,14 +50,14 @@ dependencies {
     compile("ch.qos.logback:logback-classic:1.2.3")
     compile("org.slf4j:slf4j-api:1.7.25")
 
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    compile(kotlin("stdlib-jdk8"))
 
     // db
     compile("org.flywaydb:flyway-core:5.2.0")
     compile("com.h2database:h2:1.4.197")
 
     // test support
-    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.0.1")
+    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.0.5")
     testCompile("com.github.mvysny.dynatest:dynatest-engine:0.13")
 
     // heroku app runner
