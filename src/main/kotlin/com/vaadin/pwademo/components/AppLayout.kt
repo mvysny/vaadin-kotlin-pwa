@@ -13,17 +13,18 @@ import com.vaadin.flow.component.icon.VaadinIcon
 
 @Tag("app-header")
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
-open class AppHeader : Component(), HasComponents, HasSize {
+class AppHeader : Component(), HasComponents, HasSize {
     init {
         element.setAttribute("fixed", "")
     }
 }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).appHeader(block: (@VaadinDsl AppHeader).() -> Unit = {}) = init(AppHeader(), block)
 
 @Tag("app-toolbar")
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
-open class AppToolbar : Component(), HasComponents {
+class AppToolbar : Component(), HasComponents {
     val title: Div
 
     init {
@@ -36,6 +37,7 @@ open class AppToolbar : Component(), HasComponents {
     }
 }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).appToolbar(block: (@VaadinDsl AppToolbar).() -> Unit = {}) = init(AppToolbar(), block)
 
 @Tag("app-drawer")
@@ -47,6 +49,7 @@ class AppDrawer : Component(), HasComponents {
     }
 }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).appDrawer(block: (@VaadinDsl AppDrawer).() -> Unit = {}) = init(AppDrawer(), block)
 
 /**
@@ -55,11 +58,14 @@ fun (@VaadinDsl HasComponents).appDrawer(block: (@VaadinDsl AppDrawer).() -> Uni
  */
 @Tag("app-header-layout")
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
-open class AppHeaderLayout : Component(), HasComponents, HasSize {
+class AppHeaderLayout : Component(), HasComponents, HasSize {
     init {
         setSizeFull(); element.setAttribute("fullbleed", "")
     }
 }
+
+@VaadinDsl
+fun (@VaadinDsl HasComponents).appHeaderLayout(block: (@VaadinDsl AppHeaderLayout).() -> Unit = {}) = init(AppHeaderLayout(), block)
 
 class NavMenuItem(icon: VaadinIcon, caption: String) : Button(caption, Icon(icon)) {
     init {
@@ -71,4 +77,5 @@ class NavMenuItem(icon: VaadinIcon, caption: String) : Button(caption, Icon(icon
         set(value) { classNames.set("selected", value) }
 }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).navMenuItem(icon: VaadinIcon, caption: String, block: (@VaadinDsl NavMenuItem).() -> Unit = {}) = init(NavMenuItem(icon, caption), block)

@@ -1,5 +1,6 @@
 package com.vaadin.pwademo
 
+import com.github.mvysny.karibudsl.v10.KComposite
 import com.github.mvysny.karibudsl.v10.div
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.dependency.HtmlImport
@@ -23,26 +24,28 @@ import com.vaadin.pwademo.components.*
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
 @PWA(name = "Vaadin Kotlin PWA Demo", shortName = "Vaadin Kotlin PWA Demo", iconPath = "icons/icon-512.png", themeColor = "#227aef", backgroundColor = "#227aef")
-class MainLayout : AppHeaderLayout(), RouterLayout {
-    private val content: Div
-    init {
-        appHeader {
-            appToolbar {
-                title.text = "Vaadin Kotlin PWA Demo"
-                paperIconButton(VaadinIcon.FILE_REMOVE) {
-                    addClickListener {
-                        Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
+class MainLayout : KComposite(), RouterLayout {
+    private lateinit var content: Div
+    private val root = ui {
+        appHeaderLayout {
+            appHeader {
+                appToolbar {
+                    title.text = "Vaadin Kotlin PWA Demo"
+                    paperIconButton(VaadinIcon.FILE_REMOVE) {
+                        addClickListener {
+                            Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
+                        }
                     }
                 }
             }
-        }
-        appDrawer {
-            navMenuItem(VaadinIcon.LIST, "Task List")
-            navMenuItem(VaadinIcon.COG, "Settings")
-            navMenuItem(VaadinIcon.QUESTION, "About")
-        }
-        content = div {
-            setSizeFull(); classNames.add("app-content")
+            appDrawer {
+                navMenuItem(VaadinIcon.LIST, "Task List")
+                navMenuItem(VaadinIcon.COG, "Settings")
+                navMenuItem(VaadinIcon.QUESTION, "About")
+            }
+            content = div {
+                setSizeFull(); classNames.add("app-content")
+            }
         }
     }
 

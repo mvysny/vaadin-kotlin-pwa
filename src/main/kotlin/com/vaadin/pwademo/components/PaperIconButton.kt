@@ -23,5 +23,6 @@ class PaperIconButton(collection: String, icon: String) : Component(), ClickNoti
     }
 }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).paperIconButton(icon: VaadinIcon, block: (@VaadinDsl PaperIconButton).() -> Unit = {}) = init(
     PaperIconButton(icon), block)
