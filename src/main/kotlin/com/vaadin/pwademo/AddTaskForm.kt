@@ -2,40 +2,44 @@ package com.vaadin.pwademo
 
 import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.HasComponents
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout
 
 /**
  * A reusable component demo; the component is completely built using server-side code; no Polymer templates nor JavaScript
  * are used to build the component.
  * @author mavi
  */
-class AddTaskForm : HorizontalLayout() {
+class AddTaskForm : KComposite() {
     /**
      * Invoked when a new task should be added.
      */
     var onAddTask: (Task)->Unit = {}
 
     private val binder = beanValidationBinder<Task>()
-    init {
-        content { align(left, baseline) }
+    private val root = ui {
+        horizontalLayout {
+            content { align(left, baseline) }
 
-        textField("Title:") {
-            bind(binder)
-                .trimmingConverter()
-                .bind(Task::title)
-        }
-        button("Add") {
-            setSizeUndefined()
+            textField("Title:") {
+                bind(binder)
+                        .trimmingConverter()
+                        .bind(Task::title)
+            }
+            button("Add") {
+                setSizeUndefined()
 
-            onLeftClick {
-                val newTask = Task()
-                if (binder.writeBeanIfValid(newTask)) {
-                    onAddTask(newTask)
-                    binder.readBean(Task())
+                onLeftClick {
+                    val newTask = Task()
+                    if (binder.writeBeanIfValid(newTask)) {
+                        onAddTask(newTask)
+                        binder.readBean(Task())
+                    }
                 }
             }
-        }
 
+        }
+    }
+
+    init {
         binder.readBean(Task())
     }
 }
