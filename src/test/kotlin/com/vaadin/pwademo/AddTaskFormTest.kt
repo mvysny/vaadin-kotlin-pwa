@@ -4,7 +4,6 @@ import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.textfield.TextField
-import java.util.concurrent.atomic.AtomicReference
 import kotlin.test.expect
 import kotlin.test.fail
 

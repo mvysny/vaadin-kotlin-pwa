@@ -3,9 +3,9 @@ package com.vaadin.pwademo.components
 import com.github.mvysny.karibudsl.v10.VaadinDsl
 import com.github.mvysny.karibudsl.v10.div
 import com.github.mvysny.karibudsl.v10.init
-import com.github.mvysny.karibudsl.v10.themes
 import com.vaadin.flow.component.*
 import com.vaadin.flow.component.button.Button
+import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.Icon
@@ -70,7 +70,7 @@ fun (@VaadinDsl HasComponents).appHeaderLayout(block: (@VaadinDsl AppHeaderLayou
 class NavMenuItem(icon: VaadinIcon, caption: String) : Button(caption, Icon(icon)) {
     init {
         classNames.add("navmenuitem")
-        themes.add("large")
+        addThemeVariants(ButtonVariant.LUMO_LARGE)
     }
     var selected: Boolean
         get() = classNames.contains("selected")
