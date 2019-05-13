@@ -23,7 +23,7 @@ import com.vaadin.pwademo.components.*
 @HtmlImport("frontend://styles.html")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
-@PWA(name = "Vaadin Kotlin PWA Demo", shortName = "Vaadin Kotlin PWA Demo", iconPath = "icons/icon-512.png", themeColor = "#227aef", backgroundColor = "#227aef")
+@PWA(name = "Vaadin Kotlin PWA Demo", shortName = "VoK PWA Demo", iconPath = "icons/icon-512.png", themeColor = "#227aef", backgroundColor = "#227aef")
 class MainLayout : KComposite(), RouterLayout {
     private lateinit var content: Div
     private val root = ui {
