@@ -15,13 +15,13 @@ import kotlin.test.expect
 /**
  * Tests the main screen.
  */
-class TaskListTest: DynaTest({
+class TaskListTest : DynaTest({
     usingApp()
 
     test("add a task") {
         UI.getCurrent().navigate("")
-        _get<TextField> { caption = "Title:" } .value = "New Task"
-        _get<Button> { caption = "Add" } ._click()
+        _get<TextField> { caption = "Title:" }.value = "New Task"
+        _get<Button> { caption = "Add" }._click()
         expectList("New Task") { Task.findAll().map { it.title } }
         expect(1) { _get<Grid<*>>().dataProvider._size() }
     }
@@ -31,17 +31,22 @@ class TaskListTest: DynaTest({
  * Properly configures the app in the test context, so that the app is properly initialized, and the database is emptied before every test.
  */
 fun DynaNodeGroup.usingApp() {
-    beforeGroup { Bootstrap().contextInitialized(null) }
+    lateinit var routes: Routes
+    beforeGroup {
+        routes = Routes().autoDiscoverViews("com.vaadin.pwademo")
+        Bootstrap().contextInitialized(null)
+    }
     afterGroup { Bootstrap().contextDestroyed(null) }
 
     // since there is no servlet environment, Flow won't auto-detect the @Routes. We need to auto-discover all @Routes
     // and populate the RouteRegistry properly.
-    beforeEach { MockVaadin.setup(Routes().autoDiscoverViews("com.vaadin.pwademo")) }
+    beforeEach { MockVaadin.setup(routes) }
     afterEach { MockVaadin.tearDown() }
 
     // it's a good practice to clear up the db before every test, to start every test with a predefined state.
-    fun cleanupDb() { Task.deleteAll() }
+    fun cleanupDb() {
+        Task.deleteAll()
+    }
     beforeEach { cleanupDb() }
     afterEach { cleanupDb() }
 }
-
