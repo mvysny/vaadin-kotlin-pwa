@@ -2,10 +2,10 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.7.1"
-val vaadin10_version = "13.0.8"
+val vaadin10_version = "14.0.9"
 
 plugins {
-    kotlin("jvm") version "1.3.31"
+    kotlin("jvm") version "1.3.50"
     id("org.gretty") version "2.2.0"
     war
 }
@@ -36,14 +36,14 @@ tasks.withType<KotlinCompile> {
 val staging by configurations.creating
 
 dependencies {
-    // Vaadin-on-Kotlin dependency, includes Vaadin
+    // Vaadin-on-Kotlin and Karibu-DSL
     compile("eu.vaadinonkotlin:vok-framework-v10-sql2o:$vaadinonkotlin_version")
-    compile(enforcedPlatform("com.vaadin:vaadin-bom:$vaadin10_version"))
-    providedCompile("javax.servlet:javax.servlet-api:3.1.0")
+    compile("com.github.mvysny.karibudsl:karibu-dsl-v10:0.7.1")
 
-    // the app-layout custom component
-    compile("org.webjars.bowergithub.polymerelements:app-layout:2.1.0")
-    compile("org.webjars.bowergithub.polymerelements:paper-icon-button:2.2.0")
+    compile(platform("com.vaadin:vaadin-bom:$vaadin10_version"))
+    compile("com.vaadin:vaadin-core:${properties["vaadin10_version"]}")
+    compile("com.vaadin:flow-server-compatibility-mode:2.0.16")
+    providedCompile("javax.servlet:javax.servlet-api:3.1.0")
 
     // logging
     // currently we are logging through the SLF4J API to LogBack. See src/main/resources/logback.xml file for the logger configuration
@@ -57,11 +57,11 @@ dependencies {
     compile("com.h2database:h2:1.4.198")
 
     // test support
-    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.6")
+    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.14")
     testCompile("com.github.mvysny.dynatest:dynatest-engine:0.15")
 
     // heroku app runner
-    staging("com.github.jsimone:webapp-runner:9.0.17.0")
+    staging("com.github.jsimone:webapp-runner:9.0.27.1")
 }
 
 // Heroku

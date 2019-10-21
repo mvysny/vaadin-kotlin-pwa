@@ -1,8 +1,8 @@
 package com.vaadin.pwademo
 
-import com.github.mvysny.karibudsl.v10.KComposite
-import com.github.mvysny.karibudsl.v10.div
+import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.HasElement
+import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
@@ -13,7 +13,6 @@ import com.vaadin.flow.router.RouterLayout
 import com.vaadin.flow.server.PWA
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
-import com.vaadin.pwademo.components.*
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app. See [AppHeaderLayout]
@@ -25,31 +24,36 @@ import com.vaadin.pwademo.components.*
 @Theme(Lumo::class)
 @PWA(name = "Vaadin Kotlin PWA Demo", shortName = "VoK PWA Demo", iconPath = "icons/icon-512.png", themeColor = "#227aef", backgroundColor = "#227aef")
 class MainLayout : KComposite(), RouterLayout {
-    private lateinit var content: Div
+    private lateinit var contentPane: Div
     private val root = ui {
-        appHeaderLayout {
-            appHeader {
-                appToolbar {
-                    title.text = "Vaadin Kotlin PWA Demo"
-                    paperIconButton(VaadinIcon.FILE_REMOVE) {
-                        addClickListener {
-                            Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
-                        }
+        appLayout {
+            navbar {
+                drawerToggle()
+                h3("Vaadin Kotlin PWA Demo")
+                button(icon = VaadinIcon.FILE_REMOVE.create()) {
+                    addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_ICON)
+                    onLeftClick {
+                        Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
                     }
                 }
             }
-            appDrawer {
-                navMenuItem(VaadinIcon.LIST, "Task List")
-                navMenuItem(VaadinIcon.COG, "Settings")
-                navMenuItem(VaadinIcon.QUESTION, "About")
+            drawer {
+                verticalLayout {
+                    routerLink(VaadinIcon.LIST, "Task List", TaskListView::class)
+                    routerLink(VaadinIcon.COG, "Settings")
+                    routerLink(VaadinIcon.QUESTION, "About")
+                }
             }
-            content = div {
-                setSizeFull(); classNames.add("app-content")
+
+            content {
+                contentPane = div {
+                    setSizeFull(); classNames.add("app-content")
+                }
             }
         }
     }
 
     override fun showRouterLayoutContent(content: HasElement) {
-        this.content.element.appendChild(content.element)
+        contentPane.element.appendChild(content.element)
     }
 }
