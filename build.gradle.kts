@@ -8,6 +8,7 @@ plugins {
     kotlin("jvm") version "1.3.50"
     id("org.gretty") version "2.2.0"
     war
+    id("com.google.cloud.tools.jib") version "1.7.0"
 }
 
 defaultTasks("clean", "build")
@@ -74,5 +75,15 @@ tasks {
     }
     val stage by registering {
         dependsOn("build", copyToLib)
+    }
+}
+
+// Docker
+jib {
+    from {
+        image = "jetty:9.4.18-jre11"
+    }
+    container {
+        appRoot = "/var/lib/jetty/webapps/ROOT"
     }
 }

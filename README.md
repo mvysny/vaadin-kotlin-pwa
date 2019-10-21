@@ -46,11 +46,11 @@ without the pains of using the Android development model.
 Vaadin packages enormous amount of predefined components so you will do not typically have to develop your own components.
 You will simply orchestrate a pre-made components server-side, with a pure Java/Kotlin code. 
 
-You can read more about the [benefits of Vaadin development over Android](http://mavi.logdown.com/posts/6848317).
+You can read more about the [benefits of Vaadin development over Android](https://mvysny.github.io/Android-SDK-Why-literally-any-other-platform-is-better/).
 
 ## Running The App
 
-Now that the PWA thing is sorted out, let's construct the app UI. The [TaskList.kt](src/main/kotlin/com/vaadin/pwademo/TaskList.kt) hosts
+Now that the PWA thing is sorted out, let's construct the app UI. The [TaskListView.kt](src/main/kotlin/com/vaadin/pwademo/TaskListView.kt) hosts
 the main view of the app. It uses the Karibu-DSL library to define UIs;
 you can read more about the [Karibu-DSL](https://github.com/mvysny/karibu-dsl). 
 
@@ -98,7 +98,7 @@ for more details.
 Vaadin 10 of course uses different algorithms than Android to perform the layouting. Luckily,
 Vaadin 10 (or, rather CSS) knows a layout quite similar to Android's `LinearLayout` - the flexbox.
 Please read the
-[Vaadin 10 server-side layouting for Vaadin 8 and Android developers](http://mavi.logdown.com/posts/6855605)
+[Vaadin 10 server-side layouting for Vaadin 8 and Android developers](https://mvysny.github.io/Vaadin-10-server-side-layouting-for-Vaadin-8-and-Android-developers/)
 article on how to use `VerticalLayout` and `HorizontalLayout` which use flexbox under the hood, but
 sports an API which may be familar to Android developers.
 
@@ -110,10 +110,10 @@ so you should feel immediately at home.
 To launch your app, in Intellij just click on the rightmost Gradle tab, then select `Tasks / gretty / appRun`. Right-click on appRun and select Debug:
 the app will start soon in a Jetty server. Just open your browser and hit [http://localhost:8080](http://localhost:8080).
 
-The main meat of the UI is located in the [TaskList.kt](src/main/kotlin/com/vaadin/pwademo/TaskList.kt) - feel free to edit that file
+The main meat of the UI is located in the [TaskListView.kt](src/main/kotlin/com/vaadin/pwademo/TaskListView.kt) - feel free to edit that file
 and experiment for yourself. There are lots of pre-existing Vaadin components; you can check out the
 [Beverage Buddy](https://github.com/mvysny/beverage-buddy-vok/) example app for more
-examples of component usage. You should also read the [full Vaadin 10 (Flow) documentation](https://vaadin.com/docs/v10/flow/Overview.html). 
+examples of component usage. You should also read the [full Vaadin 10 (Flow) documentation](https://vaadin.com/docs/v14/flow/Overview.html). 
 
 The browser is a very powerful IDE which can help you debug CSS- and layout-related issue. Take your time and read slowly through the following tutorials, to get acquinted with the browser
 developer tools:
@@ -138,16 +138,35 @@ on how the [migration scripts](src/main/resources/db/migration) are ran when the
 
 The [Task](src/main/kotlin/com/vaadin/pwademo/Task.kt) entity will be mapped to the database; inheriting from Entity and Dao
 will make it inherit bunch of useful methods such as `findAll()` and `save()`. It will also gain means of
-providing all of its instances via a `DataProvider`. See the [TaskList.kt](src/main/kotlin/com/vaadin/pwademo/TaskList.kt)
+providing all of its instances via a `DataProvider`. See the [TaskListView.kt](src/main/kotlin/com/vaadin/pwademo/TaskListView.kt)
 Grid configuration for details.
 
-See the [Back to Base](http://mavi.logdown.com/posts/5771422) article on how the finder methods are attached to the entity,
+See the [Back to Base](https://mvysny.github.io/back-to-base-make-sql-great-again/) article on how the finder methods are attached to the entity,
 and how the lookup and save works.
 
 ## Running in cloud
 
 This app is nothing more but a plain war project. It can be run in any servlet container; you can run it inside Tomcat's docker image etc.
-See [Running your app in cloud](http://mavi.logdown.com/posts/2870868) for more details.
+See [Running your app in cloud](https://mvysny.github.io/Launch-your-Vaadin-on-Kotlin-app-quickly-in-cloud/) for more details.
+
+### Docker
+
+To produce a Docker image from this app, just run
+
+```bash
+./gradlew clean build jibDockerBuild --image=test/vaadin-kotlin-pwa
+```
+
+To run the image, just run
+
+```bash
+docker run --rm -ti -p8080:8080 test/vaadin-kotlin-pwa
+```
+
+Done - your app now runs on [localhost:8080](http://localhost:8080). See
+[Running WAR Apps in Docker JIB](https://mvysny.github.io/running-war-apps-in-docker-jib/) for more details.
+
+### Heroku
 
 This git repo also contains all files necessary for a seamless deployment onto Heroku. Just clone this git repo,
 create a Heroku app, select github as the deployment method and press the `Deploy branch` button - your app should be
