@@ -46,15 +46,15 @@ dependencies {
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
 
     // logging
-    // currently we are logging through the SLF4J API to LogBack. See src/main/resources/logback.xml file for the logger configuration
-    compile("ch.qos.logback:logback-classic:1.2.3")
-    compile("org.slf4j:slf4j-api:1.7.25")
+    // currently we are logging through the SLF4J API to slf4j-simple. See src/main/resources/simplelogger.properties file for the logger configuration
+    compile("org.slf4j:slf4j-simple:${properties["slf4j_version"]}")
+    compile("org.slf4j:slf4j-api:${properties["slf4j_version"]}")
 
     compile(kotlin("stdlib-jdk8"))
 
     // db
-    compile("org.flywaydb:flyway-core:5.2.4")
-    compile("com.h2database:h2:1.4.198")
+    compile("org.flywaydb:flyway-core:6.0.7")
+    compile("com.h2database:h2:1.4.200")
 
     // test support
     testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.14")
