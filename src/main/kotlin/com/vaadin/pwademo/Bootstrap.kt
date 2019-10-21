@@ -24,10 +24,10 @@ class Bootstrap : ServletContextListener {
         // 1. fill in the proper JDBC URL here
         // 2. make sure to include the database driver into the classpath, by adding a dependency on the driver into the build.gradle file.
         VaadinOnKotlin.dataSourceConfig.apply {
-            driverClassName = Driver::class.java.name
-            jdbcUrl = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
-            username = "sa"
-            password = ""
+            driverClassName = System.getenv("VOK_PWA_JDBC_DRIVER") ?: Driver::class.java.name
+            jdbcUrl = System.getenv("VOK_PWA_JDBC_URL") ?: "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
+            username = System.getenv("VOK_PWA_JDBC_USERNAME") ?: "sa"
+            password = System.getenv("VOK_PWA_JDBC_PASSWORD") ?: ""
         }
 
         // Initializes the VoK framework

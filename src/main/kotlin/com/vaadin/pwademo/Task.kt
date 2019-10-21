@@ -3,6 +3,7 @@ package com.vaadin.pwademo
 import com.github.vokorm.Dao
 import com.github.vokorm.Entity
 import com.github.vokorm.db
+import com.github.vokorm.existsAny
 import org.hibernate.validator.constraints.Length
 import java.util.*
 import javax.validation.constraints.NotNull
@@ -75,8 +76,10 @@ open class Task(override var id: Long? = null,
                 open var created: Date = Date()) : Entity<Long> {
     companion object : Dao<Task> {
         fun generateSampleData() {
-            db {
-                sampleData.forEach { Task(title = it, completed = Random().nextBoolean()).save() }
+            if (!Task.existsAny()) {
+                db {
+                    sampleData.forEach { Task(title = it, completed = Random().nextBoolean()).save() }
+                }
             }
         }
     }

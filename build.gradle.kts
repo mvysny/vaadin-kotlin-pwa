@@ -56,6 +56,7 @@ dependencies {
     // db
     compile("org.flywaydb:flyway-core:6.0.7")
     compile("com.h2database:h2:1.4.200")
+    compile("mysql:mysql-connector-java:5.1.48")
 
     // test support
     testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.14")

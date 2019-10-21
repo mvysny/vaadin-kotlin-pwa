@@ -144,6 +144,24 @@ Grid configuration for details.
 See the [Back to Base](https://mvysny.github.io/back-to-base-make-sql-great-again/) article on how the finder methods are attached to the entity,
 and how the lookup and save works.
 
+#### Using MySQL
+
+To connect to MySQL instead of H2, just run the MySQL in Docker:
+
+```bash
+docker run --rm -ti -e MYSQL_ROOT_PASSWORD=PfJ739VoMMDrs -e MYSQL_DATABASE=vok_pwa -e MYSQL_USER=testuser -e MYSQL_PASSWORD=PfJ739VoMMDrs -p 127.0.0.1:3306:3306 mysql:5.7.21
+```
+
+Then, run this app as follows:
+
+```bash
+export VOK_PWA_JDBC_DRIVER=com.mysql.jdbc.Driver
+export VOK_PWA_JDBC_URL="jdbc:mysql://localhost:3306/vok_pwa?useUnicode=true"
+export VOK_PWA_JDBC_USERNAME="root"
+export VOK_PWA_JDBC_PASSWORD=PfJ739VoMMDrs
+./gradlew appRun
+```
+
 ## Running in cloud
 
 This app is nothing more but a plain war project. It can be run in any servlet container; you can run it inside Tomcat's docker image etc.
@@ -171,4 +189,3 @@ Done - your app now runs on [localhost:8080](http://localhost:8080). See
 This git repo also contains all files necessary for a seamless deployment onto Heroku. Just clone this git repo,
 create a Heroku app, select github as the deployment method and press the `Deploy branch` button - your app should be
 up and running in no time.
-
