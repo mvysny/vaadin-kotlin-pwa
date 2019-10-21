@@ -189,3 +189,9 @@ Done - your app now runs on [localhost:8080](http://localhost:8080). See
 This git repo also contains all files necessary for a seamless deployment onto Heroku. Just clone this git repo,
 create a Heroku app, select github as the deployment method and press the `Deploy branch` button - your app should be
 up and running in no time.
+
+### Google Cloud
+
+To run this app in Google Cloud Kubernetes and Google Cloud SQL with MySQL, simply follow
+the [Deploy Your Vaadin App To Google Cloud Kubernetes](https://mvysny.github.io/Deploy-Vaadin-App-To-Google-Cloud-Kubernetes/)
+tutorial.
