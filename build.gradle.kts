@@ -1,12 +1,12 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.7.1"
-val vaadin10_version = "14.0.9"
+val vaadinonkotlin_version = "0.8.0"
+val vaadin10_version = "14.1.0"
 
 plugins {
-    kotlin("jvm") version "1.3.50"
-    id("org.gretty") version "2.2.0"
+    kotlin("jvm") version "1.3.61"
+    id("org.gretty") version "2.3.1"
     war
     id("com.google.cloud.tools.jib") version "1.7.0"
 }
@@ -37,13 +37,13 @@ tasks.withType<KotlinCompile> {
 val staging by configurations.creating
 
 dependencies {
-    // Vaadin-on-Kotlin and Karibu-DSL
-    compile("eu.vaadinonkotlin:vok-framework-v10-sql2o:$vaadinonkotlin_version")
-    compile("com.github.mvysny.karibudsl:karibu-dsl-v10:0.7.1")
+    // Vaadin-on-Kotlin
+    compile("eu.vaadinonkotlin:vok-framework-v10-vokdb:$vaadinonkotlin_version")
+    compile("com.zaxxer:HikariCP:3.4.1")
 
     compile(platform("com.vaadin:vaadin-bom:$vaadin10_version"))
     compile("com.vaadin:vaadin-core:${properties["vaadin10_version"]}")
-    compile("com.vaadin:flow-server-compatibility-mode:2.0.16")
+    compile("com.vaadin:flow-server-compatibility-mode:2.1.1")
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
 
     // logging
@@ -54,12 +54,12 @@ dependencies {
     compile(kotlin("stdlib-jdk8"))
 
     // db
-    compile("org.flywaydb:flyway-core:6.0.7")
+    compile("org.flywaydb:flyway-core:6.1.0")
     compile("com.h2database:h2:1.4.200")
     compile("mysql:mysql-connector-java:5.1.48")
 
     // test support
-    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.14")
+    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.17")
     testCompile("com.github.mvysny.dynatest:dynatest-engine:0.15")
 
     // heroku app runner

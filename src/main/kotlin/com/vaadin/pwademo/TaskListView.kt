@@ -12,7 +12,7 @@ import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
 import eu.vaadinonkotlin.vaadin10.generateFilterComponents
 import eu.vaadinonkotlin.vaadin10.sortedBy
-import eu.vaadinonkotlin.vaadin10.sql2o.dataProvider
+import eu.vaadinonkotlin.vaadin10.vokdb.dataProvider
 
 /**
  * The main view of the app. It is a vertical layout which lays out the child components vertically. There are only two components:
