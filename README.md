@@ -106,7 +106,7 @@ To build in production mode, just run:
 If you don't have node installed in your CI environment, you can use Vaadin plugin to download node.js for you beforehand:
 
 ```bash
-./gradlew clean vaadinPrepareNode vaadinBuildFrontend build
+./gradlew clean vaadinPrepareNode build -Pvaadin.productionMode
 ```
 
 # Workflow
