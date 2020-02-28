@@ -3,6 +3,7 @@ package com.vaadin.pwademo
 import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.button.ButtonVariant
+import com.vaadin.flow.component.dependency.CssImport
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
@@ -19,7 +20,7 @@ import com.vaadin.flow.theme.lumo.Lumo
  * for more details.
  */
 @BodySize(width = "100vw", height = "100vh")
-@HtmlImport("frontend://styles.html")
+@CssImport("frontend://styles.css")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
 @PWA(name = "Vaadin Kotlin PWA Demo", shortName = "VoK PWA Demo", iconPath = "icons/icon-512.png", themeColor = "#227aef", backgroundColor = "#227aef")

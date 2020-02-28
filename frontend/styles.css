@@ -1,0 +1,15 @@
+.crossedout {
+    color: rgba(0,0,0,.54);
+    text-decoration: line-through;
+}
+
+html, body {
+    margin: 0;
+    font-family: 'Roboto', 'Noto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f1f1f1;
+}
+
+.app-content {
+    background: white;
+}

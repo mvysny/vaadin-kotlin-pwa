@@ -6,3 +6,7 @@ local.properties
 *.iml
 out
 
+target
+node_modules
+webpack.generated.js
+/node

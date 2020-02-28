@@ -48,6 +48,23 @@ You will simply orchestrate a pre-made components server-side, with a pure Java/
 
 You can read more about the [benefits of Vaadin development over Android](https://mvysny.github.io/Android-SDK-Why-literally-any-other-platform-is-better/).
 
+# Preparing Environment
+
+The Vaadin 14 build requires node.js and npm. You can either use the Vaadin Gradle plugin to install it for
+you (the `vaadinPrepareNode` task, handy for the CI), or you can install it to your OS:
+
+* Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
+* Linux: `sudo apt install npm`
+
+To make Vaadin Gradle plugin install node.js+npm for you, just run the following command
+in the project's sources (you only need to run this command once):
+
+```
+./gradlew vaadinPrepareNode
+```
+
+Also make sure that you have Java 8 (or higher) JDK installed.
+
 ## Running The App
 
 Now that the PWA thing is sorted out, let's construct the app UI. The [TaskListView.kt](src/main/kotlin/com/vaadin/pwademo/TaskListView.kt) hosts
@@ -62,6 +79,49 @@ $ ./gradlew appRun
 
 Gradle will automatically download an embedded servlet container (Jetty) and will run your app in it. Your app will be running on
 [http://localhost:8080](http://localhost:8080).
+
+## Supported Modes
+
+Runs in Vaadin 14 npm mode, using the [Vaadin Gradle Plugin](https://github.com/vaadin/vaadin-gradle-plugin).
+
+Both the [development and production modes](https://vaadin.com/docs/v14/flow/production/tutorial-production-mode-basic.html) are supported.
+To prepare for development mode, just run:
+
+```bash
+./gradlew clean vaadinPrepareFrontend
+```
+
+If you don't have node installed, you can use Vaadin plugin to download node.js for you:
+
+```bash
+./gradlew vaadinPrepareNode
+```
+
+To build in production mode, just run:
+
+```bash
+./gradlew clean build -Pvaadin.productionMode
+```
+
+If you don't have node installed in your CI environment, you can use Vaadin plugin to download node.js for you beforehand:
+
+```bash
+./gradlew clean vaadinPrepareNode vaadinBuildFrontend build
+```
+
+# Workflow
+
+To compile the entire project in production mode, run `./gradlew -Pvaadin.productionMode`.
+
+To run the application in development mode, run `./gradlew appRun` and open [http://localhost:8080/](http://localhost:8080/).
+
+To produce a deployable production-mode WAR:
+- run `./gradlew -Pvaadin.productionMode`
+- You will find the WAR file in `build/libs/*.war`
+- To revert your environment back to development mode, just run `./gradlew` or `./gradlew vaadinPrepareFrontend`
+  (omit the `-Pvaadin.productionMode`) switch.
+
+This will allow you to quickly start the example app and allow you to do some basic modifications.
 
 ## Dissection of project files
 
