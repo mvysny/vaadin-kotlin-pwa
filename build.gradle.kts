@@ -2,11 +2,11 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.8.1"
-val vaadin10_version = "14.1.16"
+val vaadin10_version = "14.1.25"
 val slf4j_version = "1.7.30"
 
 plugins {
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.3.71"
     id("org.gretty") version "2.3.1"
     war
     id("com.vaadin") version "0.6.0"
@@ -66,11 +66,11 @@ dependencies {
     compile("mysql:mysql-connector-java:5.1.48")
 
     // test support
-    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.19")
-    testCompile("com.github.mvysny.dynatest:dynatest-engine:0.15")
+    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.23")
+    testCompile("com.github.mvysny.dynatest:dynatest-engine:0.16")
 
     // heroku app runner
-    staging("com.github.jsimone:webapp-runner:9.0.27.1")
+    staging("com.heroku:webapp-runner:9.0.31.0")
 }
 
 // Heroku
