@@ -1,6 +1,7 @@
 package com.vaadin.pwademo
 
 import com.github.mvysny.karibudsl.v10.*
+import com.github.mvysny.vokdataloader.Filter
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.checkbox.Checkbox
@@ -8,10 +9,10 @@ import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.Icon
 import com.vaadin.flow.component.icon.VaadinIcon
+import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
-import eu.vaadinonkotlin.vaadin10.generateFilterComponents
-import eu.vaadinonkotlin.vaadin10.sortedBy
+import eu.vaadinonkotlin.vaadin10.*
 import eu.vaadinonkotlin.vaadin10.vokdb.dataProvider
 
 /**
@@ -47,15 +48,18 @@ class TaskListView : KComposite() {
                 // the Grid fills its parent height-wise.
                 // See https://github.com/vaadin/flow/issues/3582 for more details.
 
+                val filterBar: VokFilterBar<Task> = appendHeaderRow().asFilterBar(this)
+
                 addColumnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
                     isExpand = false; setHeader("Done"); width = "130px"
+                    filterBar.forField(BooleanComboBox(), this).eq()
                 }
-                addColumnFor(Task::title, createTaskNameDivRenderer())
+                addColumnFor(Task::title, createTaskNameDivRenderer()) {
+                    filterBar.forField(TextField(), this).ilike()
+                }
                 addColumn(newDeleteButtonRenderer()).apply {
                     isExpand = false; width = "90px"
                 }
-
-                appendHeaderRow().generateFilterComponents(this, Task::class)
             }
         }
     }
