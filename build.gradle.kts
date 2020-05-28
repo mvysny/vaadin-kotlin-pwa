@@ -2,14 +2,14 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.8.2"
-val vaadin10_version = "14.1.28"
+val vaadin10_version = "14.2.0"
 val slf4j_version = "1.7.30"
 
 plugins {
     kotlin("jvm") version "1.3.72"
-    id("org.gretty") version "3.0.1"
+    id("org.gretty") version "3.0.3"
     war
-    id("com.vaadin") version "0.6.0"
+    id("com.vaadin") version "0.7.0"
     id("com.google.cloud.tools.jib") version "1.7.0"
 }
 
@@ -83,7 +83,7 @@ tasks {
         }
     }
     val stage by registering {
-        dependsOn("vaadinPrepareNode", "build", copyToLib)
+        dependsOn("build", copyToLib)
     }
 }
 
@@ -91,6 +91,7 @@ vaadin {
     if (gradle.startParameter.taskNames.contains("stage")) {
         productionMode = true
     }
+    pnpmEnable = true
 }
 
 // Docker
