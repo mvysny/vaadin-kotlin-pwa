@@ -84,22 +84,16 @@ To prepare for development mode, just run:
 ./gradlew clean vaadinPrepareFrontend
 ```
 
-If you don't have node installed, you can use Vaadin plugin to download node.js for you:
-
-```bash
-./gradlew vaadinPrepareNode
-```
-
 To build in production mode, just run:
 
 ```bash
 ./gradlew clean build -Pvaadin.productionMode
 ```
 
-If you don't have node installed in your CI environment, you can use Vaadin plugin to download node.js for you beforehand:
+If you don't have node installed in your CI environment, Gradle Vaadin plugin will download node.js for you automatically:
 
 ```bash
-./gradlew clean vaadinPrepareNode build -Pvaadin.productionMode
+./gradlew clean build -Pvaadin.productionMode
 ```
 
 # Workflow
