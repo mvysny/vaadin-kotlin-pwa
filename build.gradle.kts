@@ -41,7 +41,7 @@ val staging by configurations.creating
 dependencies {
     // Vaadin-on-Kotlin
     implementation("eu.vaadinonkotlin:vok-framework-v10-vokdb:$vaadinonkotlin_version")
-    implementation("org.hibernate.validator:hibernate-validator:6.1.2.Final")
+    implementation("org.hibernate.validator:hibernate-validator:6.1.4.Final")
 
     // Vaadin 14
     implementation("com.vaadin:vaadin-core:${vaadin10_version}") {
@@ -67,7 +67,7 @@ dependencies {
     implementation("mysql:mysql-connector-java:5.1.48")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.24")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.26")
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.16")
 
     // heroku app runner
