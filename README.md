@@ -224,7 +224,7 @@ To produce a Docker image from this app, just run
 To run the image, just run
 
 ```bash
-docker run --rm -ti -p8080:8080 test/vaadin-kotlin-pwa
+docker run --rm -ti -p 8080:8080 test/vaadin-kotlin-pwa
 ```
 
 Done - your app now runs on [localhost:8080](http://localhost:8080). See
@@ -234,7 +234,8 @@ Done - your app now runs on [localhost:8080](http://localhost:8080). See
 
 This git repo also contains all files necessary for a seamless deployment onto Heroku. Just clone this git repo,
 create a Heroku app, select github as the deployment method and press the `Deploy branch` button - your app should be
-up and running in no time.
+up and running in no time. See [Procfile](Procfile) and the `stage` task in [build.gradle.kts](build.gradle.kts)
+for more details.
 
 ### Google Cloud
 
