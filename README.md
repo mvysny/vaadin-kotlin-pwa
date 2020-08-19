@@ -218,7 +218,7 @@ See [Running your app in cloud](https://mvysny.github.io/Launch-your-Vaadin-on-K
 To produce a Docker image from this app, just run
 
 ```bash
-./gradlew clean build jibDockerBuild --image=test/vaadin-kotlin-pwa
+./gradlew clean build jibDockerBuild --image=test/vaadin-kotlin-pwa -Pvaadin.productionMode
 ```
 
 To run the image, just run

@@ -6,7 +6,7 @@ val vaadin10_version = "14.3.3"
 val slf4j_version = "1.7.30"
 
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.0"
     id("org.gretty") version "3.0.3"
     war
     id("com.vaadin") version "0.8.0"
