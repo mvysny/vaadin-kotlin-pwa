@@ -61,14 +61,14 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     // db
-    implementation("com.zaxxer:HikariCP:3.4.2")
+    implementation("com.zaxxer:HikariCP:3.4.5")
     implementation("org.flywaydb:flyway-core:6.1.4")
     implementation("com.h2database:h2:1.4.200")
     implementation("mysql:mysql-connector-java:5.1.48")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.29")
-    testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.16")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.30")
+    testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.17")
 
     // heroku app runner
     staging("com.heroku:webapp-runner:9.0.31.0")
