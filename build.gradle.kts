@@ -1,12 +1,12 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.8.2"
-val vaadin10_version = "14.3.3"
+val vaadinonkotlin_version = "0.8.3"
+val vaadin10_version = "14.3.6"
 val slf4j_version = "1.7.30"
 
 plugins {
-    kotlin("jvm") version "1.4.0"
+    kotlin("jvm") version "1.4.10"
     id("org.gretty") version "3.0.3"
     war
     id("com.vaadin") version "0.8.0"
@@ -71,7 +71,7 @@ dependencies {
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.17")
 
     // heroku app runner
-    staging("com.heroku:webapp-runner:9.0.31.0")
+    staging("com.heroku:webapp-runner:9.0.36.1")
 }
 
 // Heroku

@@ -1,7 +1,9 @@
 package com.vaadin.pwademo
 
 import com.github.mvysny.karibudsl.v10.*
-import com.github.mvysny.vokdataloader.Filter
+import com.github.mvysny.vokdataloader.asc
+import com.github.mvysny.vokdataloader.desc
+import com.github.mvysny.vokdataloader.sortedBy
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.checkbox.Checkbox
@@ -13,7 +15,8 @@ import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
 import eu.vaadinonkotlin.vaadin10.*
-import eu.vaadinonkotlin.vaadin10.vokdb.dataProvider
+import eu.vaadinonkotlin.vaadin10.vokdb.dataLoader
+import eu.vaadinonkotlin.vaadin10.vokdb.setDataLoader
 
 /**
  * The main view of the app. It is a vertical layout which lays out the child components vertically. There are only two components:
@@ -42,8 +45,10 @@ class TaskListView : KComposite() {
                 }
             }
 
-            grid = grid(dataProvider = Task.dataProvider.sortedBy(Task::completed.asc, Task::created.desc)) {
+            grid = grid<Task> {
                 width = "100%"; isExpand = true
+
+                setDataLoader(Task.dataLoader.sortedBy(Task::completed.asc, Task::created.desc))
 
                 appendHeaderRow() // workaround for https://github.com/vaadin/vaadin-grid-flow/issues/912
                 val filterBar: VokFilterBar<Task> = appendHeaderRow().asFilterBar(this)
@@ -53,7 +58,7 @@ class TaskListView : KComposite() {
                     filterBar.forField(BooleanComboBox(), this).eq()
                 }
                 addColumnFor(Task::title, createTaskNameDivRenderer()) {
-                    filterBar.forField(TextField(), this).ilike()
+                    filterBar.forField(TextField(), this).istartsWith()
                 }
                 addColumn(newDeleteButtonRenderer()).apply {
                     isExpand = false; width = "90px"
