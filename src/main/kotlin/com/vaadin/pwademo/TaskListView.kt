@@ -4,6 +4,7 @@ import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.vokdataloader.asc
 import com.github.mvysny.vokdataloader.desc
 import com.github.mvysny.vokdataloader.sortedBy
+import com.github.vokorm.dataloader.dataLoader
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.checkbox.Checkbox
@@ -15,7 +16,6 @@ import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
 import eu.vaadinonkotlin.vaadin10.*
-import eu.vaadinonkotlin.vaadin10.vokdb.dataLoader
 import eu.vaadinonkotlin.vaadin10.vokdb.setDataLoader
 
 /**
