@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.9.0"
-val vaadin10_version = "14.4.2"
+val vaadin10_version = "14.4.3"
 val slf4j_version = "1.7.30"
 
 plugins {
@@ -62,7 +62,7 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:3.4.5")
-    implementation("org.flywaydb:flyway-core:6.1.4")
+    implementation("org.flywaydb:flyway-core:7.1.1")
     implementation("com.h2database:h2:1.4.200")
     implementation("mysql:mysql-connector-java:5.1.48")
 
