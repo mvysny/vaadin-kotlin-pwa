@@ -13,7 +13,7 @@ import kotlin.test.expect
 /**
  * Tests the main screen.
  */
-class TaskListTest : DynaTest({
+class TaskListViewTest : DynaTest({
     usingApp()
 
     test("add a task") {

@@ -67,7 +67,7 @@ dependencies {
     implementation("mysql:mysql-connector-java:5.1.48")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.2.11")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.2.12")
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.19")
 
     // heroku app runner

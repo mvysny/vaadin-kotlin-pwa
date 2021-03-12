@@ -43,8 +43,7 @@ class MainLayout : KComposite(), RouterLayout {
             drawer {
                 verticalLayout {
                     routerLink(VaadinIcon.LIST, "Task List", TaskListView::class)
-                    routerLink(VaadinIcon.COG, "Settings")
-                    routerLink(VaadinIcon.QUESTION, "About")
+                    routerLink(VaadinIcon.QUESTION, "About", AboutView::class)
                 }
             }
 
