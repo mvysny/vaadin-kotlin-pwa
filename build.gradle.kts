@@ -1,15 +1,15 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.9.1"
-val vaadin10_version = "14.5.0.beta1"
+val vaadinonkotlin_version = "0.10.0"
+val vaadin10_version = "14.5.3"
 val slf4j_version = "1.7.30"
 
 plugins {
-    kotlin("jvm") version "1.4.31"
-    id("org.gretty") version "3.0.3"
+    kotlin("jvm") version "1.4.32"
+    id("org.gretty") version "3.0.4"
     war
-    id("com.vaadin") version "0.14.3.7"
+    id("com.vaadin") version "0.14.5.1"
     id("com.google.cloud.tools.jib") version "1.7.0"
 }
 
