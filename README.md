@@ -207,6 +207,8 @@ export VOK_PWA_JDBC_PASSWORD=PfJ739VoMMDrs
 ./gradlew appRun
 ```
 
+See the `Bootstrap` class on details how those environment variables are consumed.
+
 ## Running in cloud
 
 This app is nothing more but a plain war project. It can be run in any servlet container; you can run it inside Tomcat's docker image etc.
