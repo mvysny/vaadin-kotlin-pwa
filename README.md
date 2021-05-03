@@ -189,6 +189,26 @@ Grid configuration for details.
 See the [Back to Base](https://mvysny.github.io/back-to-base-make-sql-great-again/) article on how the finder methods are attached to the entity,
 and how the lookup and save works.
 
+#### Using PostgreSQL
+
+To connect to PostgreSQL instead of H2, just run PostgreSQL in Docker:
+
+```bash
+docker run --rm -ti -e POSTGRES_PASSWORD=mysecretpassword -p 127.0.0.1:5432:5432 postgres:10.3
+```
+
+Then, run this app as follows:
+
+```bash
+export VOK_PWA_JDBC_DRIVER=org.postgresql.Driver
+export VOK_PWA_JDBC_URL="jdbc:postgresql://localhost:5432/postgres"
+export VOK_PWA_JDBC_USERNAME=postgres
+export VOK_PWA_JDBC_PASSWORD=mysecretpassword
+./gradlew appRun
+```
+
+See the `Bootstrap` class on details how those environment variables are consumed.
+
 #### Using MySQL
 
 To connect to MySQL instead of H2, just run the MySQL in Docker:

@@ -30,6 +30,7 @@ class Bootstrap : ServletContextListener {
             username = System.getenv("VOK_PWA_JDBC_USERNAME") ?: "sa"
             password = System.getenv("VOK_PWA_JDBC_PASSWORD") ?: ""
         }
+        val isPostgreSQL = cfg.jdbcUrl.startsWith("jdbc:postgresql:")
         VaadinOnKotlin.dataSource = HikariDataSource(cfg)
 
         // Initializes the VoK framework
@@ -38,9 +39,12 @@ class Bootstrap : ServletContextListener {
 
         // Makes sure the database is up-to-date
         log.info("Running DB migrations")
-        val flyway = Flyway.configure()
-                .dataSource(VaadinOnKotlin.dataSource)
-                .load()
+        val flyway: Flyway = Flyway.configure().apply {
+            dataSource(VaadinOnKotlin.dataSource)
+            if (isPostgreSQL) {
+                locations("db.migration_postgresql")
+            }
+        } .load()
         flyway.migrate()
         log.info("Initialization complete")
 

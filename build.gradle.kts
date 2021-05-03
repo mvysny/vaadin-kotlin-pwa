@@ -67,6 +67,7 @@ dependencies {
     implementation("org.flywaydb:flyway-core:7.1.1")
     implementation("com.h2database:h2:1.4.200")
     implementation("mysql:mysql-connector-java:5.1.48")
+    implementation("org.postgresql:postgresql:42.2.1")
 
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.2.12")
