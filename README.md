@@ -251,6 +251,24 @@ docker run --rm -ti -p 8080:8080 test/vaadin-kotlin-pwa
 Done - your app now runs on [localhost:8080](http://localhost:8080). See
 [Running WAR Apps in Docker JIB](https://mvysny.github.io/running-war-apps-in-docker-jib/) for more details.
 
+#### Docker-Compose
+
+To produce a Docker image from this app, just run
+
+```bash
+./gradlew clean build jibDockerBuild --image=test/vaadin-kotlin-pwa -Pvaadin.productionMode
+```
+
+To start the app along with the database, simply use the provided
+[docker-compose.yml](src/main/docker-compose/docker-compose.yml):
+
+```bash
+cd src/main/docker-compose
+docker-compose up
+```
+
+Done - your app now runs on [localhost:8080](http://localhost:8080).
+
 ### Heroku
 
 This git repo also contains all files necessary for a seamless deployment onto Heroku. Just clone this git repo,
