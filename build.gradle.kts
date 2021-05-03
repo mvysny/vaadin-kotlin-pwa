@@ -10,15 +10,13 @@ plugins {
     id("org.gretty") version "3.0.4"
     war
     id("com.vaadin") version "0.14.5.1"
-    id("com.google.cloud.tools.jib") version "1.7.0"
+    id("com.google.cloud.tools.jib") version "3.0.0"
 }
 
 defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
-    jcenter()
-    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
 }
 
 gretty {
@@ -99,9 +97,10 @@ vaadin {
 // Docker
 jib {
     from {
-        image = "jetty:9.4.18-jre11"
+        image = "jetty:9.4.40-jre11"
     }
     container {
         appRoot = "/var/lib/jetty/webapps/ROOT"
+        user = "root" // otherwise we'll get https://github.com/appropriate/docker-jetty/issues/80
     }
 }
