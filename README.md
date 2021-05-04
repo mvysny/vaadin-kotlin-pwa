@@ -281,3 +281,8 @@ for more details.
 To run this app in Google Cloud Kubernetes and Google Cloud SQL with MySQL, simply follow
 the [Deploy Your Vaadin App To Google Cloud Kubernetes](https://mvysny.github.io/Deploy-Vaadin-App-To-Google-Cloud-Kubernetes/)
 tutorial.
+
+### Kubernetes/MicroK8s
+
+See [Running Vaadin-on-Kotlin app in microk8s](https://mvysny.github.io/running-vaadin-app-in-microk8s/)
+for more details.
