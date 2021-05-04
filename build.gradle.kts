@@ -17,6 +17,7 @@ defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
+    jcenter() // needed for the Gretty plugin: https://github.com/gretty-gradle-plugin/gretty/issues/192
 }
 
 gretty {

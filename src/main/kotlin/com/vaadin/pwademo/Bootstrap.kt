@@ -2,6 +2,7 @@ package com.vaadin.pwademo
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import com.zaxxer.hikari.pool.HikariPool
 import eu.vaadinonkotlin.VaadinOnKotlin
 import eu.vaadinonkotlin.vokdb.dataSource
 import org.flywaydb.core.Flyway
@@ -31,7 +32,7 @@ class Bootstrap : ServletContextListener {
             password = System.getenv("VOK_PWA_JDBC_PASSWORD") ?: ""
         }
         val isPostgreSQL = cfg.jdbcUrl.startsWith("jdbc:postgresql:")
-        VaadinOnKotlin.dataSource = HikariDataSource(cfg)
+        VaadinOnKotlin.dataSource = createConnectionPool(cfg)
 
         // Initializes the VoK framework
         log.info("Initializing VaadinOnKotlin")
@@ -65,5 +66,20 @@ class Bootstrap : ServletContextListener {
     companion object {
         @JvmStatic
         private val log = LoggerFactory.getLogger(Bootstrap::class.java)
+
+        /**
+         * Repeatedly attempts to create a HikariCP
+         */
+        fun createConnectionPool(cfg: HikariConfig): HikariDataSource {
+            while (true) {
+                try {
+                    return HikariDataSource(cfg)
+                } catch (ex: HikariPool.PoolInitializationException) {
+                    log.info("HikariPool failed to initialize. Backing off until the database becomes ready: $ex")
+                    log.debug("HikariPool failed to initialize", ex)
+                    Thread.sleep(5000L)
+                }
+            }
+        }
     }
 }
