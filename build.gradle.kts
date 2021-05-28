@@ -2,14 +2,14 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.10.0"
-val vaadin10_version = "14.5.3"
+val vaadin10_version = "14.6.1"
 val slf4j_version = "1.7.30"
 
 plugins {
-    kotlin("jvm") version "1.4.32"
+    kotlin("jvm") version "1.5.10"
     id("org.gretty") version "3.0.4"
     war
-    id("com.vaadin") version "0.14.5.1"
+    id("com.vaadin") version "0.14.6.0"
     id("com.google.cloud.tools.jib") version "3.0.0"
 }
 
@@ -42,7 +42,7 @@ val staging by configurations.creating
 dependencies {
     // Vaadin-on-Kotlin
     implementation("eu.vaadinonkotlin:vok-framework-v10-vokdb:$vaadinonkotlin_version")
-    implementation("org.hibernate.validator:hibernate-validator:6.1.4.Final")
+    implementation("org.hibernate.validator:hibernate-validator:6.2.0.Final")
 
     // Vaadin 14
     implementation("com.vaadin:vaadin-core:${vaadin10_version}") {
@@ -69,7 +69,7 @@ dependencies {
     implementation("org.postgresql:postgresql:42.2.1")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.2.12")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.0")
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.19")
 
     // heroku app runner
