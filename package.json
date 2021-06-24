@@ -10,7 +10,7 @@
       "@vaadin/vaadin-icons": "4.3.2",
       "@vaadin/vaadin-split-layout": "4.3.0",
       "@vaadin/vaadin-combo-box": "5.4.7",
-      "@vaadin/vaadin-core-shrinkwrap": "14.6.1",
+      "@vaadin/vaadin-core-shrinkwrap": "14.6.4",
       "@vaadin/vaadin-upload": "4.4.1",
       "@vaadin/vaadin-dialog": "2.5.2",
       "@vaadin/vaadin-select": "2.4.0",
@@ -61,7 +61,7 @@
       "construct-style-sheets-polyfill": "2.4.6",
       "extract-loader": "5.1.0"
     },
-    "hash": "32321ed16c4e50b3b279f052509636ca4cda418bc870d2743a3b09f60f2475f1"
+    "hash": "9f1d4b1a7fafd888e944c4074dab036d5a078c41a0735b8753e6d3b4a803edf7"
   },
   "dependencies": {
     "@polymer/iron-icon": "3.0.1",
@@ -74,7 +74,7 @@
     "@vaadin/vaadin-checkbox": "2.5.0",
     "@vaadin/vaadin-combo-box": "5.4.7",
     "@vaadin/vaadin-context-menu": "4.5.0",
-    "@vaadin/vaadin-core-shrinkwrap": "14.6.1",
+    "@vaadin/vaadin-core-shrinkwrap": "14.6.4",
     "@vaadin/vaadin-custom-field": "1.3.0",
     "@vaadin/vaadin-date-picker": "4.4.1",
     "@vaadin/vaadin-date-time-picker": "1.4.0",

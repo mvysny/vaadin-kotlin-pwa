@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.10.0"
-val vaadin10_version = "14.6.1"
+val vaadin10_version = "14.6.4"
 val slf4j_version = "1.7.30"
 
 plugins {
@@ -70,7 +70,7 @@ dependencies {
 
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.0")
-    testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.19")
+    testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.20")
 
     // heroku app runner
     staging("com.heroku:webapp-runner:9.0.41.0")
