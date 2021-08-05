@@ -7,7 +7,7 @@ val slf4j_version = "1.7.32"
 
 plugins {
     kotlin("jvm") version "1.5.21"
-    id("org.gretty") version "3.0.4"
+    id("org.gretty") version "3.0.6"
     war
     id("com.vaadin") version "0.14.6.0"
     id("com.google.cloud.tools.jib") version "3.0.0"
@@ -17,7 +17,6 @@ defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
-    jcenter() // needed for the Gretty plugin: https://github.com/gretty-gradle-plugin/gretty/issues/192
 }
 
 gretty {
@@ -62,7 +61,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     // db
-    implementation("com.zaxxer:HikariCP:3.4.5")
+    implementation("com.zaxxer:HikariCP:4.0.3")
     implementation("org.flywaydb:flyway-core:7.1.1")
     implementation("com.h2database:h2:1.4.200")
     implementation("mysql:mysql-connector-java:5.1.48")
