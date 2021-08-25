@@ -6,7 +6,7 @@ val vaadin10_version = "14.6.8"
 val slf4j_version = "1.7.32"
 
 plugins {
-    kotlin("jvm") version "1.5.21"
+    kotlin("jvm") version "1.5.30"
     id("org.gretty") version "3.0.6"
     war
     id("com.vaadin") version "0.14.6.0"
@@ -73,6 +73,11 @@ dependencies {
 
     // heroku app runner
     staging("com.heroku:webapp-runner:9.0.41.0")
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 // Heroku
