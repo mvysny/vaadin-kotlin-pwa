@@ -1,6 +1,7 @@
 package com.vaadin.pwademo
 
 import com.github.mvysny.karibudsl.v10.*
+import com.github.mvysny.kaributools.refresh
 import com.github.mvysny.vokdataloader.asc
 import com.github.mvysny.vokdataloader.desc
 import com.github.mvysny.vokdataloader.sortedBy
