@@ -62,17 +62,17 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("org.flywaydb:flyway-core:7.12.0")
+    implementation("org.flywaydb:flyway-core:7.14.1")
     implementation("com.h2database:h2:1.4.200")
     implementation("mysql:mysql-connector-java:5.1.48")
     implementation("org.postgresql:postgresql:42.2.1")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.1")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.2")
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.20")
 
     // heroku app runner
-    staging("com.heroku:webapp-runner:9.0.41.0")
+    staging("com.heroku:webapp-runner:9.0.52.0")
 }
 
 java {
