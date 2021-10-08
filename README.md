@@ -1,6 +1,7 @@
 [![Powered By Vaadin on Kotlin](http://vaadinonkotlin.eu/iconography/vok_badge.svg)](http://vaadinonkotlin.eu)
 [![Join the chat at https://gitter.im/vaadin/vaadin-on-kotlin](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/vaadin-on-kotlin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=vaadin-kotlin-pwa&style=flat&svg=1)](https://vaadin-kotlin-pwa.herokuapp.com/)
+[![Build Status](https://github.com/mvysny/vaadin-kotlin-pwa/actions/workflows/gradle.yml/badge.svg)](https://github.com/mvysny/vaadin-kotlin-pwa/actions/workflows/gradle.yml)
 
 # Vaadin Kotlin PWA Demo
 
