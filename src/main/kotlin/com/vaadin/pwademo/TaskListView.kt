@@ -54,11 +54,11 @@ class TaskListView : KComposite() {
                 appendHeaderRow() // workaround for https://github.com/vaadin/vaadin-grid-flow/issues/912
                 val filterBar: VokFilterBar<Task> = appendHeaderRow().asFilterBar(this)
 
-                addColumnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
+                columnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
                     isExpand = false; setHeader("Done"); width = "130px"
                     filterBar.forField(BooleanComboBox(), this).eq()
                 }
-                addColumnFor(Task::title, createTaskNameDivRenderer()) {
+                columnFor(Task::title, createTaskNameDivRenderer()) {
                     filterBar.forField(TextField(), this).istartsWith()
                 }
                 addColumn(newDeleteButtonRenderer()).apply {
