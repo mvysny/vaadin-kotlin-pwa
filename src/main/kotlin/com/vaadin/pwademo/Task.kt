@@ -64,14 +64,14 @@ private val sampleData = listOf(
     "Soma"
 )
 
-open class Task(override var id: Long? = null,
+class Task(override var id: Long? = null,
                 @field:NotNull
                 @field:Length(min = 2)
-                open var title: String = "",
+                var title: String = "",
                 @field:NotNull
-                open var completed: Boolean = false,
+                var completed: Boolean = false,
                 @field:NotNull
-                open var created: Date = Date()) : KEntity<Long> {
+                var created: Date = Date()) : KEntity<Long> {
     companion object : Dao<Task, Long>(Task::class.java) {
         fun generateSampleData() {
             if (!Task.existsAny()) {
