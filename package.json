@@ -65,7 +65,7 @@
       "@vaadin/vaadin-usage-statistics": "2.1.0",
       "@webcomponents/shadycss": "1.8.0",
       "@webcomponents/webcomponentsjs": "^2.2.10",
-      "construct-style-sheets-polyfill": "2.4.16",
+      "construct-style-sheets-polyfill": "3.0.4",
       "lit-element": "2.5.1",
       "lit-html": "1.4.1"
     },
@@ -89,7 +89,7 @@
       "webpack-dev-server": "3.11.0",
       "webpack-merge": "4.2.2"
     },
-    "hash": "329004285e32b456990f4979df39bf8b01f710ecfc9213cb6755f0e6a00da085"
+    "hash": "a34c67beeacd870137abe511dcdc5d8580152fcb1af7084e1710cbdf54f2a279"
   },
   "dependencies": {
     "@polymer/iron-a11y-announcer": "3.0.2",
@@ -154,7 +154,7 @@
     "@vaadin/vaadin-usage-statistics": "2.1.0",
     "@webcomponents/shadycss": "1.8.0",
     "@webcomponents/webcomponentsjs": "^2.2.10",
-    "construct-style-sheets-polyfill": "2.4.16",
+    "construct-style-sheets-polyfill": "3.0.4",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1"
   },
