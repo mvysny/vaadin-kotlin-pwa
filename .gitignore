@@ -9,3 +9,5 @@ out
 target
 node_modules
 webpack.generated.js
+.npmrc
+frontend/generated

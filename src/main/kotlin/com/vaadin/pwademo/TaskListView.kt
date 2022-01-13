@@ -16,8 +16,8 @@ import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
-import eu.vaadinonkotlin.vaadin10.*
-import eu.vaadinonkotlin.vaadin10.vokdb.setDataLoader
+import eu.vaadinonkotlin.vaadin.*
+import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
 
 /**
  * The main view of the app. It is a vertical layout which lays out the child components vertically. There are only two components:

@@ -1,5 +1,10 @@
 package com.vaadin.pwademo
 
+import com.vaadin.flow.component.dependency.CssImport
+import com.vaadin.flow.component.page.AppShellConfigurator
+import com.vaadin.flow.component.page.BodySize
+import com.vaadin.flow.component.page.Viewport
+import com.vaadin.flow.server.PWA
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import com.zaxxer.hikari.pool.HikariPool
@@ -83,3 +88,9 @@ class Bootstrap : ServletContextListener {
         }
     }
 }
+
+@BodySize(width = "100vw", height = "100vh")
+@CssImport("./styles.css")
+@Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
+@PWA(name = "Vaadin Kotlin PWA Demo", shortName = "VoK PWA Demo", iconPath = "icons/icon-512.png", themeColor = "#227aef", backgroundColor = "#227aef")
+class AppShell: AppShellConfigurator
