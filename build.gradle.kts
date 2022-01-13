@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.12.0"
-val vaadin10_version = "23.0.0.alpha1"
+val vaadin_version = "23.0.0.alpha1"
 val slf4j_version = "1.7.32"
 
 plugins {
@@ -45,13 +45,7 @@ dependencies {
     implementation("org.hibernate.validator:hibernate-validator:6.2.0.Final")
 
     // Vaadin 14
-    implementation("com.vaadin:vaadin-core:${vaadin10_version}") {
-        // Webjars are only needed when running in Vaadin 13 compatibility mode
-        listOf("com.vaadin.webjar", "org.webjars.bowergithub.insites",
-                "org.webjars.bowergithub.polymer", "org.webjars.bowergithub.polymerelements",
-                "org.webjars.bowergithub.vaadin", "org.webjars.bowergithub.webcomponents")
-                .forEach { exclude(group = it) }
-    }
+    implementation("com.vaadin:vaadin-core:${vaadin_version}")
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
 
     // logging

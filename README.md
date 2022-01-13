@@ -50,7 +50,7 @@ You can read more about the [benefits of Vaadin development over Android](https:
 
 # Preparing Environment
 
-The Vaadin 14 build requires node.js and npm. The Vaadin Gradle plugin will install those tools
+The Vaadin build requires node.js and pnpm. The Vaadin Gradle plugin will install those tools
 for you automatically; alternatively you can install it to your OS:
 
 * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
@@ -75,9 +75,9 @@ Gradle will automatically download an embedded servlet container (Jetty) and wil
 
 ## Supported Modes
 
-Runs in Vaadin 14 npm mode, using the [Vaadin Gradle Plugin](https://github.com/vaadin/vaadin-gradle-plugin).
+Runs in Vaadin pnpm mode, using the [Vaadin Gradle Plugin](https://github.com/vaadin/vaadin-gradle-plugin).
 
-Both the [development and production modes](https://vaadin.com/docs/v14/flow/production/tutorial-production-mode-basic.html) are supported.
+Both the [development and production modes](https://vaadin.com/docs/flow/production/tutorial-production-mode-basic.html) are supported.
 To prepare for development mode, just run:
 
 ```bash
@@ -136,7 +136,7 @@ Let's look at all files that this PWA project is composed of, and what are the p
 
 The `sw.js`, all manifests and the offline page is now generated automatically
 by Vaadin, via the [@PWA](https://vaadin.com/api/platform/14.0.10/com/vaadin/flow/server/PWA.html)
-annotation. See [Creating PWA With Flow](https://vaadin.com/docs/v14/flow/pwa/tutorial-pwa-pwa-with-flow.html)
+annotation. See [Creating PWA With Flow](https://vaadin.com/docs/flow/pwa/tutorial-pwa-pwa-with-flow.html)
 for more details.
 
 ## Layouts
@@ -159,7 +159,7 @@ the app will start soon in a Jetty server. Just open your browser and hit [http:
 The main meat of the UI is located in the [TaskListView.kt](src/main/kotlin/com/vaadin/pwademo/TaskListView.kt) - feel free to edit that file
 and experiment for yourself. There are lots of pre-existing Vaadin components; you can check out the
 [Beverage Buddy](https://github.com/mvysny/beverage-buddy-vok/) example app for more
-examples of component usage. You should also read the [full Vaadin 10 (Flow) documentation](https://vaadin.com/docs/v14/flow/Overview.html). 
+examples of component usage. You should also read the [full Vaadin documentation](https://vaadin.com/docs/flow/Overview.html). 
 
 The browser is a very powerful IDE which can help you debug CSS- and layout-related issue. Take your time and read slowly through the following tutorials, to get acquinted with the browser
 developer tools:
