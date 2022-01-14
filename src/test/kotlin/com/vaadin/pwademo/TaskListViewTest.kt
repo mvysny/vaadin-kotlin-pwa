@@ -26,6 +26,8 @@ class TaskListViewTest : DynaTest({
     }
 })
 
+// since there is no servlet environment, Flow won't auto-detect the @Routes. We need to auto-discover all @Routes
+// and populate the RouteRegistry properly.
 private val routes: Routes = Routes().autoDiscoverViews("com.vaadin.pwademo")
 
 /**
@@ -36,8 +38,6 @@ fun DynaNodeGroup.usingApp() {
     beforeGroup { Bootstrap().contextInitialized(null) }
     afterGroup { Bootstrap().contextDestroyed(null) }
 
-    // since there is no servlet environment, Flow won't auto-detect the @Routes. We need to auto-discover all @Routes
-    // and populate the RouteRegistry properly.
     beforeEach { MockVaadin.setup(routes) }
     afterEach { MockVaadin.tearDown() }
 
