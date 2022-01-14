@@ -3,6 +3,7 @@ package com.vaadin.pwademo
 import com.github.mvysny.dynatest.DynaNodeGroup
 import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
+import com.github.mvysny.dynatest.DynaTestDsl
 import com.github.mvysny.dynatest.expectList
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.button.Button
@@ -28,6 +29,7 @@ class TaskListViewTest : DynaTest({
 /**
  * Properly configures the app in the test context, so that the app is properly initialized, and the database is emptied before every test.
  */
+@DynaTestDsl
 fun DynaNodeGroup.usingApp() {
     lateinit var routes: Routes
     beforeGroup {

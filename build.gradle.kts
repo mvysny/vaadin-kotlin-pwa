@@ -46,7 +46,7 @@ dependencies {
 
     // Vaadin 14
     implementation("com.vaadin:vaadin-core:${vaadin_version}")
-    providedCompile("javax.servlet:javax.servlet-api:3.1.0")
+    providedCompile("javax.servlet:javax.servlet-api:4.0.1")
 
     // logging
     // currently we are logging through the SLF4J API to slf4j-simple. See src/main/resources/simplelogger.properties file for the logger configuration
@@ -59,12 +59,12 @@ dependencies {
     implementation("com.zaxxer:HikariCP:5.0.1")
     implementation("org.flywaydb:flyway-core:8.4.1")
     implementation("com.h2database:h2:2.0.206")
-    implementation("mysql:mysql-connector-java:5.1.48")
-    implementation("org.postgresql:postgresql:42.2.1")
+    implementation("mysql:mysql-connector-java:8.0.25")
+    implementation("org.postgresql:postgresql:42.3.1")
 
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.9")
-    testImplementation("com.github.mvysny.dynatest:dynatest:0.22")
+    testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 
     // heroku app runner
     staging("com.heroku:webapp-runner:9.0.52.1")
