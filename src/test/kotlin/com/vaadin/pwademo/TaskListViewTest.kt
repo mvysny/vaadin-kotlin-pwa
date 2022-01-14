@@ -26,16 +26,14 @@ class TaskListViewTest : DynaTest({
     }
 })
 
+private val routes: Routes = Routes().autoDiscoverViews("com.vaadin.pwademo")
+
 /**
  * Properly configures the app in the test context, so that the app is properly initialized, and the database is emptied before every test.
  */
 @DynaTestDsl
 fun DynaNodeGroup.usingApp() {
-    lateinit var routes: Routes
-    beforeGroup {
-        routes = Routes().autoDiscoverViews("com.vaadin.pwademo")
-        Bootstrap().contextInitialized(null)
-    }
+    beforeGroup { Bootstrap().contextInitialized(null) }
     afterGroup { Bootstrap().contextDestroyed(null) }
 
     // since there is no servlet environment, Flow won't auto-detect the @Routes. We need to auto-discover all @Routes
