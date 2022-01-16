@@ -45,7 +45,9 @@ dependencies {
     implementation("org.hibernate.validator:hibernate-validator:6.2.0.Final")
 
     // Vaadin 14
-    implementation("com.vaadin:vaadin-core:${vaadin_version}")
+    implementation("com.vaadin:vaadin-core:${vaadin_version}") {
+        exclude(module = "fusion-endpoint") // exclude fusion: it brings tons of dependencies (including swagger)
+    }
     providedCompile("javax.servlet:javax.servlet-api:4.0.1")
 
     // logging

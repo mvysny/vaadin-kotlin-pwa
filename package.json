@@ -35,9 +35,7 @@
     "@vaadin/field-base": "23.0.0-alpha4",
     "@vaadin/field-highlighter": "23.0.0-alpha4",
     "@vaadin/flow-frontend": "./build/flow-frontend",
-    "@vaadin/form": "0.0.16",
     "@vaadin/form-layout": "23.0.0-alpha4",
-    "@vaadin/fusion-frontend": "0.0.16",
     "@vaadin/grid": "23.0.0-alpha4",
     "@vaadin/grid-pro": "23.0.0-alpha4",
     "@vaadin/horizontal-layout": "23.0.0-alpha4",
@@ -182,9 +180,7 @@
       "@vaadin/email-field": "23.0.0-alpha4",
       "@vaadin/field-base": "23.0.0-alpha4",
       "@vaadin/field-highlighter": "23.0.0-alpha4",
-      "@vaadin/form": "0.0.16",
       "@vaadin/form-layout": "23.0.0-alpha4",
-      "@vaadin/fusion-frontend": "0.0.16",
       "@vaadin/grid": "23.0.0-alpha4",
       "@vaadin/grid-pro": "23.0.0-alpha4",
       "@vaadin/horizontal-layout": "23.0.0-alpha4",
@@ -291,7 +287,7 @@
       "workbox-precaching": "6.4.2",
       "workbox-webpack-plugin": "6.4.2"
     },
-    "hash": "b5cdd995f956d488ccd153379f846955b3e25f9ed3d5295b263b2ce6ccc98552"
+    "hash": "e59d16c6c6db19e2490e7590bd2bb7cf90152d152972f530cc5fef169bfc3ab7"
   },
   "overrides": {
     "@vaadin/accordion": "$@vaadin/accordion",
