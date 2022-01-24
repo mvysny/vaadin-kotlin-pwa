@@ -60,7 +60,7 @@ dependencies {
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
     implementation("org.flywaydb:flyway-core:8.4.1")
-    implementation("com.h2database:h2:2.0.206")
+    implementation("com.h2database:h2:2.1.210")
     implementation("mysql:mysql-connector-java:8.0.25")
     implementation("org.postgresql:postgresql:42.3.1")
 
