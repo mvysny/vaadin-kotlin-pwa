@@ -2,14 +2,14 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.12.1"
-val vaadin_version = "23.0.0.beta2"
+val vaadin_version = "23.0.1"
 val slf4j_version = "1.7.32"
 
 plugins {
     kotlin("jvm") version "1.6.10"
     id("org.gretty") version "3.0.6"
     war
-    id("com.vaadin") version "23.0.0.beta2"
+    id("com.vaadin") version "23.0.1"
     id("com.google.cloud.tools.jib") version "3.0.0"
 }
 
@@ -65,7 +65,7 @@ dependencies {
     implementation("org.postgresql:postgresql:42.3.1")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.10")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.11")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 
     // heroku app runner
