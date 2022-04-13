@@ -2,14 +2,14 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.12.1"
-val vaadin_version = "23.0.3"
+val vaadin_version = "23.0.5"
 val slf4j_version = "1.7.32"
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.20"
     id("org.gretty") version "3.0.6"
     war
-    id("com.vaadin") version "23.0.3"
+    id("com.vaadin") version "23.0.5"
     id("com.google.cloud.tools.jib") version "3.0.0"
 }
 
@@ -17,7 +17,6 @@ defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
-    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
 }
 
 gretty {
@@ -65,7 +64,7 @@ dependencies {
     implementation("org.postgresql:postgresql:42.3.1")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.11")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.12")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 
     // heroku app runner
