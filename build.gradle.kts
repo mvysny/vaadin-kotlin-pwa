@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.12.1"
 val vaadin_version = "23.0.5"
-val slf4j_version = "1.7.32"
+val slf4j_version = "1.7.36"
 
 plugins {
     kotlin("jvm") version "1.6.20"
@@ -58,10 +58,10 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
-    implementation("org.flywaydb:flyway-core:8.4.1")
+    implementation("org.flywaydb:flyway-core:8.5.7")
     implementation("com.h2database:h2:2.1.210")
-    implementation("mysql:mysql-connector-java:8.0.25")
-    implementation("org.postgresql:postgresql:42.3.1")
+    implementation("mysql:mysql-connector-java:8.0.28")
+    implementation("org.postgresql:postgresql:42.3.3")
 
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.12")
