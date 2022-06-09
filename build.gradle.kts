@@ -2,14 +2,14 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.12.1"
-val vaadin_version = "23.0.5"
+val vaadin_version = "23.1.0"
 val slf4j_version = "1.7.36"
 
 plugins {
-    kotlin("jvm") version "1.6.20"
+    kotlin("jvm") version "1.7.0"
     id("org.gretty") version "3.0.6"
     war
-    id("com.vaadin") version "23.0.5"
+    id("com.vaadin") version "23.1.0"
     id("com.google.cloud.tools.jib") version "3.0.0"
 }
 
@@ -43,10 +43,8 @@ dependencies {
     implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
     implementation("org.hibernate.validator:hibernate-validator:6.2.0.Final")
 
-    // Vaadin 14
-    implementation("com.vaadin:vaadin-core:${vaadin_version}") {
-        exclude(module = "fusion-endpoint") // exclude fusion: it brings tons of dependencies (including swagger)
-    }
+    // Vaadin
+    implementation("com.vaadin:vaadin-core:${vaadin_version}")
     providedCompile("javax.servlet:javax.servlet-api:4.0.1")
 
     // logging
@@ -58,13 +56,13 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
-    implementation("org.flywaydb:flyway-core:8.5.7")
-    implementation("com.h2database:h2:2.1.210")
+    implementation("org.flywaydb:flyway-core:8.5.12")
+    implementation("com.h2database:h2:2.1.212")
     implementation("mysql:mysql-connector-java:8.0.28")
     implementation("org.postgresql:postgresql:42.3.3")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.12")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.13")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 
     // heroku app runner
