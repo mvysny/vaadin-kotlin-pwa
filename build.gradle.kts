@@ -62,7 +62,7 @@ dependencies {
     implementation("org.postgresql:postgresql:42.3.3")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.13")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.14")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 
     // heroku app runner
