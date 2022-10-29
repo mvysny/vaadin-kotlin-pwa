@@ -7,8 +7,7 @@ val slf4j_version = "2.0.0"
 
 plugins {
     kotlin("jvm") version "1.7.20"
-    id("org.gretty") version "3.0.6"
-    war
+    id("application")
     id("com.vaadin") version "23.2.6"
 }
 
@@ -16,11 +15,6 @@ defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
-}
-
-gretty {
-    contextPath = "/"
-    servletContainer = "jetty9.4"
 }
 
 tasks.withType<Test> {
@@ -35,16 +29,12 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
 }
 
-val staging by configurations.creating
-
 dependencies {
-    // Vaadin-on-Kotlin
+    // Vaadin
     implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
     implementation("org.hibernate.validator:hibernate-validator:6.2.0.Final")
-
-    // Vaadin
     implementation("com.vaadin:vaadin-core:${vaadin_version}")
-    providedCompile("javax.servlet:javax.servlet-api:4.0.1")
+    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:10.1")
 
     // logging
     // currently we are logging through the SLF4J API to slf4j-simple. See src/main/resources/simplelogger.properties file for the logger configuration
@@ -63,9 +53,6 @@ dependencies {
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v23:1.3.21")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
-
-    // heroku app runner
-    staging("com.heroku:webapp-runner:9.0.52.1")
 }
 
 java {
@@ -73,21 +60,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
-// Heroku
-tasks {
-    val copyToLib by registering(Copy::class) {
-        into("$buildDir/server")
-        from(staging) {
-            include("webapp-runner*")
-        }
-    }
-    val stage by registering {
-        dependsOn("build", copyToLib)
-    }
-}
-
-vaadin {
-    if (gradle.startParameter.taskNames.contains("stage")) {
-        productionMode = true
-    }
+application {
+    mainClass.set("com.vaadin.pwademo.MainKt")
 }
