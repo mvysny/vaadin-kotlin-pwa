@@ -2,15 +2,14 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.13.0"
-val vaadin_version = "23.2.1"
-val slf4j_version = "1.7.36"
+val vaadin_version = "23.2.6"
+val slf4j_version = "2.0.0"
 
 plugins {
-    kotlin("jvm") version "1.7.10"
+    kotlin("jvm") version "1.7.20"
     id("org.gretty") version "3.0.6"
     war
-    id("com.vaadin") version "23.2.1"
-    id("com.google.cloud.tools.jib") version "3.0.0"
+    id("com.vaadin") version "23.2.6"
 }
 
 defaultTasks("clean", "build")
@@ -62,7 +61,7 @@ dependencies {
     implementation("org.postgresql:postgresql:42.3.3")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v23:1.3.20")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v23:1.3.21")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 
     // heroku app runner
@@ -90,16 +89,5 @@ tasks {
 vaadin {
     if (gradle.startParameter.taskNames.contains("stage")) {
         productionMode = true
-    }
-}
-
-// Docker
-jib {
-    from {
-        image = "jetty:9.4.40-jre11"
-    }
-    container {
-        appRoot = "/var/lib/jetty/webapps/ROOT"
-        user = "root" // otherwise we'll get https://github.com/appropriate/docker-jetty/issues/80
     }
 }
