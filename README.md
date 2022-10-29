@@ -1,6 +1,5 @@
 [![Powered By Vaadin on Kotlin](http://vaadinonkotlin.eu/iconography/vok_badge.svg)](http://vaadinonkotlin.eu)
 [![Join the chat at https://gitter.im/vaadin/vaadin-on-kotlin](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/vaadin-on-kotlin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Heroku](https://heroku-badge.herokuapp.com/?app=vaadin-kotlin-pwa&style=flat&svg=1)](https://vaadin-kotlin-pwa.herokuapp.com/)
 [![Build Status](https://github.com/mvysny/vaadin-kotlin-pwa/actions/workflows/gradle.yml/badge.svg)](https://github.com/mvysny/vaadin-kotlin-pwa/actions/workflows/gradle.yml)
 
 # Vaadin Kotlin PWA Demo
@@ -14,12 +13,6 @@ The app is a very simple task list app, designed to showcase the following featu
 * accessing the database
 * validation in forms
 * a web page masquerading as a native app
-
-### Live Demo
-
-The app [runs live on Heroku](https://vaadin-kotlin-pwa.herokuapp.com/). Try it out with your mobile phone:
-since the app is a PWA, the browser on your phone will allow you to add the link to the app to your home screen.
-When you launch the app from the home screen launcher, a full-screen browser is launched which resembles an actual Android app.
 
 ## What's a PWA
 
