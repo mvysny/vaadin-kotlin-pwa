@@ -19,8 +19,8 @@ class TaskListViewTest : DynaTest({
 
     test("add a task") {
         UI.getCurrent().navigate("")
-        _get<TextField> { caption = "Title:" }.value = "New Task"
-        _get<Button> { caption = "Add" }._click()
+        _get<TextField> { label = "Title:" }.value = "New Task"
+        _get<Button> { text = "Add" }._click()
         expectList("New Task") { Task.findAll().map { it.title } }
         expect(1) { _get<Grid<*>>().dataProvider._size() }
     }
