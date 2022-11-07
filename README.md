@@ -14,6 +14,8 @@ The app is a very simple task list app, designed to showcase the following featu
 * validation in forms
 * a web page masquerading as a native app
 
+See the [online demo](https://v-herd.eu/vaadin-kotlin-pwa/).
+
 ## What's a PWA
 
 Progressive Web App is a web page that the mobile phone browser can download and it can then work offline, to a certain degree.
