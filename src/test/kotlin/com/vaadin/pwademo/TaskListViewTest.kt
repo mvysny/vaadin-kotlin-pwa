@@ -35,7 +35,7 @@ private val routes: Routes = Routes().autoDiscoverViews("com.vaadin.pwademo")
  */
 @DynaTestDsl
 fun DynaNodeGroup.usingApp() {
-    beforeGroup { Bootstrap().contextInitialized(null) }
+    beforeGroup { Bootstrap.forceInmemoryDb = true; Bootstrap().contextInitialized(null) }
     afterGroup { Bootstrap().contextDestroyed(null) }
 
     beforeEach { MockVaadin.setup(routes) }

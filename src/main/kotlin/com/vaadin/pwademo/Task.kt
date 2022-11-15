@@ -3,6 +3,7 @@ package com.vaadin.pwademo
 import com.github.vokorm.*
 import com.gitlab.mvysny.jdbiorm.Dao
 import org.hibernate.validator.constraints.Length
+import org.slf4j.LoggerFactory
 import java.util.*
 import javax.validation.constraints.NotNull
 import kotlin.random.Random
@@ -74,11 +75,21 @@ class Task(override var id: Long? = null,
                 @field:NotNull
                 var created: Date = Date()) : KEntity<Long> {
     companion object : Dao<Task, Long>(Task::class.java) {
+        @JvmStatic
+        private val log = LoggerFactory.getLogger(Task::class.java)
+
         fun generateSampleData() {
             if (!Task.existsAny()) {
+                log.info("Task table is empty, populating with test data")
                 db {
                     sampleData.forEach { Task(title = it, completed = Random.nextBoolean()).save() }
                 }
+            }
+        }
+        fun regenerateSampleData() {
+            db {
+                Task.deleteAll()
+                generateSampleData()
             }
         }
     }

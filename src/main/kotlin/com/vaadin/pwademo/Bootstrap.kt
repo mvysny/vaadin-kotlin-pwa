@@ -11,7 +11,9 @@ import eu.vaadinonkotlin.VaadinOnKotlin
 import eu.vaadinonkotlin.vokdb.dataSource
 import org.flywaydb.core.Flyway
 import org.h2.Driver
+import org.jetbrains.annotations.VisibleForTesting
 import org.slf4j.LoggerFactory
+import java.io.File
 import javax.servlet.ServletContextEvent
 import javax.servlet.ServletContextListener
 import javax.servlet.annotation.WebListener
@@ -31,7 +33,13 @@ class Bootstrap : ServletContextListener {
         // 2. make sure to include the database driver into the classpath, by adding a dependency on the driver into the build.gradle file.
         val cfg = HikariConfig().apply {
             driverClassName = Driver::class.java.name
-            jdbcUrl = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
+            val db = File("/var/lib/vaadin-kotlin-pwa/db")
+            jdbcUrl = if (db.exists() && !forceInmemoryDb) {
+                "jdbc:h2:${db.absolutePath}/h2"
+            } else {
+                "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
+            }
+            log.info("Using H2 database $jdbcUrl")
             username = "sa"
             password = ""
         }
@@ -49,7 +57,7 @@ class Bootstrap : ServletContextListener {
         flyway.migrate()
         log.info("Initialization complete")
 
-        // pre-populates the database with a demo data
+        // pre-populates the database with a demo data if the database is empty
         Task.generateSampleData()
     } catch (t: Throwable) {
         log.error("Bootstrap failed!", t)
@@ -66,6 +74,9 @@ class Bootstrap : ServletContextListener {
     companion object {
         @JvmStatic
         private val log = LoggerFactory.getLogger(Bootstrap::class.java)
+
+        @VisibleForTesting
+        var forceInmemoryDb = false
     }
 }
 
