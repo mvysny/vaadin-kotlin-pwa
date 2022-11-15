@@ -7,7 +7,6 @@ import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.server.PWA
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import com.zaxxer.hikari.pool.HikariPool
 import eu.vaadinonkotlin.VaadinOnKotlin
 import eu.vaadinonkotlin.vokdb.dataSource
 import org.flywaydb.core.Flyway
@@ -31,13 +30,12 @@ class Bootstrap : ServletContextListener {
         // 1. fill in the proper JDBC URL here
         // 2. make sure to include the database driver into the classpath, by adding a dependency on the driver into the build.gradle file.
         val cfg = HikariConfig().apply {
-            driverClassName = System.getenv("VOK_PWA_JDBC_DRIVER") ?: Driver::class.java.name
-            jdbcUrl = System.getenv("VOK_PWA_JDBC_URL") ?: "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
-            username = System.getenv("VOK_PWA_JDBC_USERNAME") ?: "sa"
-            password = System.getenv("VOK_PWA_JDBC_PASSWORD") ?: ""
+            driverClassName = Driver::class.java.name
+            jdbcUrl = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
+            username = "sa"
+            password = ""
         }
-        val isPostgreSQL = cfg.jdbcUrl.startsWith("jdbc:postgresql:")
-        VaadinOnKotlin.dataSource = createConnectionPool(cfg)
+        VaadinOnKotlin.dataSource = HikariDataSource(cfg)
 
         // Initializes the VoK framework
         log.info("Initializing VaadinOnKotlin")
@@ -45,12 +43,9 @@ class Bootstrap : ServletContextListener {
 
         // Makes sure the database is up-to-date
         log.info("Running DB migrations")
-        val flyway: Flyway = Flyway.configure().apply {
-            dataSource(VaadinOnKotlin.dataSource)
-            if (isPostgreSQL) {
-                locations("db.migration_postgresql")
-            }
-        } .load()
+        val flyway: Flyway = Flyway.configure()
+            .dataSource(VaadinOnKotlin.dataSource)
+            .load()
         flyway.migrate()
         log.info("Initialization complete")
 
@@ -71,21 +66,6 @@ class Bootstrap : ServletContextListener {
     companion object {
         @JvmStatic
         private val log = LoggerFactory.getLogger(Bootstrap::class.java)
-
-        /**
-         * Repeatedly attempts to create a HikariCP
-         */
-        fun createConnectionPool(cfg: HikariConfig): HikariDataSource {
-            while (true) {
-                try {
-                    return HikariDataSource(cfg)
-                } catch (ex: HikariPool.PoolInitializationException) {
-                    log.info("HikariPool failed to initialize. Backing off until the database becomes ready: $ex")
-                    log.debug("HikariPool failed to initialize", ex)
-                    Thread.sleep(5000L)
-                }
-            }
-        }
     }
 }
 
