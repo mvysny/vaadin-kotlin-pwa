@@ -5,6 +5,7 @@ import com.gitlab.mvysny.jdbiorm.Dao
 import org.hibernate.validator.constraints.Length
 import java.util.*
 import javax.validation.constraints.NotNull
+import kotlin.random.Random
 
 private val sampleData = listOf(
     "Evian",
@@ -76,7 +77,7 @@ class Task(override var id: Long? = null,
         fun generateSampleData() {
             if (!Task.existsAny()) {
                 db {
-                    sampleData.forEach { Task(title = it, completed = Random().nextBoolean()).save() }
+                    sampleData.forEach { Task(title = it, completed = Random.nextBoolean()).save() }
                 }
             }
         }
