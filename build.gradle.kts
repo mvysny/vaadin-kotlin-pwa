@@ -47,8 +47,6 @@ dependencies {
     implementation("com.zaxxer:HikariCP:5.0.1")
     implementation("org.flywaydb:flyway-core:9.5.1")
     implementation("com.h2database:h2:2.1.214")
-    implementation("mysql:mysql-connector-java:8.0.28")
-    implementation("org.postgresql:postgresql:42.3.3")
 
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v23:1.3.21")
