@@ -20,7 +20,7 @@ repositories {
 tasks.withType<Test> {
     useJUnitPlatform()
     testLogging {
-        // to see the exceptions of failed tests in Travis-CI console.
+        // when tests fail, we want to see the exceptions on stdout
         exceptionFormat = TestExceptionFormat.FULL
     }
 }
