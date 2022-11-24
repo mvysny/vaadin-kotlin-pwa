@@ -85,7 +85,7 @@ developer tools:
 ### Testing
 
 It is very easy to test Vaadin-based apps - all you need to look up the components by selectors, for example a Button with the caption
-of "Click Me". The [TaskListTest.kt](src/test/kotlin/com/vaadin/pwademo/TaskListTest.kt) sample test file shows a simple test which tests the
+of "Click Me". The [TaskListViewTest.kt](src/test/kotlin/com/vaadin/pwademo/TaskListViewTest.kt) sample test file shows a simple test which tests the
 main screen. Read the [Browserless Testing Project](https://github.com/mvysny/karibu-testing) documentation regarding the background on this testing approach.
 
 ### Database
