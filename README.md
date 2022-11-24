@@ -91,14 +91,14 @@ main screen. Read the [Browserless Testing Project](https://github.com/mvysny/ka
 ### Database
 
 Without the database, we could store the task list into session only, which would then be gone when the server rebooted.
-We will use the [Vaadin-on-Kotlin](http://vaadinonkotlin.eu/)'s Sql2o database support. To make things easy we'll
+We will use the [Vaadin-on-Kotlin](http://vaadinonkotlin.eu/)'s SQL database support. To make things easy we'll
 use in-memory H2 database which will be gone when the server is rebooted - *touche* :-D
 
 We will use [Flyway](https://flywaydb.org/) for database migration. Check out [Bootstrap.kt](src/main/kotlin/com/vaadin/pwademo/Bootstrap.kt)
 on how the [migration scripts](src/main/resources/db/migration) are ran when the app is initialized.
 
 The [Task](src/main/kotlin/com/vaadin/pwademo/Task.kt) entity will be mapped to the database; inheriting from Entity and Dao
-will make it inherit bunch of useful methods such as `findAll()` and `save()`. It will also gain means of
+will make it inherit a bunch of useful methods such as `findAll()` and `save()`. It will also gain means of
 providing all of its instances via a `DataProvider`. See the [TaskListView.kt](src/main/kotlin/com/vaadin/pwademo/TaskListView.kt)
 Grid configuration for details.
 
