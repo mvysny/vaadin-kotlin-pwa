@@ -57,12 +57,12 @@ for more details.
 
 ## Layouts
 
-Vaadin 10 of course uses different algorithms than Android to perform the layouting. Luckily,
-Vaadin 10 (or, rather CSS) knows a layout quite similar to Android's `LinearLayout` - the flexbox.
+Vaadin of course uses different algorithms than Android to perform the layouting. Luckily,
+Vaadin (or, rather CSS) knows a layout quite similar to Android's `LinearLayout` - the flexbox.
 Please read the
 [Vaadin 10 server-side layouting for Vaadin 8 and Android developers](https://mvysny.github.io/Vaadin-10-server-side-layouting-for-Vaadin-8-and-Android-developers/)
 article on how to use `VerticalLayout` and `HorizontalLayout` which use flexbox under the hood, but
-sports an API which may be familar to Android developers.
+sports an API which may be familiar to Android developers.
 
 ## Develop with pleasure
 
