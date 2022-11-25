@@ -107,8 +107,7 @@ and how the lookup and save works.
 
 ## Running in cloud
 
-This app is nothing more but a plain war project. It can be run in any servlet container; you can run it inside Tomcat's docker image etc.
-See [Running your app in cloud](https://mvysny.github.io/Launch-your-Vaadin-on-Kotlin-app-quickly-in-cloud/) for more details.
+This app is nothing more but a plain zip project with a run script. It can simply be run from a command-line (we package built-in Jetty).
 
 ### Docker
 
@@ -124,8 +123,7 @@ To run the image, just run
 $ docker run --rm -ti -p8080:8080 test/vaadin-kotlin-pwa
 ```
 
-Done - your app now runs on [localhost:8080](http://localhost:8080). See
-[Running WAR Apps in Docker JIB](https://mvysny.github.io/running-war-apps-in-docker-jib/) for more details.
+Done - your app now runs on [localhost:8080](http://localhost:8080).
 
 ### Google Cloud
 
