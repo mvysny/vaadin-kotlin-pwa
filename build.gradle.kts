@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.14.1"
 val vaadin_version = "23.2.8"
-val slf4j_version = "2.0.0"
+val slf4j_version = "2.0.4"
 
 plugins {
     kotlin("jvm") version "1.7.21"
@@ -39,13 +39,12 @@ dependencies {
     // logging
     // currently we are logging through the SLF4J API to slf4j-simple. See src/main/resources/simplelogger.properties file for the logger configuration
     implementation("org.slf4j:slf4j-simple:$slf4j_version")
-    implementation("org.slf4j:slf4j-api:$slf4j_version")
 
     implementation(kotlin("stdlib-jdk8"))
 
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
-    implementation("org.flywaydb:flyway-core:9.8.1")
+    implementation("org.flywaydb:flyway-core:9.8.2")
     implementation("com.h2database:h2:2.1.214")
 
     // test support
