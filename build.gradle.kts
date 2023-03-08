@@ -41,6 +41,9 @@ dependencies {
     }
     implementation("com.github.mvysny.vaadin-boot:vaadin-boot:11.0")
 
+    // validator. We need to explicitly declare it since we're using annotations from it
+    implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
+
     // logging
     // currently we are logging through the SLF4J API to slf4j-simple. See src/main/resources/simplelogger.properties file for the logger configuration
     implementation("org.slf4j:slf4j-simple:$slf4j_version")
