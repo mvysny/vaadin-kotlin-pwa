@@ -26,13 +26,12 @@ tasks.withType<Test> {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = "17"
 }
 
 dependencies {
     // Vaadin
     implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
-    implementation("org.hibernate.validator:hibernate-validator:6.2.0.Final")
     implementation("com.vaadin:vaadin-core:${vaadin_version}")
     implementation("com.github.mvysny.vaadin-boot:vaadin-boot:10.3")
 
@@ -53,8 +52,8 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 application {

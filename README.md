@@ -7,6 +7,7 @@
 A very simple [Vaadin-on-Kotlin](http://vaadinonkotlin.eu)-based PWA demo. Tailored towards Android developers who want to
 use familiar strongly-typed language and don't feel at home with all that JavaScript browser stuff.
 The development model of this app focuses on writing your logic in server-side Kotlin code; no JavaScript development is required.
+Requires Java 17+.
 
 The app is a very simple task list app, designed to showcase the following features:
 
