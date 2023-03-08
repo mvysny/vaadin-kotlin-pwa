@@ -5,7 +5,7 @@ import com.gitlab.mvysny.jdbiorm.Dao
 import org.hibernate.validator.constraints.Length
 import org.slf4j.LoggerFactory
 import java.util.*
-import javax.validation.constraints.NotNull
+import jakarta.validation.constraints.NotNull
 import kotlin.random.Random
 
 private val sampleData = listOf(
