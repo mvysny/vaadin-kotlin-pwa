@@ -52,7 +52,7 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
-    implementation("org.flywaydb:flyway-core:9.8.2")
+    implementation("org.flywaydb:flyway-core:9.15.2")
     implementation("com.h2database:h2:2.1.214")
 
     // test support
