@@ -1,7 +1,6 @@
 package com.vaadin.pwademo.utils
 
-import com.github.mvysny.karibudsl.v10.VaadinDsl
-import com.github.mvysny.karibudsl.v10.init
+import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.ClickEvent
 import com.vaadin.flow.component.Component
 import com.vaadin.flow.component.HasComponents
@@ -33,21 +32,21 @@ class NavMenuBar : Tabs(), AfterNavigationObserver {
     }
 
     override fun afterNavigation(event: AfterNavigationEvent) {
-        val currentRoute: Class<out HasElement?> = event.activeChain[0].javaClass
+        val currentRoute: Class<out HasElement> = event.activeChain[0].javaClass
         selectedTab = tabs[currentRoute]
     }
 
-    @JvmOverloads
     fun addRoute(
         icon: VaadinIcon,
         routeClass: KClass<out Component>,
         title: String = getRouteTitle(routeClass)
     ) {
-        val routerLink = RouterLink(routeClass.java)
-        addNavIcon(routerLink, icon)
-        routerLink.add(Span(title))
-        val tab = Tab(routerLink)
-        add(tab)
+        val tab = tab {
+            routerLink(viewType = routeClass) {
+                navIcon(icon)
+                span(title)
+            }
+        }
         tabs[routeClass.java] = tab
     }
 
@@ -56,20 +55,13 @@ class NavMenuBar : Tabs(), AfterNavigationObserver {
         title: String,
         clickListener: () -> Unit
     ) {
-        val div = Div()
-        addNavIcon(div, icon)
-        div.add(Span(title))
-        div.addClickListener { clickListener() }
-        add(Tab(div))
-    }
-
-    private fun addNavIcon(parent: HasComponents, icon: VaadinIcon) {
-        val i = icon.create()
-        parent.add(i)
-        i.style.set("box-sizing", "border-box")
-            .set("margin-inline-end", "var(--lumo-space-m)")
-            .set("margin-inline-start", "var(--lumo-space-xs)")["padding"] =
-            "var(--lumo-space-xs)"
+        tab {
+            div {
+                navIcon(icon)
+                span(title)
+                onLeftClick { clickListener() }
+            }
+        }
     }
 }
 
@@ -80,3 +72,12 @@ private fun getRouteTitle(routeClass: KClass<*>): String {
 
 fun (@VaadinDsl HasComponents).navMenuBar(block: (@VaadinDsl NavMenuBar).() -> Unit = {}) = init(
     NavMenuBar(), block)
+
+private fun (@VaadinDsl HasComponents).navIcon(icon: VaadinIcon) {
+    icon(icon) {
+        style["box-sizing"] = "border-box"
+        style["margin-inline-end"] = "var(--lumo-space-m)"
+        style["margin-inline-start"] = "var(--lumo-space-xs)"
+        style["padding"] = "var(--lumo-space-xs)"
+    }
+}
