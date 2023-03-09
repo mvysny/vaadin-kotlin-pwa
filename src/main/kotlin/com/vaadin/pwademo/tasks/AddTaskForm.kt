@@ -1,4 +1,4 @@
-package com.vaadin.pwademo
+package com.vaadin.pwademo.tasks
 
 import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.HasComponents
@@ -47,4 +47,5 @@ class AddTaskForm : KComposite() {
 /**
  * A DSL function which allows your component to be placed in the DSL component tree.
  */
-fun (@VaadinDsl HasComponents).addTaskForm(block: (@VaadinDsl AddTaskForm).() -> Unit = {}) = init(AddTaskForm(), block)
+fun (@VaadinDsl HasComponents).addTaskForm(block: (@VaadinDsl AddTaskForm).() -> Unit = {}) = init(
+    AddTaskForm(), block)

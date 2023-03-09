@@ -4,6 +4,8 @@ import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.textfield.TextField
+import com.vaadin.pwademo.tasks.AddTaskForm
+import com.vaadin.pwademo.tasks.Task
 import kotlin.test.expect
 import kotlin.test.fail
 

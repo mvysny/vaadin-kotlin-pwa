@@ -5,6 +5,7 @@ import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.server.PWA
 import com.vaadin.flow.theme.Theme
+import com.vaadin.pwademo.tasks.Task
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import eu.vaadinonkotlin.VaadinOnKotlin

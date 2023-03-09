@@ -1,4 +1,4 @@
-package com.vaadin.pwademo
+package com.vaadin.pwademo.tasks
 
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.refresh
@@ -16,7 +16,11 @@ import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.Route
-import eu.vaadinonkotlin.vaadin.*
+import com.vaadin.pwademo.MainLayout
+import eu.vaadinonkotlin.vaadin.BooleanComboBox
+import eu.vaadinonkotlin.vaadin.VokFilterBar
+import eu.vaadinonkotlin.vaadin.asFilterBar
+import eu.vaadinonkotlin.vaadin.istartsWith
 import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
 
 /**
@@ -68,33 +72,36 @@ class TaskListView : KComposite() {
         }
     }
 
-    private fun createTaskCompletedCheckboxRenderer(): ComponentRenderer<Checkbox, Task> = ComponentRenderer { task ->
-        Checkbox(task.completed).apply {
-            // when the check box is changed, update the task and reload the grid
-            addValueChangeListener {
-                task.completed = it.value
-                task.save()
-                grid.dataProvider.refreshAll()
+    private fun createTaskCompletedCheckboxRenderer(): ComponentRenderer<Checkbox, Task> =
+        ComponentRenderer { task ->
+            Checkbox(task.completed).apply {
+                // when the check box is changed, update the task and reload the grid
+                addValueChangeListener {
+                    task.completed = it.value
+                    task.save()
+                    grid.dataProvider.refreshAll()
+                }
             }
         }
-    }
 
-    private fun createTaskNameDivRenderer(): ComponentRenderer<Div, Task> = ComponentRenderer { task ->
-        Div().apply {
-            text = task.title
-            if (task.completed) {
-                classNames.add("crossedout")
+    private fun createTaskNameDivRenderer(): ComponentRenderer<Div, Task> =
+        ComponentRenderer { task ->
+            Div().apply {
+                text = task.title
+                if (task.completed) {
+                    classNames.add("crossedout")
+                }
             }
         }
-    }
 
-    private fun newDeleteButtonRenderer(): ComponentRenderer<Button, Task> = ComponentRenderer { task ->
-        Button(Icon(VaadinIcon.TRASH)).apply {
-            addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE)  // this will remove the button border
-            onLeftClick {
-                task.delete()
-                grid.dataProvider.refreshAll()
+    private fun newDeleteButtonRenderer(): ComponentRenderer<Button, Task> =
+        ComponentRenderer { task ->
+            Button(Icon(VaadinIcon.TRASH)).apply {
+                addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE)  // this will remove the button border
+                onLeftClick {
+                    task.delete()
+                    grid.dataProvider.refreshAll()
+                }
             }
         }
-    }
 }

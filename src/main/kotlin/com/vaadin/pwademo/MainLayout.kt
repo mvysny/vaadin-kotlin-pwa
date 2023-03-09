@@ -7,6 +7,7 @@ import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.router.RouterLayout
+import com.vaadin.pwademo.tasks.TaskListView
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app. See [AppHeaderLayout]

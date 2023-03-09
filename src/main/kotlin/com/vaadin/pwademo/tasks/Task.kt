@@ -1,12 +1,48 @@
-package com.vaadin.pwademo
+package com.vaadin.pwademo.tasks
 
-import com.github.vokorm.*
+import com.github.vokorm.KEntity
+import com.github.vokorm.db
 import com.gitlab.mvysny.jdbiorm.Dao
+import jakarta.validation.constraints.NotNull
 import org.hibernate.validator.constraints.Length
 import org.slf4j.LoggerFactory
 import java.util.*
-import jakarta.validation.constraints.NotNull
 import kotlin.random.Random
+
+class Task(override var id: Long? = null,
+                @field:NotNull
+                @field:Length(min = 2)
+                var title: String = "",
+                @field:NotNull
+                var completed: Boolean = false,
+                @field:NotNull
+                var created: Date = Date()
+) : KEntity<Long> {
+    companion object : Dao<Task, Long>(Task::class.java) {
+        @JvmStatic
+        private val log = LoggerFactory.getLogger(Task::class.java)
+
+        fun generateSampleData() {
+            if (!Task.existsAny()) {
+                log.info("Task table is empty, populating with test data")
+                db {
+                    sampleData.forEach {
+                        Task(
+                            title = it,
+                            completed = Random.nextBoolean()
+                        ).save()
+                    }
+                }
+            }
+        }
+        fun regenerateSampleData() {
+            db {
+                deleteAll()
+                generateSampleData()
+            }
+        }
+    }
+}
 
 private val sampleData = listOf(
     "Evian",
@@ -66,31 +102,3 @@ private val sampleData = listOf(
     "Soma"
 )
 
-class Task(override var id: Long? = null,
-                @field:NotNull
-                @field:Length(min = 2)
-                var title: String = "",
-                @field:NotNull
-                var completed: Boolean = false,
-                @field:NotNull
-                var created: Date = Date()) : KEntity<Long> {
-    companion object : Dao<Task, Long>(Task::class.java) {
-        @JvmStatic
-        private val log = LoggerFactory.getLogger(Task::class.java)
-
-        fun generateSampleData() {
-            if (!Task.existsAny()) {
-                log.info("Task table is empty, populating with test data")
-                db {
-                    sampleData.forEach { Task(title = it, completed = Random.nextBoolean()).save() }
-                }
-            }
-        }
-        fun regenerateSampleData() {
-            db {
-                Task.deleteAll()
-                generateSampleData()
-            }
-        }
-    }
-}

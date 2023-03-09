@@ -9,6 +9,7 @@ import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.textfield.TextField
+import com.vaadin.pwademo.tasks.Task
 import kotlin.test.expect
 
 /**
