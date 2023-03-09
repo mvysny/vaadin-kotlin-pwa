@@ -15,6 +15,7 @@ import com.vaadin.flow.component.icon.Icon
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.renderer.ComponentRenderer
+import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.pwademo.MainLayout
 import eu.vaadinonkotlin.vaadin.BooleanComboBox
@@ -36,6 +37,7 @@ import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
  * create an app-wide layout which hosts views.
  */
 @Route("", layout = MainLayout::class)
+@PageTitle("Task List")
 class TaskListView : KComposite() {
     private lateinit var form: AddTaskForm
     private lateinit var grid: Grid<Task>
@@ -43,10 +45,12 @@ class TaskListView : KComposite() {
         verticalLayout {
             setSizeFull(); isPadding = false
 
-            form = addTaskForm {
-                onAddTask = { task ->
-                    task.save()
-                    grid.refresh()
+            verticalLayout { // add a bit of padding
+                form = addTaskForm {
+                    onAddTask = { task ->
+                        task.save()
+                        grid.refresh()
+                    }
                 }
             }
 

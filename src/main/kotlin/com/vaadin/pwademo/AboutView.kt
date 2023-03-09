@@ -2,6 +2,7 @@ package com.vaadin.pwademo
 
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.VaadinVersion
+import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.pwademo.tasks.Task
 
@@ -9,6 +10,7 @@ import com.vaadin.pwademo.tasks.Task
  * A simple "About" view.
  */
 @Route("about", layout = MainLayout::class)
+@PageTitle("About")
 class AboutView : KComposite() {
     private val root = ui {
         verticalLayout {

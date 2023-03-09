@@ -1,5 +1,7 @@
 package com.vaadin.pwademo.utils
 
+import com.github.mvysny.karibudsl.v10.VaadinDsl
+import com.github.mvysny.karibudsl.v10.init
 import com.vaadin.flow.component.ClickEvent
 import com.vaadin.flow.component.Component
 import com.vaadin.flow.component.HasComponents
@@ -14,6 +16,8 @@ import com.vaadin.flow.router.AfterNavigationEvent
 import com.vaadin.flow.router.AfterNavigationObserver
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.RouterLink
+import com.vaadin.pwademo.tasks.AddTaskForm
+import kotlin.reflect.KClass
 
 /**
  * Taken from the [App Layout](https://vaadin.com/docs/latest/components/app-layout) component documentation.
@@ -36,15 +40,15 @@ class NavMenuBar : Tabs(), AfterNavigationObserver {
     @JvmOverloads
     fun addRoute(
         icon: VaadinIcon,
-        routeClass: Class<out Component?>,
+        routeClass: KClass<out Component>,
         title: String = getRouteTitle(routeClass)
     ) {
-        val routerLink = RouterLink(routeClass)
+        val routerLink = RouterLink(routeClass.java)
         addNavIcon(routerLink, icon)
         routerLink.add(Span(title))
         val tab = Tab(routerLink)
         add(tab)
-        tabs[routeClass] = tab
+        tabs[routeClass.java] = tab
     }
 
     fun addButton(
@@ -67,13 +71,12 @@ class NavMenuBar : Tabs(), AfterNavigationObserver {
             .set("margin-inline-start", "var(--lumo-space-xs)")["padding"] =
             "var(--lumo-space-xs)"
     }
-
-    companion object {
-        private fun getRouteTitle(routeClass: Class<*>): String {
-            val title = routeClass.getAnnotation(
-                PageTitle::class.java
-            )
-            return title?.value ?: routeClass.simpleName
-        }
-    }
 }
+
+private fun getRouteTitle(routeClass: KClass<*>): String {
+    val title = routeClass.java.getAnnotation(PageTitle::class.java)
+    return title?.value ?: routeClass.simpleName ?: ""
+}
+
+fun (@VaadinDsl HasComponents).navMenuBar(block: (@VaadinDsl NavMenuBar).() -> Unit = {}) = init(
+    NavMenuBar(), block)

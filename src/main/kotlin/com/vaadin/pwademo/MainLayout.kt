@@ -8,9 +8,10 @@ import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.pwademo.tasks.TaskListView
+import com.vaadin.pwademo.utils.navMenuBar
 
 /**
- * The main layout. It uses the app-layout component which makes the app look like an Android Material app. See [AppHeaderLayout]
+ * The main layout. It uses the app-layout component which makes the app look like an Android Material app. See [appLayout]
  * for more details.
  */
 class MainLayout : KComposite(), RouterLayout {
@@ -30,9 +31,9 @@ class MainLayout : KComposite(), RouterLayout {
                 }
             }
             drawer {
-                verticalLayout {
-                    routerLink(VaadinIcon.LIST, "Task List", TaskListView::class)
-                    routerLink(VaadinIcon.QUESTION, "About", AboutView::class)
+                navMenuBar {
+                    addRoute(VaadinIcon.CHECK, TaskListView::class)
+                    addRoute(VaadinIcon.QUESTION, AboutView::class)
                 }
             }
 
@@ -48,4 +49,3 @@ class MainLayout : KComposite(), RouterLayout {
         contentPane.element.appendChild(content.element)
     }
 }
-
