@@ -1,21 +1,15 @@
 package com.vaadin.pwademo.utils
 
 import com.github.mvysny.karibudsl.v10.*
-import com.vaadin.flow.component.ClickEvent
 import com.vaadin.flow.component.Component
 import com.vaadin.flow.component.HasComponents
 import com.vaadin.flow.component.HasElement
-import com.vaadin.flow.component.html.Div
-import com.vaadin.flow.component.html.Span
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.tabs.Tab
 import com.vaadin.flow.component.tabs.Tabs
-import com.vaadin.flow.function.SerializableRunnable
 import com.vaadin.flow.router.AfterNavigationEvent
 import com.vaadin.flow.router.AfterNavigationObserver
 import com.vaadin.flow.router.PageTitle
-import com.vaadin.flow.router.RouterLink
-import com.vaadin.pwademo.tasks.AddTaskForm
 import kotlin.reflect.KClass
 
 /**
@@ -25,7 +19,7 @@ class NavMenuBar : Tabs(), AfterNavigationObserver {
     /**
      * Maps route class to its tab.
      */
-    private val tabs: MutableMap<Class<*>, Tab> = HashMap()
+    private val tabs: MutableMap<Class<*>, Tab> = mutableMapOf()
 
     init {
         orientation = Orientation.VERTICAL
@@ -36,11 +30,7 @@ class NavMenuBar : Tabs(), AfterNavigationObserver {
         selectedTab = tabs[currentRoute]
     }
 
-    fun addRoute(
-        icon: VaadinIcon,
-        routeClass: KClass<out Component>,
-        title: String = getRouteTitle(routeClass)
-    ) {
+    fun addRoute(icon: VaadinIcon, routeClass: KClass<out Component>, title: String = getRouteTitle(routeClass)) {
         val tab = tab {
             routerLink(viewType = routeClass) {
                 navIcon(icon)
@@ -50,11 +40,7 @@ class NavMenuBar : Tabs(), AfterNavigationObserver {
         tabs[routeClass.java] = tab
     }
 
-    fun addButton(
-        icon: VaadinIcon,
-        title: String,
-        clickListener: () -> Unit
-    ) {
+    fun addButton(icon: VaadinIcon, title: String, clickListener: () -> Unit) {
         tab {
             div {
                 navIcon(icon)
@@ -70,9 +56,11 @@ private fun getRouteTitle(routeClass: KClass<*>): String {
     return title?.value ?: routeClass.simpleName ?: ""
 }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).navMenuBar(block: (@VaadinDsl NavMenuBar).() -> Unit = {}) = init(
     NavMenuBar(), block)
 
+@VaadinDsl
 private fun (@VaadinDsl HasComponents).navIcon(icon: VaadinIcon) {
     icon(icon) {
         style["box-sizing"] = "border-box"

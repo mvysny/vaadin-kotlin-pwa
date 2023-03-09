@@ -47,5 +47,6 @@ class AddTaskForm : KComposite() {
 /**
  * A DSL function which allows your component to be placed in the DSL component tree.
  */
+@VaadinDsl
 fun (@VaadinDsl HasComponents).addTaskForm(block: (@VaadinDsl AddTaskForm).() -> Unit = {}) = init(
     AddTaskForm(), block)
