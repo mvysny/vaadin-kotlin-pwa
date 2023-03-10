@@ -26,7 +26,7 @@ import jakarta.servlet.annotation.WebListener
  */
 @WebListener
 class Bootstrap : ServletContextListener {
-    override fun contextInitialized(sce: ServletContextEvent?) = try {
+    override fun contextInitialized(sce: ServletContextEvent?) {
         log.info("Starting up")
 
         // this will configure your database. For demo purposes, an in-memory embedded H2 database is used. To use a production-ready database:
@@ -60,9 +60,6 @@ class Bootstrap : ServletContextListener {
 
         // pre-populates the database with a demo data if the database is empty
         Task.generateSampleData()
-    } catch (t: Throwable) {
-        log.error("Bootstrap failed!", t)
-        throw t
     }
 
     override fun contextDestroyed(sce: ServletContextEvent?) {
