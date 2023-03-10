@@ -39,7 +39,7 @@ dependencies {
             }
         }
     }
-    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:11.0")
+    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:11.1")
 
     // validator. We need to explicitly declare it since we're using annotations from it
     implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
