@@ -6,9 +6,11 @@ import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.notification.Notification
+import com.vaadin.flow.component.sidenav.SideNavItem
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.pwademo.tasks.TaskListView
-import com.vaadin.pwademo.utils.navMenuBar
+import com.vaadin.pwademo.utils.route
+import com.vaadin.pwademo.utils.sideNav
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app. See [appLayout]
@@ -31,9 +33,9 @@ class MainLayout : KComposite(), RouterLayout {
                 }
             }
             drawer {
-                navMenuBar {
-                    addRoute(VaadinIcon.CHECK, TaskListView::class)
-                    addRoute(VaadinIcon.QUESTION, AboutView::class)
+                sideNav {
+                    route(TaskListView::class, VaadinIcon.CHECK)
+                    route(AboutView::class, VaadinIcon.QUESTION)
                 }
             }
 
