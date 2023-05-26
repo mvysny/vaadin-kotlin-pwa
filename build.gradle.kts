@@ -6,7 +6,7 @@ val vaadin_version = "24.0.4"
 val slf4j_version = "2.0.6"
 
 plugins {
-    kotlin("jvm") version "1.8.20"
+    kotlin("jvm") version "1.8.21"
     id("application")
     id("com.vaadin") version "24.0.4"
 }
