@@ -8,6 +8,5 @@ out
 
 target
 node_modules
-vite.generated.ts
 .npmrc
 frontend/generated

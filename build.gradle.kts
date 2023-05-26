@@ -2,18 +2,19 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.15.0"
-val vaadin_version = "24.0.4"
+val vaadin_version = "24.1.0.beta2"
 val slf4j_version = "2.0.6"
 
 plugins {
     kotlin("jvm") version "1.8.21"
     id("application")
-    id("com.vaadin") version "24.0.4"
+    id("com.vaadin") version "24.1.0.beta2"
 }
 
 defaultTasks("clean", "build")
 
 repositories {
+    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
     mavenCentral()
 }
 
@@ -31,7 +32,9 @@ tasks.withType<KotlinCompile> {
 
 dependencies {
     // Vaadin
-    implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
+    implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version") {
+        exclude(group = "com.vaadin")
+    }
     implementation("com.vaadin:vaadin-core:${vaadin_version}") {
         afterEvaluate {
             if (vaadin.productionMode) {
@@ -39,7 +42,7 @@ dependencies {
             }
         }
     }
-    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:11.1")
+    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:11.3")
 
     // validator. We need to explicitly declare it since we're using annotations from it
     implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
