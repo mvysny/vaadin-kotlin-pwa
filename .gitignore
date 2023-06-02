@@ -7,6 +7,4 @@ local.properties
 out
 
 target
-node_modules
-.npmrc
 frontend/generated
