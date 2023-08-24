@@ -37,7 +37,7 @@ dependencies {
     implementation("eu.vaadinonkotlin:vok-framework-vokdb:${properties["vokVersion"]}") {
         exclude(group = "com.vaadin")
     }
-    implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:2.0.1")
+    implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:2.1.0")
     implementation("com.vaadin:vaadin-core:${properties["vaadinVersion"]}") {
         afterEvaluate {
             if (vaadin.productionMode) {
