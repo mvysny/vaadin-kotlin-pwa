@@ -20,7 +20,7 @@ RUN unzip app.zip
 # /app/build/distributions/app/ folder.
 
 # The "Run" stage. Start with a clean image, and copy over just the app itself, omitting gradle, npm and any intermediate build files.
-FROM eclipse-temurin:20
+FROM openjdk:21-bookworm
 COPY --from=BUILD /app/build/distributions/app /app/
 WORKDIR /app/bin
 EXPOSE 8080
