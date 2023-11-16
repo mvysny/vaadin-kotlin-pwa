@@ -1,15 +1,8 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript {
-    // fix for https://github.com/mvysny/vaadin-boot-example-gradle/issues/3
-    dependencies {
-        classpath("com.vaadin:vaadin-prod-bundle:${project.properties["vaadinVersion"]}")
-    }
-}
-
 plugins {
-    kotlin("jvm") version "1.9.10"
+    kotlin("jvm") version "1.9.20"
     id("application")
     id("com.vaadin")
 }
@@ -58,8 +51,8 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
-    implementation("org.flywaydb:flyway-core:9.22.0")
-    implementation("com.h2database:h2:2.2.222")
+    implementation("org.flywaydb:flyway-core:9.22.1")
+    implementation("com.h2database:h2:2.2.224")
 
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v24:2.1.0")
@@ -72,5 +65,5 @@ java {
 }
 
 application {
-    mainClass.set("com.vaadin.pwademo.MainKt")
+    mainClass = "com.vaadin.pwademo.MainKt"
 }
