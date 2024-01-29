@@ -1,5 +1,6 @@
 package com.vaadin.pwademo
 
+import com.gitlab.mvysny.jdbiorm.JdbiOrm
 import com.vaadin.flow.component.page.AppShellConfigurator
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
@@ -9,7 +10,7 @@ import com.vaadin.pwademo.tasks.Task
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import eu.vaadinonkotlin.VaadinOnKotlin
-import eu.vaadinonkotlin.vokdb.dataSource
+import eu.vaadinonkotlin.vaadin.vokdb.dataSource
 import org.flywaydb.core.Flyway
 import org.h2.Driver
 import org.jetbrains.annotations.VisibleForTesting
@@ -66,6 +67,8 @@ class Bootstrap : ServletContextListener {
         log.info("Shutting down")
         log.info("Destroying VaadinOnKotlin")
         VaadinOnKotlin.destroy()
+        log.info("Closing connections to the database")
+        JdbiOrm.destroy()
         log.info("Shutdown complete")
     }
 

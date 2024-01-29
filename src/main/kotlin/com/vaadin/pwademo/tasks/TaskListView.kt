@@ -1,11 +1,14 @@
 package com.vaadin.pwademo.tasks
 
 import com.github.mvysny.karibudsl.v10.*
+import com.github.mvysny.kaributools.asc
 import com.github.mvysny.kaributools.refresh
-import com.github.mvysny.vokdataloader.asc
-import com.github.mvysny.vokdataloader.desc
-import com.github.mvysny.vokdataloader.sortedBy
-import com.github.vokorm.dataloader.dataLoader
+import com.github.mvysny.kaributools.sort
+import com.github.vokorm.asc
+import com.github.vokorm.desc
+import com.github.vokorm.exp
+import com.gitlab.mvysny.jdbiorm.vaadin.filter.BooleanFilterField
+import com.gitlab.mvysny.jdbiorm.vaadin.filter.FilterTextField
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.checkbox.Checkbox
@@ -13,16 +16,13 @@ import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.Icon
 import com.vaadin.flow.component.icon.VaadinIcon
-import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.pwademo.MainLayout
-import eu.vaadinonkotlin.vaadin.BooleanComboBox
-import eu.vaadinonkotlin.vaadin.VokFilterBar
-import eu.vaadinonkotlin.vaadin.asFilterBar
-import eu.vaadinonkotlin.vaadin.istartsWith
-import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
+import eu.vaadinonkotlin.vaadin.*
+import eu.vaadinonkotlin.vaadin.vokdb.dataProvider
+import eu.vaadinonkotlin.vaadin.vokdb.sort
 
 /**
  * The main view of the app. It is a vertical layout which lays out the child components vertically. There are only two components:
@@ -39,6 +39,8 @@ import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
 @Route("", layout = MainLayout::class)
 @PageTitle("Task List")
 class TaskListView : KComposite() {
+    private val dataProvider = Task.dataProvider
+
     private lateinit var form: AddTaskForm
     private lateinit var grid: Grid<Task>
     private val root = ui {
@@ -54,25 +56,28 @@ class TaskListView : KComposite() {
                 }
             }
 
-            grid = grid<Task> {
+            grid = grid<Task>(dataProvider) {
                 width = "100%"; isExpand = true
 
-                setDataLoader(Task.dataLoader.sortedBy(Task::completed.asc, Task::created.desc))
-
                 appendHeaderRow() // workaround for https://github.com/vaadin/vaadin-grid-flow/issues/912
-                val filterBar: VokFilterBar<Task> = appendHeaderRow().asFilterBar(this)
+                val filterBar: FilterBar<Task> = appendHeaderRow().asFilterBar(this)
 
-                columnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
+                val completedColumn = columnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
                     isExpand = false; setHeader("Done"); width = "130px"
-                    filterBar.forField(BooleanComboBox(), this).eq()
+                    setSortProperty(Task::completed.exp)
+                    filterBar.forField(BooleanFilterField(), this).eq()
                 }
                 columnFor(Task::title, createTaskNameDivRenderer()) {
-                    filterBar.forField(TextField(), this).istartsWith()
+                    setSortProperty(Task::title.exp)
+                    filterBar.forField(FilterTextField(), this).istartsWith()
                 }
                 addColumn(newDeleteButtonRenderer()).apply {
                     isExpand = false; width = "90px"
                 }
+
+                sort(completedColumn.asc)
             }
+            dataProvider.setSortFields(Task::completed.exp.asc(), Task::created.exp.asc())
         }
     }
 
