@@ -33,7 +33,7 @@ dependencies {
     implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:2.1.2")
     implementation("com.vaadin:vaadin-core:${properties["vaadinVersion"]}") {
         afterEvaluate {
-            if (vaadin.productionMode) {
+            if (vaadin.productionMode.get()) {
                 exclude(module = "vaadin-dev")
             }
         }
