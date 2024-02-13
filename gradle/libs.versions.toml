@@ -14,13 +14,9 @@ karibu-testing = "com.github.mvysny.kaributesting:karibu-testing-v24:2.1.2"
 karibu-dsl = "com.github.mvysny.karibudsl:karibu-dsl-v23:2.1.2"
 flyway = "org.flywaydb:flyway-core:9.22.3"
 h2 = "com.h2database:h2:2.2.224"
-http4k = "org.http4k:http4k-core:5.9.0.0"
-gson-javatime = "com.fatboyindustrial.gson-javatime-serialisers:gson-javatime-serialisers:1.1.2"
 hikaricp = "com.zaxxer:HikariCP:5.0.1"
 dynatest = "com.github.mvysny.dynatest:dynatest:0.24"
 vok-db = { module = "eu.vaadinonkotlin:vok-framework-vokdb", version.ref = "vok" }
-vok-rest-server = { module = "eu.vaadinonkotlin:vok-rest", version.ref = "vok" }
-vok-rest-client = { module = "eu.vaadinonkotlin:vok-rest-client", version.ref = "vok" }
 hibernate-validator = "org.hibernate.validator:hibernate-validator:8.0.1.Final"
 
 [plugins]
