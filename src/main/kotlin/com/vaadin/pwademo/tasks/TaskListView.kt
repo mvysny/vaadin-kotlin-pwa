@@ -107,7 +107,7 @@ class TaskListView : KComposite() {
         ComponentRenderer { task ->
             Button(Icon(VaadinIcon.TRASH)).apply {
                 addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE)  // this will remove the button border
-                onLeftClick {
+                onClick {
                     task.delete()
                     grid.dataProvider.refreshAll()
                 }
