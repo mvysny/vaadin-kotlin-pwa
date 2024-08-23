@@ -18,7 +18,7 @@ class AboutView : KComposite() {
             span("This project demoes a PWA app made in Vaadin, using the Vaadin-on-Kotlin framework")
             span("Vaadin ${VaadinVersion.get} Flow ${VaadinVersion.flow}, Kotlin ${KotlinVersion.CURRENT}, JVM $jvmVersion")
             button("Re-generate data") {
-                onLeftClick { Task.regenerateSampleData() }
+                onClick { Task.regenerateSampleData() }
             }
         }
     }

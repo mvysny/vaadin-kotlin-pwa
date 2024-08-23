@@ -26,7 +26,7 @@ class MainLayout : KComposite(), RouterLayout {
                 h3("Vaadin Kotlin PWA Demo")
                 button(icon = VaadinIcon.FILE_REMOVE.create()) {
                     addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_ICON)
-                    onLeftClick {
+                    onClick {
                         Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
                     }
                 }

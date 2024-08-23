@@ -27,7 +27,7 @@ class AddTaskForm : KComposite() {
             button("Add") {
                 setSizeUndefined()
 
-                onLeftClick {
+                onClick {
                     val newTask = Task()
                     if (binder.writeBeanIfValid(newTask)) {
                         onAddTask(newTask)
