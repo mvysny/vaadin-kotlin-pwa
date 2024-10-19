@@ -4,9 +4,8 @@ import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.asc
 import com.github.mvysny.kaributools.refresh
 import com.github.mvysny.kaributools.sort
-import com.github.vokorm.asc
-import com.github.vokorm.desc
 import com.github.vokorm.exp
+import com.gitlab.mvysny.jdbiorm.condition.Condition
 import com.gitlab.mvysny.jdbiorm.vaadin.filter.BooleanFilterField
 import com.gitlab.mvysny.jdbiorm.vaadin.filter.FilterTextField
 import com.vaadin.flow.component.button.Button
@@ -22,7 +21,6 @@ import com.vaadin.flow.router.Route
 import com.vaadin.pwademo.MainLayout
 import eu.vaadinonkotlin.vaadin.*
 import eu.vaadinonkotlin.vaadin.vokdb.dataProvider
-import eu.vaadinonkotlin.vaadin.vokdb.sort
 
 /**
  * The main view of the app. It is a vertical layout which lays out the child components vertically. There are only two components:
@@ -40,6 +38,8 @@ import eu.vaadinonkotlin.vaadin.vokdb.sort
 @PageTitle("Task List")
 class TaskListView : KComposite() {
     private val dataProvider = Task.dataProvider
+    private val completedFilter = BooleanFilterField()
+    private val taskTitleFilter = FilterTextField()
 
     private lateinit var form: AddTaskForm
     private lateinit var grid: Grid<Task>
@@ -60,16 +60,19 @@ class TaskListView : KComposite() {
                 width = "100%"; isExpand = true
 
                 appendHeaderRow() // workaround for https://github.com/vaadin/vaadin-grid-flow/issues/912
-                val filterBar: FilterBar<Task> = appendHeaderRow().asFilterBar(this)
+                val filterBar = appendHeaderRow()
 
                 val completedColumn = columnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
                     isExpand = false; setHeader("Done"); width = "130px"
                     setSortProperty(Task::completed.exp)
-                    filterBar.forField(BooleanFilterField(), this).eq()
+                    completedFilter.width = "100%"
+                    completedFilter.addValueChangeListener { updateFilter() }
+                    filterBar.getCell(this).component = completedFilter
                 }
-                columnFor(Task::title, createTaskNameDivRenderer()) {
+                columnFor(Task::title, createTaskTitleDivRenderer()) {
                     setSortProperty(Task::title.exp)
-                    filterBar.forField(FilterTextField(), this).istartsWith()
+                    taskTitleFilter.addValueChangeListener { updateFilter() }
+                    filterBar.getCell(this).component = taskTitleFilter
                 }
                 addColumn(newDeleteButtonRenderer()).apply {
                     isExpand = false; width = "90px"
@@ -79,6 +82,17 @@ class TaskListView : KComposite() {
             }
             dataProvider.setSortFields(Task::completed.exp.asc(), Task::created.exp.asc())
         }
+    }
+
+    private fun updateFilter() {
+        var c: Condition = Condition.NO_CONDITION
+        if (completedFilter.value != null) {
+            c = c.and(Task::completed.exp.eq(completedFilter.value))
+        }
+        if (taskTitleFilter.value.isNotBlank()) {
+            c = c.and(Task::title.exp.startsWithIgnoreCase(taskTitleFilter.value))
+        }
+        dataProvider.filter = c
     }
 
     private fun createTaskCompletedCheckboxRenderer(): ComponentRenderer<Checkbox, Task> =
@@ -93,7 +107,7 @@ class TaskListView : KComposite() {
             }
         }
 
-    private fun createTaskNameDivRenderer(): ComponentRenderer<Div, Task> =
+    private fun createTaskTitleDivRenderer(): ComponentRenderer<Div, Task> =
         ComponentRenderer { task ->
             Div().apply {
                 text = task.title
