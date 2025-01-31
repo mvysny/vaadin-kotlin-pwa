@@ -2,7 +2,7 @@
 vaadin = "24.6.4"
 # https://repo1.maven.org/maven2/org/slf4j/slf4j-api/
 slf4j = "2.0.16"
-vok = "0.18"
+vok = "0.18.1"
 
 [libraries]
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
