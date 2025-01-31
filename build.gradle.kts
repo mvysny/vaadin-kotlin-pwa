@@ -43,8 +43,6 @@ dependencies {
     // currently we are logging through the SLF4J API to slf4j-simple. See src/main/resources/simplelogger.properties file for the logger configuration
     implementation(libs.slf4j.simple)
 
-    implementation(kotlin("stdlib-jdk8"))
-
     // db
     implementation(libs.hikaricp)
     implementation(libs.flyway)
