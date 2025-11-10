@@ -7,7 +7,7 @@
 # Uses Docker Multi-stage builds: https://docs.docker.com/build/building/multi-stage/
 
 # The "Build" stage. Copies the entire project into the container, into the /app/ folder, and builds it.
-FROM openjdk:21-bookworm AS builder
+FROM eclipse-temurin:21 AS builder
 COPY . /app/
 WORKDIR /app/
 RUN --mount=type=cache,target=/root/.gradle --mount=type=cache,target=/root/.vaadin ./gradlew clean build -Pvaadin.productionMode --no-daemon --info --stacktrace
@@ -17,7 +17,7 @@ RUN tar xvf app.tar
 # /app/build/distributions/app/ folder.
 
 # The "Run" stage. Start with a clean image, and copy over just the app itself, omitting gradle, npm and any intermediate build files.
-FROM openjdk:21-bookworm
+FROM eclipse-temurin:21
 COPY --from=builder /app/build/distributions/app /app/
 WORKDIR /app/bin
 EXPOSE 8080
