@@ -8,3 +8,5 @@ out
 
 target
 src/main/frontend/generated
+kls_database.db
+
