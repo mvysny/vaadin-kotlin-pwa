@@ -4,10 +4,11 @@ import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.asc
 import com.github.mvysny.kaributools.refresh
 import com.github.mvysny.kaributools.sort
-import com.github.vokorm.exp
-import com.gitlab.mvysny.jdbiorm.condition.Condition
-import com.gitlab.mvysny.jdbiorm.vaadin.filter.BooleanFilterField
-import com.gitlab.mvysny.jdbiorm.vaadin.filter.FilterTextField
+import com.github.mvysny.ktormvaadin.and
+import com.github.mvysny.ktormvaadin.dataProvider
+import com.github.mvysny.ktormvaadin.e
+import com.github.mvysny.ktormvaadin.filter.BooleanFilterField
+import com.github.mvysny.ktormvaadin.filter.FilterTextField
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.checkbox.Checkbox
@@ -19,8 +20,9 @@ import com.vaadin.flow.data.renderer.ComponentRenderer
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.pwademo.MainLayout
-import eu.vaadinonkotlin.vaadin.*
-import eu.vaadinonkotlin.vaadin.vokdb.dataProvider
+import org.ktorm.dsl.eq
+import org.ktorm.schema.ColumnDeclaring
+import org.ktorm.support.postgresql.ilike
 
 /**
  * The main view of the app. It is a vertical layout which lays out the child components vertically. There are only two components:
@@ -37,9 +39,9 @@ import eu.vaadinonkotlin.vaadin.vokdb.dataProvider
 @Route("", layout = MainLayout::class)
 @PageTitle("Task List")
 class TaskListView : KComposite() {
-    private val dataProvider = Task.dataProvider
+    private val dataProvider = Tasks.dataProvider
     private val completedFilter = BooleanFilterField()
-    private val taskTitleFilter = FilterTextField()
+    private val taskTitleFilter = FilterTextField("task_title_filter")
 
     private lateinit var form: AddTaskForm
     private lateinit var grid: Grid<Task>
@@ -64,13 +66,13 @@ class TaskListView : KComposite() {
 
                 val completedColumn = columnFor(Task::completed, createTaskCompletedCheckboxRenderer()) {
                     isExpand = false; setHeader("Done"); width = "130px"
-                    setSortProperty(Task::completed.exp)
+                    setSortProperty(Tasks.completed.e.key)
                     completedFilter.width = "100%"
                     completedFilter.addValueChangeListener { updateFilter() }
                     filterBar.getCell(this).component = completedFilter
                 }
                 columnFor(Task::title, createTaskTitleDivRenderer()) {
-                    setSortProperty(Task::title.exp)
+                    setSortProperty(Tasks.title.e.key)
                     taskTitleFilter.addValueChangeListener { updateFilter() }
                     filterBar.getCell(this).component = taskTitleFilter
                 }
@@ -80,19 +82,19 @@ class TaskListView : KComposite() {
 
                 sort(completedColumn.asc)
             }
-            dataProvider.setSortFields(Task::completed.exp.asc(), Task::created.exp.asc())
+            dataProvider.setSortOrders(listOf(Tasks.completed.e.asc, Tasks.created.e.asc))
         }
     }
 
     private fun updateFilter() {
-        var c: Condition = Condition.NO_CONDITION
+        val c = mutableListOf<ColumnDeclaring<Boolean>?>()
         if (completedFilter.value != null) {
-            c = c.and(Task::completed.exp.eq(completedFilter.value))
+            c += Tasks.completed eq completedFilter.value!!
         }
         if (taskTitleFilter.value.isNotBlank()) {
-            c = c.and(Task::title.exp.startsWithIgnoreCase(taskTitleFilter.value))
+            c += Tasks.title ilike taskTitleFilter.value + "%"
         }
-        dataProvider.filter = c
+        dataProvider.setFilter(c.and())
     }
 
     private fun createTaskCompletedCheckboxRenderer(): ComponentRenderer<Checkbox, Task> =

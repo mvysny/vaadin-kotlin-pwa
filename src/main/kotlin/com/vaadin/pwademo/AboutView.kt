@@ -4,7 +4,7 @@ import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.VaadinVersion
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
-import com.vaadin.pwademo.tasks.Task
+import com.vaadin.pwademo.tasks.Tasks
 
 /**
  * A simple "About" view.
@@ -18,7 +18,7 @@ class AboutView : KComposite() {
             span("This project demoes a PWA app made in Vaadin, using the Vaadin-on-Kotlin framework")
             span("Vaadin ${VaadinVersion.get} Flow ${VaadinVersion.flow}, Kotlin ${KotlinVersion.CURRENT}, JVM $jvmVersion")
             button("Re-generate data") {
-                onClick { Task.regenerateSampleData() }
+                onClick { Tasks.regenerateSampleData() }
             }
         }
     }

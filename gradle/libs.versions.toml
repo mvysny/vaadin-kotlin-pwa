@@ -2,7 +2,6 @@
 vaadin = "25.0.4"
 # https://repo1.maven.org/maven2/org/slf4j/slf4j-api/
 slf4j = "2.0.17"
-vok = "0.18.1"
 
 [libraries]
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
@@ -16,7 +15,7 @@ flyway = "org.flywaydb:flyway-core:10.15.2"
 h2 = "com.h2database:h2:2.2.224"
 hikaricp = "com.zaxxer:HikariCP:7.0.2"
 junit = "org.junit.jupiter:junit-jupiter-engine:6.0.1"
-vok-db = { module = "eu.vaadinonkotlin:vok-framework-vokdb", version.ref = "vok" }
+ktorm-vaadin = "com.github.mvysny.ktorm-vaadin:ktorm-vaadin:0.1"
 hibernate-validator = "org.hibernate.validator:hibernate-validator:9.1.0.Final"
 
 [plugins]

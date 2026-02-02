@@ -1,17 +1,15 @@
 package com.vaadin.pwademo
 
-import com.gitlab.mvysny.jdbiorm.JdbiOrm
+import com.github.mvysny.ktormvaadin.ActiveKtorm
 import com.vaadin.flow.component.dependency.StyleSheet
 import com.vaadin.flow.component.page.AppShellConfigurator
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.server.PWA
 import com.vaadin.flow.theme.lumo.Lumo
-import com.vaadin.pwademo.tasks.Task
+import com.vaadin.pwademo.tasks.Tasks
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import eu.vaadinonkotlin.VaadinOnKotlin
-import eu.vaadinonkotlin.vaadin.vokdb.dataSource
 import org.flywaydb.core.Flyway
 import org.h2.Driver
 import org.jetbrains.annotations.VisibleForTesting
@@ -20,6 +18,7 @@ import java.io.File
 import jakarta.servlet.ServletContextEvent
 import jakarta.servlet.ServletContextListener
 import jakarta.servlet.annotation.WebListener
+import org.ktorm.database.Database
 
 /**
  * Called by the Servlet Container to bootstrap your app. We need to bootstrap the Vaadin-on-Kotlin framework,
@@ -31,6 +30,7 @@ class Bootstrap : ServletContextListener {
     override fun contextInitialized(sce: ServletContextEvent?) {
         log.info("Starting up")
 
+        log.info("Connecting to the database")
         // this will configure your database. For demo purposes, an in-memory embedded H2 database is used. To use a production-ready database:
         // 1. fill in the proper JDBC URL here
         // 2. make sure to include the database driver into the classpath, by adding a dependency on the driver into the build.gradle file.
@@ -46,30 +46,25 @@ class Bootstrap : ServletContextListener {
             username = "sa"
             password = ""
         }
-        VaadinOnKotlin.dataSource = HikariDataSource(cfg)
-
-        // Initializes the VoK framework
-        log.info("Initializing VaadinOnKotlin")
-        VaadinOnKotlin.init()
+        dataSource = HikariDataSource(cfg)
+        ActiveKtorm.database = Database.connect(dataSource)
 
         // Makes sure the database is up-to-date
         log.info("Running DB migrations")
         val flyway: Flyway = Flyway.configure()
-            .dataSource(VaadinOnKotlin.dataSource)
+            .dataSource(dataSource)
             .load()
         flyway.migrate()
         log.info("Initialization complete")
 
         // pre-populates the database with a demo data if the database is empty
-        Task.generateSampleData()
+        Tasks.generateSampleData()
     }
 
     override fun contextDestroyed(sce: ServletContextEvent?) {
         log.info("Shutting down")
-        log.info("Destroying VaadinOnKotlin")
-        VaadinOnKotlin.destroy()
         log.info("Closing connections to the database")
-        JdbiOrm.destroy()
+        dataSource.close()
         log.info("Shutdown complete")
     }
 
@@ -79,6 +74,9 @@ class Bootstrap : ServletContextListener {
 
         @VisibleForTesting
         var forceInmemoryDb = false
+
+        @Volatile
+        private lateinit var dataSource: HikariDataSource
     }
 }
 

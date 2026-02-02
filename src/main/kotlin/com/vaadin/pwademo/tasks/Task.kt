@@ -1,46 +1,66 @@
 package com.vaadin.pwademo.tasks
 
-import com.github.vokorm.KEntity
-import com.github.vokorm.db
-import com.gitlab.mvysny.jdbiorm.Dao
+import com.github.mvysny.ktormvaadin.ActiveEntity
+import com.github.mvysny.ktormvaadin.ActiveKtorm.database
+import com.github.mvysny.ktormvaadin.db
+import com.github.mvysny.ktormvaadin.deleteAll
 import jakarta.validation.constraints.NotNull
 import org.hibernate.validator.constraints.Length
+import org.ktorm.database.Database
+import org.ktorm.entity.Entity
+import org.ktorm.entity.isEmpty
+import org.ktorm.entity.sequenceOf
+import org.ktorm.schema.*
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.util.*
+import java.time.LocalDate
 import kotlin.random.Random
 
-class Task(override var id: Long? = null,
-                @field:NotNull
-                @field:Length(min = 2)
-                var title: String = "",
-                @field:NotNull
-                var completed: Boolean = false,
-                @field:NotNull
-                var created: Date = Date()
-) : KEntity<Long> {
-    companion object : Dao<Task, Long>(Task::class.java) {
-        @JvmStatic
-        private val log = LoggerFactory.getLogger(Task::class.java)
-
-        fun generateSampleData() {
-            if (!Task.existsAny()) {
-                log.info("Task table is empty, populating with test data")
-                db {
-                    sampleData.forEach {
-                        Task(
-                            title = it,
-                            completed = Random.nextBoolean()
-                        ).save()
-                    }
+object Tasks : Table<Task>("task") {
+   val id = long("id").primaryKey().bindTo { it.id }
+    val title = varchar("title").bindTo { it.title }
+    val completed = boolean("completed").bindTo { it.completed }
+    val created = date("created").bindTo { it.created }
+    @JvmStatic
+    private val log: Logger = LoggerFactory.getLogger(Tasks::class.java)
+    fun generateSampleData() {
+        if (database.tasks.isEmpty()) {
+            log.info("Task table is empty, populating with test data")
+            db {
+                sampleData.forEach {
+                    Task {
+                        title = it
+                        completed = Random.nextBoolean()
+                        created = LocalDate.now()
+                    }.save()
                 }
             }
         }
-        fun regenerateSampleData() {
-            db {
-                deleteAll()
-                generateSampleData()
-            }
+    }
+    fun regenerateSampleData() {
+        db {
+            Tasks.deleteAll()
+            generateSampleData()
         }
+    }
+}
+
+val Database.tasks get() = this.sequenceOf(Tasks)
+
+interface Task : ActiveEntity<Task> {
+    var id: Long?
+    @get:NotNull
+    @get:Length(min = 2)
+    var title: String
+    @get:NotNull
+    var completed: Boolean
+    @get:NotNull
+    var created: LocalDate
+    override val table: Table<Task>
+        get() = Tasks
+
+    companion object : Entity.Factory<Task>() {
+        fun newEmpty() = Task { title = ""; completed = false; created = LocalDate.now() }
     }
 }
 

@@ -28,12 +28,13 @@ tasks.withType<KotlinCompile> {
 
 dependencies {
     // Vaadin
-    implementation(libs.vok.db)
+    implementation(libs.ktorm.vaadin)
     implementation(libs.vaadin.core) 
     if (!vaadin.effective.productionMode.get()) {
         implementation(libs.vaadin.dev)
     }
     implementation(libs.vaadinboot)
+    implementation(libs.karibu.dsl)
 
     // validator. We need to explicitly declare it since we're using annotations from it
     implementation(libs.hibernate.validator)

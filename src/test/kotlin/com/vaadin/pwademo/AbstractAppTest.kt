@@ -2,7 +2,9 @@ package com.vaadin.pwademo
 
 import com.github.mvysny.kaributesting.v10.MockVaadin
 import com.github.mvysny.kaributesting.v10.Routes
+import com.github.mvysny.ktormvaadin.deleteAll
 import com.vaadin.pwademo.tasks.Task
+import com.vaadin.pwademo.tasks.Tasks
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
@@ -26,6 +28,6 @@ abstract class AbstractAppTest {
 
     // it's a good practice to clear up the db before every test, to start every test with a predefined state.
     @BeforeEach @AfterEach fun cleanupDb() {
-        Task.deleteAll()
+        Tasks.deleteAll()
     }
 }

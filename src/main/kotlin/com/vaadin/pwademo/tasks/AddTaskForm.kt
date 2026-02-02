@@ -28,7 +28,7 @@ class AddTaskForm : KComposite() {
                 setSizeUndefined()
 
                 onClick {
-                    val newTask = Task()
+                    val newTask = Task.newEmpty()
                     if (binder.writeBeanIfValid(newTask)) {
                         onAddTask(newTask)
                         binder.readBean(Task())
@@ -40,7 +40,7 @@ class AddTaskForm : KComposite() {
     }
 
     init {
-        binder.readBean(Task())
+        binder.readBean(Task.newEmpty())
     }
 }
 
