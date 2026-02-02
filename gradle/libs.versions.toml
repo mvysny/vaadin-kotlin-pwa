@@ -12,7 +12,7 @@ vaadin-dev = { module = "com.vaadin:vaadin-dev", version.ref = "vaadin" }
 karibu-testing = "com.github.mvysny.kaributesting:karibu-testing-v24:2.6.2"
 karibu-dsl = "com.github.mvysny.karibudsl:karibu-dsl-v23:2.5.0"
 flyway = "org.flywaydb:flyway-core:11.20.3"
-h2 = "com.h2database:h2:2.2.224"
+h2 = "com.h2database:h2:2.4.240"
 hikaricp = "com.zaxxer:HikariCP:7.0.2"
 junit = "org.junit.jupiter:junit-jupiter-engine:6.0.2"
 ktorm-vaadin = "com.github.mvysny.ktorm-vaadin:ktorm-vaadin:0.1"
