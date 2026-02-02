@@ -14,7 +14,7 @@ karibu-dsl = "com.github.mvysny.karibudsl:karibu-dsl-v23:2.5.0"
 flyway = "org.flywaydb:flyway-core:11.20.3"
 h2 = "com.h2database:h2:2.2.224"
 hikaricp = "com.zaxxer:HikariCP:7.0.2"
-junit = "org.junit.jupiter:junit-jupiter-engine:6.0.1"
+junit = "org.junit.jupiter:junit-jupiter-engine:6.0.2"
 ktorm-vaadin = "com.github.mvysny.ktorm-vaadin:ktorm-vaadin:0.1"
 hibernate-validator = "org.hibernate.validator:hibernate-validator:9.1.0.Final"
 
