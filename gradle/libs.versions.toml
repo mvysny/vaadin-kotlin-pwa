@@ -13,10 +13,10 @@ karibu-testing = "com.github.mvysny.kaributesting:karibu-testing-v24:2.4.0"
 karibu-dsl = "com.github.mvysny.karibudsl:karibu-dsl-v23:2.3.2"
 flyway = "org.flywaydb:flyway-core:10.15.2"
 h2 = "com.h2database:h2:2.2.224"
-hikaricp = "com.zaxxer:HikariCP:5.1.0"
-junit = "org.junit.jupiter:junit-jupiter-engine:5.11.0"
+hikaricp = "com.zaxxer:HikariCP:7.0.2"
+junit = "org.junit.jupiter:junit-jupiter-engine:6.0.1"
 vok-db = { module = "eu.vaadinonkotlin:vok-framework-vokdb", version.ref = "vok" }
-hibernate-validator = "org.hibernate.validator:hibernate-validator:8.0.1.Final"
+hibernate-validator = "org.hibernate.validator:hibernate-validator:9.1.0.Final"
 
 [plugins]
 vaadin = { id = "com.vaadin", version.ref = "vaadin" }
