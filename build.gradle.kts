@@ -23,18 +23,17 @@ tasks.withType<Test> {
 }
 
 tasks.withType<KotlinCompile> {
-    compilerOptions.jvmTarget = JvmTarget.JVM_17
+    compilerOptions.jvmTarget = JvmTarget.JVM_21
 }
 
 dependencies {
     // Vaadin
     implementation(libs.vok.db)
-    implementation(libs.vaadin.core) {
-        if (vaadin.effective.productionMode.get()) {
-            exclude(module = "vaadin-dev")
-        }
+    implementation(libs.vaadin.core) 
+    if (!vaadin.effective.productionMode.get()) {
+        implementation(libs.vaadin.dev)
     }
-    implementation(libs.vaadin.boot)
+    implementation(libs.vaadinboot)
 
     // validator. We need to explicitly declare it since we're using annotations from it
     implementation(libs.hibernate.validator)
@@ -55,8 +54,8 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 application {
