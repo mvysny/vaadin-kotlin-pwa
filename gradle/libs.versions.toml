@@ -11,11 +11,11 @@ vaadin-core = { module = "com.vaadin:vaadin-core", version.ref = "vaadin" }
 vaadin-dev = { module = "com.vaadin:vaadin-dev", version.ref = "vaadin" }
 karibu-testing = "com.github.mvysny.kaributesting:karibu-testing-v24:2.7.0"
 karibu-dsl = "com.github.mvysny.karibudsl:karibu-dsl-v23:2.6.0"
-flyway = "org.flywaydb:flyway-core:12.1.1"
+flyway = "org.flywaydb:flyway-core:12.6.1"
 h2 = "com.h2database:h2:2.4.240"
 hikaricp = "com.zaxxer:HikariCP:7.0.2"
-junit = "org.junit.jupiter:junit-jupiter-engine:6.0.2"
-ktorm-vaadin = "com.github.mvysny.ktorm-vaadin:ktorm-vaadin:0.1"
+junit = "org.junit.jupiter:junit-jupiter-engine:6.0.3"
+ktorm-vaadin = "com.github.mvysny.ktorm-vaadin:ktorm-vaadin:0.2"
 hibernate-validator = "org.hibernate.validator:hibernate-validator:9.1.0.Final"
 
 [plugins]

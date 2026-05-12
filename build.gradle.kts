@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "2.3.20"
+    kotlin("jvm") version "2.3.21"
     application
     alias(libs.plugins.vaadin)
 }
@@ -19,6 +19,7 @@ tasks.withType<Test> {
     testLogging {
         // when tests fail, we want to see the exceptions on stdout
         exceptionFormat = TestExceptionFormat.FULL
+        showCauses = true
     }
 }
 

@@ -10,7 +10,7 @@
 FROM eclipse-temurin:21 AS builder
 COPY . /app/
 WORKDIR /app/
-RUN --mount=type=cache,target=/root/.gradle --mount=type=cache,target=/root/.vaadin ./gradlew clean build -Pvaadin.productionMode --no-daemon --info --stacktrace
+RUN --mount=type=cache,target=/root/.gradle,sharing=locked --mount=type=cache,target=/root/.vaadin,sharing=locked ./gradlew clean build -Pvaadin.productionMode --no-daemon --no-watch-fs
 WORKDIR /app/build/distributions/
 RUN tar xvf app.tar
 # At this point, we have the app (executable bash scrip plus a bunch of jars) in the
