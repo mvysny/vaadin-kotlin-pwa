@@ -9,7 +9,7 @@ slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
 vaadinboot = "com.github.mvysny.vaadin-boot:vaadin-boot:13.7"
 vaadin-core = { module = "com.vaadin:vaadin-core", version.ref = "vaadin" }
 vaadin-dev = { module = "com.vaadin:vaadin-dev", version.ref = "vaadin" }
-karibu-testing = "com.github.mvysny.kaributesting:karibu-testing-v24:2.7.1"
+karibu-testing = "com.github.mvysny.kaributesting:karibu-testing-v24:2.7.2"
 karibu-dsl = "com.github.mvysny.karibudsl:karibu-dsl-v23:2.6.0"
 flyway = "org.flywaydb:flyway-core:12.6.2"
 h2 = "com.h2database:h2:2.4.240"
